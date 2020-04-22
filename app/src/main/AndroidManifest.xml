@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.RegistrationActivity"></activity>
+        <activity android:name=".Activity.NewsPapers"></activity>
+        <activity android:name=".Activity.SearchActivity" />
+        <activity android:name=".Activity.RegistrationActivity" />
         <activity android:name=".Activity.ConfirmActivity" />
         <activity android:name=".Activity.Login" />
         <activity android:name=".Activity.MainActivity">
