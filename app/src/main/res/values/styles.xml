@@ -11,4 +11,10 @@
 
     </style>
 
+
+    <style name="BottomNavigationView" parent="Widget.Design.BottomNavigationView">
+        <item name="colorPrimary">@color/colorAccent</item>
+    </style>
+
+
 </resources>
