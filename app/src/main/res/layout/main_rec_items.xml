@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="115dp"
+    android:layout_marginTop="@dimen/margin_normal_size"
+    android:layoutDirection="ltr">
+
+    <LinearLayout
+        android:layout_marginRight="@dimen/margin_normal_size"
+        android:layout_marginLeft="@dimen/margin_normal_size"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="125dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/nav_backgrond2"/>
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_above="@+id/lay_date"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layoutDirection="rtl"
+                android:padding="10dp">
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="64dp"
+                android:layout_height="30dp"
+                android:text="الانتباهة"
+                android:background="@drawable/shape_btn_bg_redius5"
+                android:textSize="@dimen/txt_small_size"
+                android:textColor="@android:color/white" />
+            <TextView
+                android:id="@+id/title"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="اصابات جديدة بفيروس كورونا"
+                android:textSize="@dimen/txt_normal_size"
+                android:textColor="@android:color/black"
+                />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/lay_date"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layoutDirection="rtl">
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="الاحد 14-4-2020"
+                    android:textSize="@dimen/txt_so_small_size"
+                    />
+                <TextView
+                    android:id="@+id/category"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="التصنيف: اخبار"
+                    android:textSize="@dimen/txt_so_small_size"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

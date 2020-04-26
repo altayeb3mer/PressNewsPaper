@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item
+            android:icon="@drawable/ic_home_nav"
+            android:id="@+id/nav_menu_main"
+            android:title="الرئيسية"
+            />
+        <item
+            android:icon="@drawable/ic_playlist_check"
+            android:id="@+id/nav_menu_my_sub"
+            android:title="اشتراكاتي"
+            />
+        <item
+            android:icon="@drawable/ic_notifications"
+            android:id="@+id/nav_menu_notification"
+            android:title="اشعارات"
+            />
+        <item
+            android:icon="@drawable/ic_book_save"
+            android:id="@+id/nav_menu_saved"
+            android:title="المحفوظات"
+            />
+        <item
+            android:icon="@drawable/ic_settings_orange"
+            android:id="@+id/nav_menu_setting"
+            android:title="الضبط"
+            />
+        <group android:checkableBehavior="none">
+        <item
+            android:icon="@drawable/ic_newspapers"
+            android:id="@+id/nav_menu_news_paper"
+            android:title="الصحف"
+            />
+        </group>
+</menu>

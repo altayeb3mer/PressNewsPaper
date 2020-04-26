@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="135dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/image_view"
+            android:scaleType="centerCrop"
+            android:src="@drawable/nav_backgrond2"/>
+        <RelativeLayout
+            android:background="@color/slider"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_above="@+id/container_date"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="10dp">
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="64dp"
+                android:layout_height="30dp"
+                android:text="الانتباهة"
+                android:background="@drawable/shape_btn_bg_redius5"
+                android:textSize="@dimen/txt_small_size"
+                android:textColor="@android:color/white" />
+            <TextView
+                android:id="@+id/title"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="اصابات جديدة بفيروس كورونا"
+                android:textSize="@dimen/txt_large_size"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/container_date"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="الاحد 14-4-2020"
+                android:textSize="@dimen/txt_so_small_size"
+                android:textColor="@android:color/white"
+                />
+            <TextView
+                android:id="@+id/category"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="التصنيف: اخبار"
+                android:textSize="@dimen/txt_so_small_size"
+                android:textColor="@android:color/white"
+                />
+        </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

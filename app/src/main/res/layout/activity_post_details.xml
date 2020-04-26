@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Activity.PostDetailsActivity"
     android:background="@color/colorBackground"
-    android:layoutDirection="rtl"
     >
 
     <androidx.core.widget.NestedScrollView
