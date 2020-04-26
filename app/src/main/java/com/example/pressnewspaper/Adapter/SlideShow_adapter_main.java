@@ -73,8 +73,8 @@ public class SlideShow_adapter_main extends PagerAdapter {
         textView_category.setText(modelSlideShowImg.getCategory());
 
 
-            Glide.with(context).load(modelSlideShowImg.getImg_url())
-                    .into(imgView);
+//            Glide.with(context).load(modelSlideShowImg.getImg_url())
+//                    .into(imgView);
 
 
             container.addView(view);
