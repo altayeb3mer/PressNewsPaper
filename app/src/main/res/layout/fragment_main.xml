@@ -53,35 +53,42 @@
 
                                 </LinearLayout>
 
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="40dp"
-                                        android:layout_marginTop="5dp"
-                                        android:orientation="vertical"
-                                        android:gravity="end">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical"
+                    android:gravity="end">
 
-                                        <LinearLayout
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="match_parent"
-                                            android:layout_marginLeft="@dimen/margin_normal_size"
-                                            android:layout_marginRight="@dimen/margin_normal_size"
-                                            android:gravity="center_vertical"
-                                            android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/margin_normal_size"
+                        android:layout_marginRight="@dimen/margin_normal_size"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="aaaa" />
+                        <TextView
+                            android:textSize="@dimen/txt_small_size"
+                            android:gravity="center_vertical"
+                            android:drawableRight="@drawable/ic_keyboard_arrow_down"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="كل التصنيفات"
+                            android:drawableEnd="@drawable/ic_keyboard_arrow_down"
+                            android:layout_marginLeft="@dimen/margin_normal_size"
+                            android:layout_marginRight="@dimen/margin_normal_size" />
 
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginLeft="@dimen/margin_normal_size"
-                                                android:layout_marginRight="@dimen/margin_normal_size"
-                                                android:text="aaaa" />
-                                        </LinearLayout>
-                                    </RelativeLayout>
-
+                        <TextView
+                            android:textSize="@dimen/txt_small_size"
+                            android:gravity="center_vertical"
+                            android:drawableRight="@drawable/ic_keyboard_arrow_down"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="كل الصحف"
+                            android:drawableEnd="@drawable/ic_keyboard_arrow_down" />
+                    </LinearLayout>
+                </RelativeLayout>
                                     <androidx.recyclerview.widget.RecyclerView
                                         android:id="@+id/fragment_main_recycler"
                                         android:layout_width="match_parent"
@@ -102,78 +109,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-
-<!--            <RelativeLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent">-->
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_above="@+id/lay_ads2"-->
-<!--                    android:layout_below="@+id/lay_ads1"-->
-<!--                    android:orientation="vertical">-->
-
-<!--                    <RelativeLayout-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="40dp"-->
-<!--                        android:layout_marginTop="5dp"-->
-<!--                        android:orientation="vertical">-->
-
-<!--                        <LinearLayout-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="match_parent"-->
-<!--                            android:layout_marginLeft="@dimen/margin_normal_size"-->
-<!--                            android:layout_marginRight="@dimen/margin_normal_size"-->
-<!--                            android:gravity="center_vertical"-->
-<!--                            android:orientation="horizontal">-->
-
-<!--                            <TextView-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:text="aaaa" />-->
-
-<!--                            <TextView-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:layout_marginLeft="@dimen/margin_normal_size"-->
-<!--                                android:layout_marginRight="@dimen/margin_normal_size"-->
-<!--                                android:text="aaaa" />-->
-<!--                        </LinearLayout>-->
-<!--                    </RelativeLayout>-->
-
-<!--                    <androidx.recyclerview.widget.RecyclerView-->
-<!--                        android:id="@+id/fragment_main_recycler"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="match_parent"-->
-<!--                        android:visibility="visible"-->
-<!--                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"-->
-<!--                        app:spanCount="1"-->
-<!--                        tools:itemCount="50"-->
-<!--                        tools:listitem="@layout/main_rec_items" />-->
-<!--                </LinearLayout>-->
-
-<!--                <LinearLayout-->
-<!--                    android:id="@+id/lay_ads1"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="?actionBarSize"-->
-<!--                    android:layout_marginTop="5dp"-->
-<!--                    android:background="@color/colorPrimary"-->
-<!--                    android:orientation="vertical">-->
-
-<!--                </LinearLayout>-->
-
-<!--                <LinearLayout-->
-<!--                    android:id="@+id/lay_ads2"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="?actionBarSize"-->
-<!--                    android:layout_alignParentBottom="true"-->
-<!--                    android:layout_marginTop="5dp"-->
-<!--                    android:background="@color/colorPrimary"-->
-<!--                    android:orientation="vertical">-->
-
-<!--                </LinearLayout>-->
-<!--            </RelativeLayout>-->
 
         </LinearLayout>
 

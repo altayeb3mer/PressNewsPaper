@@ -1,7 +1,10 @@
 package com.example.pressnewspaper.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -12,6 +15,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.pressnewspaper.Fragments.FragmentSavedPost;
 import com.example.pressnewspaper.Fragments.FragmentSetting;
 import com.example.pressnewspaper.Fragments.MainFragment;
 import com.example.pressnewspaper.Fragments.MySubFragment;
@@ -26,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
+    ImageButton imageButton_search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private void init() {
         bottomNavigationView = findViewById(R.id.btn_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        imageButton_search = findViewById(R.id.image_btn_search);
 
         toolbar = findViewById(R.id.public_toolbar);
         setSupportActionBar(toolbar);
@@ -49,6 +55,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer);
         drawerLayout.setDrawerListener(toggle);
         toggle.syncState();
+
+        imageButton_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,SearchActivity.class));
+            }
+        });
 
     }
 
@@ -63,21 +76,19 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             //nav_btn
 
             case R.id.btn_nav_main_ac: {
-                Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
                 switchToFragment(1);
                 break;
             }
             case R.id.btn_nav_my_sub: {
-                Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
                 switchToFragment(2);
                 break;
             }
             case R.id.btn_nav_notification: {
-                Toast.makeText(this, "3", Toast.LENGTH_SHORT).show();
+                switchToFragment(3);
                 break;
             }
             case R.id.btn_nav_saved: {
-                Toast.makeText(this, "4", Toast.LENGTH_SHORT).show();
+                switchToFragment(4);
                 break;
             }
             case R.id.btn_nav_setting: {
@@ -93,12 +104,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
             }
             case R.id.nav_menu_news_paper: {
-                Toast.makeText(this, "الصحف", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this,PaperPostsActivity.class));
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             }
             case R.id.nav_menu_my_sub: {
-                Toast.makeText(this, "اشتراكاتي", Toast.LENGTH_SHORT).show();
                 switchToFragment(2);
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
@@ -110,13 +120,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             }
             case R.id.nav_menu_saved: {
                 switchToFragment(4);
-                Toast.makeText(this, "المحفوظات", Toast.LENGTH_SHORT).show();
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             }
             case R.id.nav_menu_setting: {
                 switchToFragment(5);
-                Toast.makeText(this, "الضبط", Toast.LENGTH_SHORT).show();
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             }
@@ -143,6 +151,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
             }
             case 4: {
+                manager.beginTransaction().replace(R.id.fragment_container, new FragmentSavedPost()).commit();
                 SetNavigationItemSelected(R.id.btn_nav_saved);
                 break;
             }
@@ -159,8 +168,16 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if (bottomNavigationView.getSelectedItemId()!=R.id.btn_nav_main_ac){
+                switchToFragment(1);
+            }else{
+                super.onBackPressed();
+            }
         }
     }
 
+
+
+
+    //end of class
 }
