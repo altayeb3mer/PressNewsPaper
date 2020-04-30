@@ -17,7 +17,6 @@ public abstract class ToolbarClass extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.public_toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(toolbar_title);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

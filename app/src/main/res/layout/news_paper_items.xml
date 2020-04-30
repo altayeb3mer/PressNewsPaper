@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layoutDirection="rtl">
     <RelativeLayout
         android:id="@+id/container1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/margin_large_size">
         <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:text="اشتراك"
             android:background="@drawable/shape_btn_bg_redius5"
-            android:textSize="@dimen/txt_normal_size"
+            android:textSize="@dimen/txt_small_size"
             android:textColor="@android:color/white"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true" />
@@ -29,7 +30,6 @@
             <TextView
                 android:textStyle="bold"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/txt_normal_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="صحيفة الصيحة"
@@ -50,7 +50,7 @@
                 android:src="@drawable/ic_cat_shape_outline"/>
             <TextView
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/txt_normal_size"
+                android:textSize="@dimen/txt_normal_size14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="سياسية"
@@ -78,7 +78,7 @@
                 android:src="@drawable/ic_calendar_clock"/>
             <TextView
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/txt_normal_size"
+                android:textSize="@dimen/txt_normal_size14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="اسبوعية"
@@ -87,7 +87,7 @@
             <TextView
                 android:gravity="center"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/txt_normal_size"
+                android:textSize="@dimen/txt_normal_size14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="تصدر يوم الاحد"

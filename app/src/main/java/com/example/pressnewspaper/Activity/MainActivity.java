@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
             }
             case R.id.nav_menu_news_paper: {
-                startActivity(new Intent(this,PaperPostsActivity.class));
+                startActivity(new Intent(this,NewsPapers.class));
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             }

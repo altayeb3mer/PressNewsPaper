@@ -137,7 +137,7 @@
                         android:textColor="@android:color/black"
                         />
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/spc_recycler"
+                        android:id="@+id/post_details_recycler"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

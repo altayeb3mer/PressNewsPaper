@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="10dp">
     <androidx.cardview.widget.CardView
+        android:id="@+id/other_post_card"
         android:layout_width="130dp"
         android:layout_height="120dp"
         app:cardCornerRadius="5dp">
@@ -12,12 +13,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
+                android:id="@+id/other_post_img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="center"
                 android:src="@drawable/nav_backgrond2"
                 />
             <TextView
+                android:id="@+id/other_post_title"
                 android:layout_alignParentBottom="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -26,8 +29,10 @@
                 android:textColor="@android:color/white"
                 />
             <androidx.appcompat.widget.AppCompatButton
+                android:textSize="@dimen/txt_so_small_size"
+                android:id="@+id/other_post_btn"
                 android:layout_margin="5dp"
-                android:layout_width="65dp"
+                android:layout_width="50dp"
                 android:layout_height="20dp"
                 android:text="الانتباهة"
                 android:background="@drawable/shape_btn_bg_redius5"
