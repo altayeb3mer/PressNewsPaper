@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.MainFragment"
+    tools:context=".Fragments.FragmentMain"
     android:background="@color/colorBackground">
 
     <androidx.core.widget.NestedScrollView
@@ -92,7 +92,7 @@
                                     <androidx.recyclerview.widget.RecyclerView
                                         android:id="@+id/fragment_main_recycler"
                                         android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
+                                        android:layout_height="wrap_content"
                                         android:visibility="visible"
                                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                                         app:spanCount="1"

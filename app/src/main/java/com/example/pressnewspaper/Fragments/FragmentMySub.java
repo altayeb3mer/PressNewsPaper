@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 import com.example.pressnewspaper.R;
 
 
-public class MySubFragment extends Fragment {
+public class FragmentMySub extends Fragment {
 
 
-    public MySubFragment() {
+    public FragmentMySub() {
         // Required empty public constructor
     }
 

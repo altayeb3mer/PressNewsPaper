@@ -31,7 +31,7 @@
                 android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:hint="type to search.."
+                android:hint="اكتب للبحث.."
                 android:background="@android:color/transparent"
                 android:layout_toEndOf="@+id/back_icon" />
         </RelativeLayout>

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -17,8 +16,8 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.pressnewspaper.Fragments.FragmentSavedPost;
 import com.example.pressnewspaper.Fragments.FragmentSetting;
-import com.example.pressnewspaper.Fragments.MainFragment;
-import com.example.pressnewspaper.Fragments.MySubFragment;
+import com.example.pressnewspaper.Fragments.FragmentMain;
+import com.example.pressnewspaper.Fragments.FragmentMySub;
 import com.example.pressnewspaper.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -137,12 +136,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         FragmentManager manager = getSupportFragmentManager();
         switch (f_no) {
             case 1: {
-                manager.beginTransaction().replace(R.id.fragment_container, new MainFragment()).commit();
+                manager.beginTransaction().replace(R.id.fragment_container, new FragmentMain()).commit();
                 SetNavigationItemSelected(R.id.btn_nav_main_ac);
                 break;
             }
             case 2: {
-                manager.beginTransaction().replace(R.id.fragment_container, new MySubFragment()).commit();
+                manager.beginTransaction().replace(R.id.fragment_container, new FragmentMySub()).commit();
                 SetNavigationItemSelected(R.id.btn_nav_my_sub);
                 break;
             }
