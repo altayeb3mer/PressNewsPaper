@@ -5,11 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.FragmentMain"
-    android:background="@color/colorBackground">
+    android:background="@color/colorBackground"
+    android:focusableInTouchMode="true"
+    >
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,13 +46,21 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                                 <LinearLayout
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="5dp"
                                     android:id="@+id/lay_ads1"
                                     android:layout_width="match_parent"
-                                    android:layout_height="?actionBarSize"
+                                    android:layout_height="50dp"
                                     android:layout_marginTop="5dp"
                                     android:background="@color/colorPrimary"
-                                    android:orientation="vertical">
-
+                                    android:orientation="vertical"
+                                    android:gravity="center">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="@dimen/txt_large_size"
+                                        android:textColor="@android:color/white"
+                                        android:text="اعلان"/>
                                 </LinearLayout>
 
                 <RelativeLayout
@@ -100,13 +110,22 @@
                                         tools:listitem="@layout/main_rec_items" />
 
                 <LinearLayout
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:layout_width="match_parent"
-                    android:layout_height="?actionBarSize"
+                    android:layout_height="50dp"
                     android:layout_marginTop="5dp"
                     android:background="@color/colorPrimary"
-                    android:orientation="vertical">
-
+                    android:orientation="vertical"
+                    android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/txt_large_size"
+                            android:textColor="@android:color/white"
+                            android:text="اعلان"/>
                 </LinearLayout>
+
             </LinearLayout>
 
 

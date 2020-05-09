@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/margin_large_size">
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_sub"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:text="اشتراك"
@@ -28,6 +29,7 @@
                 android:layout_height="20dp"
                 android:src="@drawable/ic_newspaper"/>
             <TextView
+                android:id="@+id/news_item_name"
                 android:textStyle="bold"
                 android:textColor="@android:color/black"
                 android:layout_width="wrap_content"
@@ -49,6 +51,7 @@
                 android:layout_height="20dp"
                 android:src="@drawable/ic_cat_shape_outline"/>
             <TextView
+                android:id="@+id/news_item_type"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/txt_normal_size14"
                 android:layout_width="wrap_content"
@@ -77,6 +80,7 @@
                 android:layout_height="20dp"
                 android:src="@drawable/ic_calendar_clock"/>
             <TextView
+                android:id="@+id/news_item_release_type"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/txt_normal_size14"
                 android:layout_width="wrap_content"
@@ -85,6 +89,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginStart="5dp" />
             <TextView
+                android:id="@+id/news_item_release_time"
                 android:gravity="center"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/txt_normal_size14"

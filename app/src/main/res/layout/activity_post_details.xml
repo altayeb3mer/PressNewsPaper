@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Activity.PostDetailsActivity"
     android:background="@color/colorBackground"
+    android:layoutDirection="rtl"
     >
 
     <androidx.core.widget.NestedScrollView
@@ -43,11 +44,19 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
                 <LinearLayout
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
-                    android:layout_height="?actionBarSize"
-                    android:background="@color/colorPrimary">
-
+                    android:layout_height="50dp"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/txt_large_size"
+                        android:textColor="@android:color/white"
+                        android:text="اعلان"/>
                 </LinearLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -81,6 +90,7 @@
                     </LinearLayout>
                 </RelativeLayout>
                 <LinearLayout
+                    android:layoutDirection="rtl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"

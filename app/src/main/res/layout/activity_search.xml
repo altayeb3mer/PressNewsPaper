@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.SearchActivity"
-    android:background="@color/colorBackground">
+    android:background="@color/colorBackground"
+    android:layoutDirection="rtl">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:id="@+id/search_bar"

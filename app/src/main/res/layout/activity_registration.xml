@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.Login"
-    android:background="@color/colorBackground">
+    android:background="@color/colorBackground"
+    android:layoutDirection="rtl">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -65,7 +66,9 @@
                 android:layout_height="40dp"
                 android:text="اكمال التسجيل"
                 android:background="@drawable/shape_btn_bg"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="@dimen/txt_normal_size"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

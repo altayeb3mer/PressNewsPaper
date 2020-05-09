@@ -1,19 +1,26 @@
 package com.example.pressnewspaper.Activity;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.RemoteViews;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.pressnewspaper.Fragments.FragmentNotification;
 import com.example.pressnewspaper.Fragments.FragmentSavedPost;
 import com.example.pressnewspaper.Fragments.FragmentSetting;
 import com.example.pressnewspaper.Fragments.FragmentMain;
@@ -48,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         setSupportActionBar(toolbar);
         drawerLayout = findViewById(R.id.n_drawer);
         navigationView = findViewById(R.id.n_view);
+        navigationView.setItemIconTintList(null);
 
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -127,6 +135,26 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             }
+            case R.id.nav_facebook: {
+                startActivity(new Intent(MainActivity.this,Login.class));
+                drawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            }
+            case R.id.nav_twitter: {
+                startActivity(new Intent(MainActivity.this,RegistrationActivity.class));
+                drawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            }
+            case R.id.nav_website: {
+                startActivity(new Intent(MainActivity.this,ConfirmActivity.class));
+                drawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            }
+            case R.id.nav_notification: {
+                PushNotification("اختبار","يعمل الاختبار بنجاح");
+                drawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            }
 
         }
         return true;
@@ -137,31 +165,50 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         switch (f_no) {
             case 1: {
                 manager.beginTransaction().replace(R.id.fragment_container, new FragmentMain()).commit();
+                toolbar.setTitle("الرئيسية");
                 SetNavigationItemSelected(R.id.btn_nav_main_ac);
+                current_fragment = 1;
                 break;
             }
             case 2: {
                 manager.beginTransaction().replace(R.id.fragment_container, new FragmentMySub()).commit();
+                toolbar.setTitle("اشتراكاتي");
                 SetNavigationItemSelected(R.id.btn_nav_my_sub);
+                current_fragment = 2;
                 break;
             }
             case 3: {
+                manager.beginTransaction().replace(R.id.fragment_container, new FragmentNotification()).commit();
+                toolbar.setTitle("الاشعارات");
                 SetNavigationItemSelected(R.id.btn_nav_notification);
+                current_fragment = 3;
                 break;
             }
             case 4: {
                 manager.beginTransaction().replace(R.id.fragment_container, new FragmentSavedPost()).commit();
+                toolbar.setTitle("المحفوظات");
                 SetNavigationItemSelected(R.id.btn_nav_saved);
+                current_fragment = 4;
                 break;
             }
             case 5: {
                 manager.beginTransaction().replace(R.id.fragment_container, new FragmentSetting()).commit();
+                toolbar.setTitle("الضبط");
                 SetNavigationItemSelected(R.id.btn_nav_setting);
+                current_fragment = 5;
                 break;
             }
         }
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        switchToFragment(current_fragment);
+    }
+
+    int current_fragment=1;
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -176,7 +223,37 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
 
+    private void PushNotification(String title, String content){
+
+        final Intent notify_intent = new Intent(getApplicationContext(), MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, notify_intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setContentTitle(title)
+                        .setContentText(content)
+                        .setContentIntent(pendingIntent)
+                        .setOngoing(true);
 
 
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (!isNotificationVisible(1)) {
+            notificationManager.notify(1, mBuilder.build());
+
+        }
+    }
+
+    private boolean isNotificationVisible(int not_id) {
+        Intent notificationIntent = new Intent(getApplicationContext(), MainActivity.class);
+        PendingIntent test = PendingIntent.getActivity(getApplicationContext(), not_id, notificationIntent, PendingIntent.FLAG_NO_CREATE);
+        return test != null;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        PushNotification("اختبار","يعمل الاختبار بنجاح");
+    }
     //end of class
 }

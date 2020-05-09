@@ -11,4 +11,13 @@
     <dimen name="margin_small_size">5dp</dimen>
     <dimen name="margin_large_size">15dp</dimen>
 
+
+
+    <dimen name="dots_height">30dp</dimen>
+    <dimen name="dots_margin_bottom">20dp</dimen>
+    <dimen name="img_width_height">120dp</dimen>
+    <dimen name="slide_title">30dp</dimen>
+    <dimen name="slide_desc">16dp</dimen>
+    <dimen name="desc_padding">40dp</dimen>
+
 </resources>

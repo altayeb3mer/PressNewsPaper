@@ -37,6 +37,7 @@ public class FragmentSavedPost extends Fragment {
     ArrayList<ModelPostsCard> postsCardArrayList;
     private void testAdapter(){
         recyclerViewPosts = view.findViewById(R.id.fragment_saved_recycler);
+        recyclerViewPosts.setNestedScrollingEnabled(false);
         postsCardArrayList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             ModelPostsCard modelPostsCard = new ModelPostsCard();

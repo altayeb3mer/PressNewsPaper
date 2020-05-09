@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <group android:checkableBehavior="none"
+            android:id="@+id/first_menu_group">
         <item
             android:icon="@drawable/ic_home_nav"
             android:id="@+id/nav_menu_main"
             android:title="الرئيسية"
             />
         <item
-            android:icon="@drawable/ic_playlist_check"
+            android:icon="@drawable/ic_favorite_orange"
             android:id="@+id/nav_menu_my_sub"
             android:title="اشتراكاتي"
             />
@@ -25,11 +27,39 @@
             android:id="@+id/nav_menu_setting"
             android:title="الضبط"
             />
-        <group android:checkableBehavior="none">
+        </group>
+        <group android:checkableBehavior="none"
+            android:id="@+id/second_menu_group">
         <item
             android:icon="@drawable/ic_newspapers"
             android:id="@+id/nav_menu_news_paper"
             android:title="الصحف"
             />
+        </group>
+        <group android:checkableBehavior="none"
+            android:id="@+id/third_menu_group" >
+                <item
+                    android:id="@+id/nav_facebook"
+                    android:icon="@drawable/ic_facebook"
+                    android:title="تابعنا على فيسبوك"
+                    />
+                <item
+                    android:id="@+id/nav_twitter"
+                    android:icon="@drawable/ic_twitter"
+                    android:title="تابعنا على تويتر"
+                    />
+                <item
+                    android:id="@+id/nav_website"
+                    android:icon="@drawable/ic_website"
+                    android:title="موقعنا الالتروني"
+                    />
+        </group>
+        <group android:checkableBehavior="none"
+            android:id="@+id/fourd_menu_group" >
+                <item
+                    android:id="@+id/nav_notification"
+                    android:title="اختبار الاشعارات"
+                    />
+
         </group>
 </menu>
