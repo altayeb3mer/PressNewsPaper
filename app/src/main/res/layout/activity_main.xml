@@ -44,13 +44,15 @@
                     android:background="@android:color/transparent"/>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
-        <FrameLayout
-            android:layout_below="@+id/card_toolbar"
-            android:id="@+id/fragment_container"
+
+        <com.example.pressnewspaper.Utils.CustomViewPager
+            android:layoutDirection="rtl"
+            android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/btn_navigation"
-            />
+            android:layout_below="@+id/card_toolbar"
+            android:layout_above="@+id/btn_navigation"/>
+
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/btn_navigation"

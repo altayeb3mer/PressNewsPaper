@@ -56,7 +56,10 @@
                 app:spanCount="1"
                 tools:itemCount="15"
                 tools:listitem="@layout/main_rec_items"
-                android:layout_below="@+id/above_container"/>
+                android:layout_below="@+id/above_container"
+
+                android:layoutAnimation="@anim/layout_animation"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
             <View
                 android:layout_below="@+id/fragment_saved_recycler"
                 android:layout_width="match_parent"

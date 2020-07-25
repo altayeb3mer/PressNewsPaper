@@ -1,15 +1,14 @@
 package com.example.pressnewspaper.Activity;
 
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.RemoteViews;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -19,13 +18,16 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
+import androidx.viewpager.widget.ViewPager;
 
+import com.example.pressnewspaper.Fragments.FragmentMain;
+import com.example.pressnewspaper.Fragments.FragmentMySub;
 import com.example.pressnewspaper.Fragments.FragmentNotification;
 import com.example.pressnewspaper.Fragments.FragmentSavedPost;
 import com.example.pressnewspaper.Fragments.FragmentSetting;
-import com.example.pressnewspaper.Fragments.FragmentMain;
-import com.example.pressnewspaper.Fragments.FragmentMySub;
 import com.example.pressnewspaper.R;
+import com.example.pressnewspaper.Utils.CustomViewPager;
+import com.example.pressnewspaper.Utils.ViewPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -37,16 +39,18 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ImageButton imageButton_search;
+    private CustomViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nav_drawer);
         init();
-        switchToFragment(1);
+        initViewPager();
     }
 
     private void init() {
+        viewPager =  findViewById(R.id.viewpager);
         bottomNavigationView = findViewById(R.id.btn_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         imageButton_search = findViewById(R.id.image_btn_search);
@@ -71,6 +75,61 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         });
 
     }
+
+
+    MenuItem prevMenuItem;
+    private void initViewPager() {
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (prevMenuItem != null) {
+                    prevMenuItem.setChecked(false);
+                }
+                else
+                {
+                    bottomNavigationView.getMenu().getItem(0).setChecked(false);
+                }
+                Log.d("page",""+position);
+                bottomNavigationView.getMenu().getItem(position).setChecked(true);
+                prevMenuItem = bottomNavigationView.getMenu().getItem(position);
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        setupViewPager(viewPager);
+    }
+
+
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        fragmentMain = new FragmentMain();
+        fragmentMySub = new FragmentMySub();
+        fragmentNotification = new FragmentNotification();
+        fragmentSavedPost = new FragmentSavedPost();
+        fragmentSetting = new FragmentSetting();
+
+        adapter.addFragment(fragmentMain,"الرئيسية");
+        adapter.addFragment(fragmentMySub,"اشتراكاتي");
+        adapter.addFragment(fragmentNotification,"اشعارات");
+        adapter.addFragment(fragmentSavedPost,"المحفوظات");
+        adapter.addFragment(fragmentSetting,"الضبط");
+        viewPager.setAdapter(adapter);
+    }
+
+    FragmentMain fragmentMain;
+    FragmentMySub fragmentMySub;
+    FragmentNotification fragmentNotification;
+    FragmentSavedPost fragmentSavedPost;
+    FragmentSetting fragmentSetting;
 
 
 
@@ -164,38 +223,33 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         FragmentManager manager = getSupportFragmentManager();
         switch (f_no) {
             case 1: {
-                manager.beginTransaction().replace(R.id.fragment_container, new FragmentMain()).commit();
+                viewPager.setCurrentItem(0);
                 toolbar.setTitle("الرئيسية");
                 SetNavigationItemSelected(R.id.btn_nav_main_ac);
-                current_fragment = 1;
                 break;
             }
             case 2: {
-                manager.beginTransaction().replace(R.id.fragment_container, new FragmentMySub()).commit();
+                viewPager.setCurrentItem(1);
                 toolbar.setTitle("اشتراكاتي");
                 SetNavigationItemSelected(R.id.btn_nav_my_sub);
-                current_fragment = 2;
                 break;
             }
             case 3: {
-                manager.beginTransaction().replace(R.id.fragment_container, new FragmentNotification()).commit();
+                viewPager.setCurrentItem(2);
                 toolbar.setTitle("الاشعارات");
                 SetNavigationItemSelected(R.id.btn_nav_notification);
-                current_fragment = 3;
                 break;
             }
             case 4: {
-                manager.beginTransaction().replace(R.id.fragment_container, new FragmentSavedPost()).commit();
+                viewPager.setCurrentItem(3);
                 toolbar.setTitle("المحفوظات");
                 SetNavigationItemSelected(R.id.btn_nav_saved);
-                current_fragment = 4;
                 break;
             }
             case 5: {
-                manager.beginTransaction().replace(R.id.fragment_container, new FragmentSetting()).commit();
+                viewPager.setCurrentItem(4);
                 toolbar.setTitle("الضبط");
                 SetNavigationItemSelected(R.id.btn_nav_setting);
-                current_fragment = 5;
                 break;
             }
         }
@@ -214,10 +268,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
-            if (bottomNavigationView.getSelectedItemId()!=R.id.btn_nav_main_ac){
-                switchToFragment(1);
-            }else{
+            if (viewPager.getCurrentItem()==0){
                 super.onBackPressed();
+            }else{
+                viewPager.setCurrentItem(0);
             }
         }
     }

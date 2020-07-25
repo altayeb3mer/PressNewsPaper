@@ -13,7 +13,6 @@
         <item name="colorPrimary">@color/colorAccent</item>
     </style>
 
-
     <style name="SplashScreenTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen_background</item>
         <item name="android:windowNoTitle">true</item>

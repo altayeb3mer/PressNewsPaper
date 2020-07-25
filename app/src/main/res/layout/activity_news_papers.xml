@@ -53,6 +53,9 @@
                 tools:itemCount="5"
                 android:visibility="visible"
                 tools:listitem="@layout/news_paper_items"
+
+                android:layoutAnimation="@anim/layout_animation"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 />
             <View
                 android:layout_width="match_parent"

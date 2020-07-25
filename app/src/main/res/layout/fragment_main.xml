@@ -25,7 +25,7 @@
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/viewpager_slid_img"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"/>
 
                 <me.relex.circleindicator.CircleIndicator
                     android:id="@+id/indicator"
@@ -107,7 +107,10 @@
                                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                                         app:spanCount="1"
                                         tools:itemCount="5"
-                                        tools:listitem="@layout/main_rec_items" />
+                                        tools:listitem="@layout/main_rec_items"
+
+                                        android:layoutAnimation="@anim/layout_animation"
+                                        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
                 <LinearLayout
                     android:layout_marginLeft="5dp"

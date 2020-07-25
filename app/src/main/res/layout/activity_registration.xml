@@ -6,9 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".Activity.Login"
     android:background="@color/colorBackground"
-    android:layoutDirection="rtl">
-
+    android:layoutDirection="rtl"
+    android:id="@+id/container">
+    <include layout="@layout/public_toolbar"
+        android:id="@+id/toolbar"/>
     <androidx.core.widget.NestedScrollView
+        android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -26,7 +29,7 @@
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_prof_phone_edt"
+                    android:id="@+id/edt_name"
                     android:layout_width="match_parent"
                     android:layout_height="46dp"
                     android:padding="2dp"
@@ -37,14 +40,18 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:gravity="right">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_email"
+                    android:gravity="right"
                     android:layout_width="match_parent"
                     android:layout_height="46dp"
                     android:padding="2dp"
-                    android:hint="العمر"
-                    android:text="اختر فئة العمر"/>
+                    android:hint="البريد الالكتروني او رقم الهاتف"
+                    android:text="altayeb3mer@gmail.com"
+                    android:inputType="textEmailAddress"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -53,18 +60,37 @@
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_pass1"
                     android:layout_width="match_parent"
                     android:layout_height="46dp"
                     android:padding="2dp"
-                    android:hint="السكن"
-                    android:text="الخرطوم - شرق النيل"/>
+                    android:hint="كلمة المرور"
+                    android:text="الخرطوم - شرق النيل"
+                    android:inputType="textPassword"
+                    android:gravity="right"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_pass2"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:padding="2dp"
+                    android:hint="تأكيد كلمة المرور"
+                    android:text="الخرطوم - شرق النيل"
+                    android:inputType="textPassword"
+                    android:gravity="right"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn"
                 android:layout_marginTop="30dp"
                 android:layout_width="230dp"
                 android:layout_height="40dp"
-                android:text="اكمال التسجيل"
+                android:text="انشاء حساب"
                 android:background="@drawable/shape_btn_bg"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
@@ -72,5 +98,17 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/progressLay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="@color/slider">
+        <ProgressBar
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:indeterminate="true"/>
+    </LinearLayout>
 
 </RelativeLayout>

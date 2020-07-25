@@ -15,6 +15,9 @@
         tools:itemCount="50"
         android:visibility="visible"
         tools:listitem="@layout/my_subs_items"
+
+        android:layoutAnimation="@anim/layout_animation"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         />
 
 </RelativeLayout>
