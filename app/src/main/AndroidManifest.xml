@@ -2,11 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.pressnewspaper">
 
-
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.SplashScreenActivity"
+        <activity android:name=".Activity.LoginOrRegister"></activity>
+        <activity
+            android:name=".Activity.SplashScreenActivity"
             android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,21 +19,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-        <activity android:name=".Activity.WelcomeActivity">
-
-        </activity>
-        <activity android:name=".Activity.PaperPostsActivity"/>
+        <activity android:name=".Activity.WelcomeActivity"></activity>
+        <activity android:name=".Activity.PaperPostsActivity" />
         <activity android:name=".Activity.PostDetailsActivity" />
         <activity android:name=".Activity.NewsPapers" />
         <activity android:name=".Activity.SearchActivity" />
         <activity android:name=".Activity.RegistrationActivity" />
         <activity android:name=".Activity.ConfirmActivity" />
         <activity android:name=".Activity.Login" />
-        <activity android:name=".Activity.MainActivity">
-
-        </activity>
+        <activity android:name=".Activity.MainActivity"></activity>
     </application>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

@@ -16,6 +16,7 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.pressnewspaper.R;
 import com.example.pressnewspaper.Utils.Api;
+import com.example.pressnewspaper.Utils.SharedPrefManager;
 import com.example.pressnewspaper.Utils.ToolbarClass;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
@@ -55,6 +56,12 @@ public class RegistrationActivity extends ToolbarClass {
                 }
             }
         });
+        progressLay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(RegistrationActivity.this, "جاري التحميل..", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void PreRregistration() {
@@ -84,9 +91,6 @@ public class RegistrationActivity extends ToolbarClass {
                         ongoing.addHeader("Content-Type", "application/json;");
                         ongoing.addHeader("Content-Type", "application/x-www-form-urlencoded");
 
-//                        String token =  SharedPrefManager.getInstance(getApplicationContext()).GetToken();
-//                        ongoing.addHeader("Authorization",token);
-
                         return chain.proceed(ongoing.build());
                     }
                 })
@@ -105,7 +109,7 @@ public class RegistrationActivity extends ToolbarClass {
 
         HashMap<String, String> hashBody = new HashMap<>();
         hashBody.put("name",s_name);
-        hashBody.put("email",s_email);
+        hashBody.put("email_or_phone",s_email);
         hashBody.put("password",s_pass1);
         hashBody.put("c_password",s_pass2);
 
@@ -115,9 +119,30 @@ public class RegistrationActivity extends ToolbarClass {
             public void onResponse(Call<String> call, retrofit2.Response<String> response) {
                 try {
                     JSONObject object = new JSONObject(response.body());
-                    Toast.makeText(RegistrationActivity.this, ""+object.toString(), Toast.LENGTH_SHORT).show();
+                    String statusCode = object.getString("status_code");
+                    switch (statusCode){
+                        case "200":{
+                            String data = object.getString("data");
+                            JSONObject objectData=new JSONObject(data);
+                            String token = objectData.getString("token");
 
-                    startActivity(new Intent(RegistrationActivity.this,MainActivity.class));
+                            SharedPrefManager.getInstance(RegistrationActivity.this).storeToken(token);
+
+                            startActivity(new Intent(RegistrationActivity.this,MainActivity.class));
+
+                            break;
+                        }
+//                        case "401":{
+//                            ShowSnakBar("تم استخدام البريد الالكتروني او رقم الهاتف مسبقا");
+//                            break;
+//                        }
+                        default:{
+                            String msg = object.getString("message");
+                            ShowSnakBar(msg);
+                            break;
+                        }
+                    }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                     ShowSnakBar("خطأ في التحويل");

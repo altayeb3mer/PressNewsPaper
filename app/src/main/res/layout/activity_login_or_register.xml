@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.LoginOrRegister"
+    android:layoutDirection="rtl">
+
+    <include layout="@layout/public_toolbar"
+        android:id="@+id/toolbar"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:gravity="center"
+        android:orientation="vertical">
+        <androidx.appcompat.widget.AppCompatButton
+            android:background="@drawable/btn_login_bg"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:text="تسجيل دخول"
+            android:textColor="@android:color/white"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_marginTop="10dp"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:text="انشاء حساب جديد"
+            android:background="@drawable/shape_btn_bg"
+            android:textColor="@android:color/white"
+            />
+    </LinearLayout>
+
+
+</RelativeLayout>
