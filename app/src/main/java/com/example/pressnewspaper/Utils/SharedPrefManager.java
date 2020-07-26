@@ -29,73 +29,52 @@ public class SharedPrefManager {
         editor.apply();
     }
 
-    public boolean IsLoggedIn() {
-        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getString(KEY_ACCESS_TOKEN, null) != null;
-    }
+
 
     public String GetToken() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getString(KEY_ACCESS_TOKEN, "");
     }
 
-    public boolean HasPin() {
-        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getBoolean("has_pin", false);
-    }
 
-    public void SaveUserPhone(String phone) {
+
+    //save name
+    public void SaveUserName(String phone) {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("phone", phone);
+        editor.putString("name", phone);
         editor.apply();
     }
-
-    public String GetUserPhone() {
+    public String GetUserName() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getString("phone", "");
+        return sharedPreferences.getString("name", "");
     }
 
-    public void SavePin(String phone) {
+    //save email
+    public void SaveUserEmail(String phone) {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("pin", phone);
+        editor.putString("email", phone);
         editor.apply();
     }
-
-    public String GetPin() {
+    public String GetUserEmail() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getString("pin", "");
+        return sharedPreferences.getString("email", "");
     }
 
+
+
+    //open state
     public void PutOpenState(boolean val) {
         SharedPreferences sp = mCtx.getSharedPreferences(SHARED_PREF_NAME, mCtx.MODE_PRIVATE);
         SharedPreferences.Editor edit = sp.edit();
         edit.putBoolean("is_first_open", val);
         edit.apply();
     }
-
     public boolean Is_first_open() {
         SharedPreferences sp = mCtx.getSharedPreferences(SHARED_PREF_NAME, mCtx.MODE_PRIVATE);
         return sp.getBoolean("is_first_open", true);
     }
 
-    public boolean FirstTradeOfferDetailsImgTuch() {
-        SharedPreferences sp = mCtx.getSharedPreferences(SHARED_PREF_NAME, mCtx.MODE_PRIVATE);
-        return sp.getBoolean("is_first", true);
-    }
-
-
-    //tap target touch
-    public void TapTargetTouch(String s_activity, boolean val) {
-        SharedPreferences sp = mCtx.getSharedPreferences(SHARED_PREF_NAME, mCtx.MODE_PRIVATE);
-        SharedPreferences.Editor edit = sp.edit();
-        edit.putBoolean(s_activity, val);
-        edit.apply();
-    }
-    public boolean TapTargetIsFirstTouchActivity(String s_activity) {
-        SharedPreferences sp = mCtx.getSharedPreferences(SHARED_PREF_NAME, mCtx.MODE_PRIVATE);
-        return sp.getBoolean(s_activity, true);
-    }
 
 }

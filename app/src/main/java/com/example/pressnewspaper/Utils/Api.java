@@ -12,9 +12,15 @@ public class Api {
 
 
     //Retrofit interface
+    //registration
     public interface RetrofitRegister {
         @POST("api/register")
-        Call<String> putParam(@Body HashMap<String, String> phone);
+        Call<String> putParam(@Body HashMap<String, String> param);
+    }
+    //login
+    public interface RetrofitLogin {
+        @POST("api/login")
+        Call<String> putParam(@Body HashMap<String, String> param);
     }
 
 

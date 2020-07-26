@@ -120,15 +120,18 @@ public class RegistrationActivity extends ToolbarClass {
                 try {
                     JSONObject object = new JSONObject(response.body());
                     String statusCode = object.getString("status_code");
+                    String data = object.getString("data");
+                    JSONObject objectData=new JSONObject(data);
                     switch (statusCode){
                         case "200":{
-                            String data = object.getString("data");
-                            JSONObject objectData=new JSONObject(data);
                             String token = objectData.getString("token");
+                            String name = objectData.getString("name");
 
                             SharedPrefManager.getInstance(RegistrationActivity.this).storeToken(token);
-
+                            SharedPrefManager.getInstance(RegistrationActivity.this).SaveUserName(name);
                             startActivity(new Intent(RegistrationActivity.this,MainActivity.class));
+                            String msg = objectData.getString("message");
+                            Toast.makeText(RegistrationActivity.this, ""+msg, Toast.LENGTH_SHORT).show();
 
                             break;
                         }
@@ -137,7 +140,7 @@ public class RegistrationActivity extends ToolbarClass {
 //                            break;
 //                        }
                         default:{
-                            String msg = object.getString("message");
+                            String msg = objectData.getString("message");
                             ShowSnakBar(msg);
                             break;
                         }

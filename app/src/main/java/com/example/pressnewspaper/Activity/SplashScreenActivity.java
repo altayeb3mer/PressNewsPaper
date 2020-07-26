@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.pressnewspaper.Utils.SharedPrefManager;
+
 public class SplashScreenActivity extends AppCompatActivity {
 
     @Override

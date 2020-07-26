@@ -33,8 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="46dp"
                     android:padding="2dp"
-                    android:hint="الاسم"
-                    android:text="الطيب عمر الطيب"/>
+                    android:hint="الاسم"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -50,14 +49,14 @@
                     android:layout_height="46dp"
                     android:padding="2dp"
                     android:hint="البريد الالكتروني او رقم الهاتف"
-                    android:text="altayeb3mer@gmail.com"
                     android:inputType="textEmailAddress"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_pass1"
@@ -65,14 +64,14 @@
                     android:layout_height="46dp"
                     android:padding="2dp"
                     android:hint="كلمة المرور"
-                    android:text="الخرطوم - شرق النيل"
                     android:inputType="textPassword"
                     android:gravity="right"/>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_pass2"
@@ -80,7 +79,6 @@
                     android:layout_height="46dp"
                     android:padding="2dp"
                     android:hint="تأكيد كلمة المرور"
-                    android:text="الخرطوم - شرق النيل"
                     android:inputType="textPassword"
                     android:gravity="right"/>
             </com.google.android.material.textfield.TextInputLayout>

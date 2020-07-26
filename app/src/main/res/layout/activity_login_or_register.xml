@@ -16,19 +16,23 @@
         android:gravity="center"
         android:orientation="vertical">
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/login"
             android:background="@drawable/btn_login_bg"
-            android:layout_width="300dp"
+            android:layout_width="250dp"
             android:layout_height="45dp"
             android:text="تسجيل دخول"
             android:textColor="@android:color/white"
+            android:onClick="onClick"
             />
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/register"
             android:layout_marginTop="10dp"
-            android:layout_width="300dp"
+            android:layout_width="250dp"
             android:layout_height="45dp"
             android:text="انشاء حساب جديد"
             android:background="@drawable/shape_btn_bg"
             android:textColor="@android:color/white"
+            android:onClick="onClick"
             />
     </LinearLayout>
 

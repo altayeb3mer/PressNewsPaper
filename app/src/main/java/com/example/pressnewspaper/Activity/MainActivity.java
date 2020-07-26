@@ -27,6 +27,7 @@ import com.example.pressnewspaper.Fragments.FragmentSavedPost;
 import com.example.pressnewspaper.Fragments.FragmentSetting;
 import com.example.pressnewspaper.R;
 import com.example.pressnewspaper.Utils.CustomViewPager;
+import com.example.pressnewspaper.Utils.SharedPrefManager;
 import com.example.pressnewspaper.Utils.ViewPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.nav_drawer);
         init();
         initViewPager();
+        CheckLogin();
     }
 
     private void init() {
@@ -108,7 +110,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         setupViewPager(viewPager);
     }
 
-
+    private void CheckLogin() {
+        String token = SharedPrefManager.getInstance(this).GetToken();
+        if (token.equals("")) {
+            startActivity(new Intent(this, LoginOrRegister.class));
+            finish();
+        }
+    }
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         fragmentMain = new FragmentMain();
