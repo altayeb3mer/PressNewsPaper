@@ -133,6 +133,7 @@ public class RegistrationActivity extends ToolbarClass {
                             String msg = objectData.getString("message");
                             Toast.makeText(RegistrationActivity.this, ""+msg, Toast.LENGTH_SHORT).show();
 
+                            finish();
                             break;
                         }
 //                        case "401":{

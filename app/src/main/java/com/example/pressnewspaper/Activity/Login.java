@@ -119,6 +119,8 @@ public class Login extends ToolbarClass {
                             startActivity(new Intent(Login.this,MainActivity.class));
                             String msg = objectData.getString("message");
                             Toast.makeText(Login.this, ""+msg, Toast.LENGTH_SHORT).show();
+
+                            finish();
                             break;
                         }
 //                        case "401":{
