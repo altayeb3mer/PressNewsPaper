@@ -113,8 +113,15 @@ public class Login extends ToolbarClass {
                     switch (statusCode){
                         case "200":{
                             String token = objectData.getString("token");
+                            String name = objectData.getString("name");
+                            String phone = objectData.getString("phone");
+                            String email = objectData.getString("email");
 
                             SharedPrefManager.getInstance(Login.this).storeToken(token);
+                            SharedPrefManager.getInstance(Login.this).SaveUserName(name);
+                            SharedPrefManager.getInstance(Login.this).SaveUserPhone(phone);
+                            SharedPrefManager.getInstance(Login.this).SaveUserEmail(email);
+
 
                             startActivity(new Intent(Login.this,MainActivity.class));
                             String msg = objectData.getString("message");

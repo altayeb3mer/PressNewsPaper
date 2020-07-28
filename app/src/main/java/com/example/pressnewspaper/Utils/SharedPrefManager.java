@@ -39,10 +39,10 @@ public class SharedPrefManager {
 
 
     //save name
-    public void SaveUserName(String phone) {
+    public void SaveUserName(String name) {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("name", phone);
+        editor.putString("name", name);
         editor.apply();
     }
     public String GetUserName() {
@@ -51,15 +51,28 @@ public class SharedPrefManager {
     }
 
     //save email
-    public void SaveUserEmail(String phone) {
+    public void SaveUserEmail(String email) {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("email", phone);
+        editor.putString("email", email);
         editor.apply();
     }
     public String GetUserEmail() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getString("email", "");
+    }
+
+
+    //save phone
+    public void SaveUserPhone(String phone) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("phone", phone);
+        editor.apply();
+    }
+    public String GetUserPhone() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString("phone", "");
     }
 
 

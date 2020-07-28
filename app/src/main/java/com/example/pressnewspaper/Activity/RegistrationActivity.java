@@ -126,9 +126,15 @@ public class RegistrationActivity extends ToolbarClass {
                         case "200":{
                             String token = objectData.getString("token");
                             String name = objectData.getString("name");
+                            String phone = objectData.getString("phone");
+                            String email = objectData.getString("email");
 
                             SharedPrefManager.getInstance(RegistrationActivity.this).storeToken(token);
                             SharedPrefManager.getInstance(RegistrationActivity.this).SaveUserName(name);
+                            SharedPrefManager.getInstance(RegistrationActivity.this).SaveUserPhone(phone);
+                            SharedPrefManager.getInstance(RegistrationActivity.this).SaveUserEmail(email);
+
+
                             startActivity(new Intent(RegistrationActivity.this,MainActivity.class));
                             String msg = objectData.getString("message");
                             Toast.makeText(RegistrationActivity.this, ""+msg, Toast.LENGTH_SHORT).show();

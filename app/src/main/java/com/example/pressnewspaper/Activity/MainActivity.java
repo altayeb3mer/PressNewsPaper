@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -32,6 +34,8 @@ import com.example.pressnewspaper.Utils.ViewPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, NavigationView.OnNavigationItemSelectedListener {
 
     BottomNavigationView bottomNavigationView;
@@ -42,6 +46,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     ImageButton imageButton_search;
     private CustomViewPager viewPager;
 
+    View nHeader;
+    CircleImageView circleImageViewUserImg;
+    TextView textViewPhone, textViewEmail, textViewName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +57,37 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         init();
         initViewPager();
         CheckLogin();
+        initNavHeader();
+    }
+
+    private void initNavHeader() {
+        nHeader = navigationView.getHeaderView(0);
+        circleImageViewUserImg = nHeader.findViewById(R.id.profile_image);
+        textViewName = nHeader.findViewById(R.id.name);
+        textViewPhone = nHeader.findViewById(R.id.phone);
+        textViewEmail = nHeader.findViewById(R.id.email);
+        if (!SharedPrefManager.getInstance(this).GetToken().equals("")){
+            String name = SharedPrefManager.getInstance(this).GetUserName();
+            String phone = SharedPrefManager.getInstance(this).GetUserPhone();
+            String email = SharedPrefManager.getInstance(this).GetUserEmail();
+            textViewName.setText(name);
+
+            if (phone.equals("")||phone.equals("null")){
+                textViewPhone.setVisibility(View.GONE);
+            }else{
+                textViewPhone.setText(phone);
+            }
+
+            if (email.equals("")||email.equals("null")){
+                textViewEmail.setVisibility(View.GONE);
+            }else{
+                textViewEmail.setText(email);
+            }
+
+        }else{
+            nHeader.setVisibility(View.GONE);
+            Toast.makeText(this, "انت تتصفح التطبيق كزائر", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void init() {

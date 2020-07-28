@@ -37,6 +37,7 @@
                         android:layoutAnimation="@anim/layout_animation"
                         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
                     <TextView
+                        android:id="@+id/phone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="10sp"
@@ -44,6 +45,15 @@
                         android:textColor="@android:color/white"
                         />
                     <TextView
+                        android:id="@+id/email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="10sp"
+                        android:text="email@a.com"
+                        android:textColor="@android:color/white"
+                        />
+                    <TextView
+                        android:id="@+id/name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/txt_large_size"
