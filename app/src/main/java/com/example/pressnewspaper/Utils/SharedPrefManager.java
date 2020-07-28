@@ -50,6 +50,9 @@ public class SharedPrefManager {
         return sharedPreferences.getString("name", "");
     }
 
+
+
+
     //save email
     public void SaveUserEmail(String email) {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
