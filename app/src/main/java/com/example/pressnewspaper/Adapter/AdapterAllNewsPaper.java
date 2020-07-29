@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,12 +14,16 @@ import android.widget.Toast;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.pressnewspaper.Activity.PaperPostsActivity;
 import com.example.pressnewspaper.Model.ModelMySub;
 import com.example.pressnewspaper.Model.ModelNewsPaper;
 import com.example.pressnewspaper.R;
+import com.example.pressnewspaper.Utils.Api;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class AdapterAllNewsPaper extends RecyclerView.Adapter<AdapterAllNewsPaper.ViewHolder> {
@@ -51,12 +56,23 @@ public class AdapterAllNewsPaper extends RecyclerView.Adapter<AdapterAllNewsPape
         holder.textView_title.setText(item.getNewPaperName());
         holder.textView_type.setText(item.getNewPaperType());
         holder.textView_release_type.setText(item.getReleaseType());
-        holder.textView_release_time.setText(item.getReleaseTime());
+
+        if (!item.getReleaseTime().equals("")&&!item.getReleaseTime().equals("null")){
+           holder.textView_release_time.setVisibility(View.VISIBLE);
+            holder.textView_release_time.setText("تصدر في"+" "+item.getReleaseTime());
+        }
+
+        try {
+            Glide.with(activity).load(Api.ROOT_URL+"storage/"+item.getImg()).into(holder.imageView);
+        }catch (Exception e){
+            holder.imageView.setBackgroundResource(R.drawable.ic_newspaper);
+        }
+
 
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(activity, ""+item.getNewPaperName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "id = "+item.getNewPaperId(), Toast.LENGTH_SHORT).show();
             }
         });
         holder.buttonSubscription.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +87,8 @@ public class AdapterAllNewsPaper extends RecyclerView.Adapter<AdapterAllNewsPape
                 activity.startActivity(new Intent(activity, PaperPostsActivity.class));
             }
         });
+
+
 
 
     }
@@ -96,10 +114,12 @@ public class AdapterAllNewsPaper extends RecyclerView.Adapter<AdapterAllNewsPape
         RelativeLayout container;
         AppCompatButton buttonSubscription;
         TextView textView_title,textView_type,textView_release_type,textView_release_time;
+        ImageView imageView;
 
         ViewHolder(View itemView) {
             super(itemView);
 
+            imageView = itemView.findViewById(R.id.img);
             container = itemView.findViewById(R.id.container1);
             buttonSubscription = itemView.findViewById(R.id.btn_sub);
             textView_title = itemView.findViewById(R.id.news_item_name);

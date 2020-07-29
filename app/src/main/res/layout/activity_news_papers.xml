@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".Activity.NewsPapers"
     android:focusableInTouchMode="true"
-    android:layoutDirection="rtl">
+    android:layoutDirection="rtl"
+    android:id="@+id/container">
 <include layout="@layout/public_toolbar"
     android:id="@+id/toolbar"/>
     <androidx.core.widget.NestedScrollView
@@ -66,4 +67,21 @@
                 android:layout_height="?actionBarSize"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/progressLay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="@color/slider"
+        android:clickable="true"
+        android:focusable="true">
+        <ProgressBar
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:indeterminate="true"/>
+    </LinearLayout>
+
 </RelativeLayout>

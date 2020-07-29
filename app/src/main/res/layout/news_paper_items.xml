@@ -32,10 +32,11 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginStart="5dp" />
         </LinearLayout>
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
+                android:id="@+id/img"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:src="@drawable/ic_facebook"
+                android:src="@drawable/ic_newspaper"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true" />
         </RelativeLayout>
@@ -106,6 +107,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"/>
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/news_item_release_time"
                     android:gravity="center"
                     android:textColor="@android:color/black"
