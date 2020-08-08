@@ -13,10 +13,11 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.pressnewspaper.Activity.PostDetailsActivity;
 import com.example.pressnewspaper.Model.ModelOtherPosts;
-import com.example.pressnewspaper.Model.ModelPostsCard;
 import com.example.pressnewspaper.R;
+import com.example.pressnewspaper.Utils.Api;
 
 import java.util.ArrayList;
 
@@ -27,7 +28,8 @@ public class AdapterOtherPosts extends RecyclerView.Adapter<AdapterOtherPosts.Vi
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
     private Activity activity;
-    public AdapterOtherPosts(Activity activity,ArrayList<ModelOtherPosts> otherPostsArrayList) {
+
+    public AdapterOtherPosts(Activity activity, ArrayList<ModelOtherPosts> otherPostsArrayList) {
         this.mInflater = LayoutInflater.from(activity);
         this.otherPostsArrayList = otherPostsArrayList;
         this.activity = activity;
@@ -39,24 +41,26 @@ public class AdapterOtherPosts extends RecyclerView.Adapter<AdapterOtherPosts.Vi
         View view = mInflater.inflate(R.layout.other_posts_items, parent, false);
 
 
-
         return new ViewHolder(view);
     }
 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        ModelOtherPosts item = otherPostsArrayList.get(position);
+        final ModelOtherPosts item = otherPostsArrayList.get(position);
 
         holder.buttonNewsPaper.setText(item.getNewsPaperName());
         holder.textView_title.setText(item.getTitle());
 
-//        Glide.with(activity).load("").into(holder.imageView);
+        Glide.with(activity).load(Api.ROOT_URL + "storage/" + item.getImg_url())
+                .into(holder.imageView);
 
         holder.cardView_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                activity.startActivity(new Intent(activity, PostDetailsActivity.class));
+                Intent intent = new Intent(activity, PostDetailsActivity.class);
+                intent.putExtra("id", item.getPostId());
+                activity.startActivity(intent);
             }
         });
     }

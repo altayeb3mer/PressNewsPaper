@@ -4,13 +4,14 @@
     android:layout_height="match_parent"
     >
     <RelativeLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="135dp">
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/image_view"
-            android:scaleType="centerCrop"
+            android:scaleType="center"
             android:src="@drawable/nav_backgrond2"/>
         <RelativeLayout
             android:background="@color/slider"
@@ -23,6 +24,7 @@
             android:orientation="vertical"
             android:layout_margin="10dp">
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn"
                 android:layout_width="64dp"
                 android:layout_height="30dp"
                 android:text="الانتباهة"
@@ -35,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="اصابات جديدة بفيروس كورونا"
-                android:textSize="@dimen/txt_large_size"
+                android:textSize="@dimen/txt_normal_size"
                 android:textStyle="bold"
                 android:textColor="@android:color/white"
                 />

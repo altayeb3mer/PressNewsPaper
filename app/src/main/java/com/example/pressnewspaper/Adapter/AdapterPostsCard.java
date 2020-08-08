@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.example.pressnewspaper.Activity.PostDetailsActivity;
 import com.example.pressnewspaper.Model.ModelPostsCard;
 import com.example.pressnewspaper.R;
+import com.example.pressnewspaper.Utils.Api;
 
 import java.util.ArrayList;
 
@@ -46,19 +47,23 @@ public class AdapterPostsCard extends RecyclerView.Adapter<AdapterPostsCard.View
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        ModelPostsCard item = modelPostsCardArrayList.get(position);
+        final ModelPostsCard item = modelPostsCardArrayList.get(position);
 
         holder.buttonNewsPaper.setText(item.getNewsPaperName());
         holder.textView_title.setText(item.getTitle());
         holder.textView_date.setText(item.getDate());
         holder.textView_category.setText("التصنيف"+" "+item.getCategory());
 
-//        Glide.with(activity).load("").into(holder.imageView);
+        Glide.with(activity).load(Api.ROOT_URL+"storage/"+item.getImg_url())
+                .into(holder.imageView);
 
         holder.cardView_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                activity.startActivity(new Intent(activity, PostDetailsActivity.class));
+//                activity.startActivity(new Intent(activity, PostDetailsActivity.class));
+                Intent intent = new Intent(activity, PostDetailsActivity.class);
+                intent.putExtra("id",item.getId());
+                activity.startActivity(intent);
             }
         });
     }

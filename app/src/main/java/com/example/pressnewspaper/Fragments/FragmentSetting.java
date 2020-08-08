@@ -1,5 +1,7 @@
 package com.example.pressnewspaper.Fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,9 +9,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pressnewspaper.BuildConfig;
 import com.example.pressnewspaper.R;
 import com.example.pressnewspaper.Utils.SharedPrefManager;
 
@@ -20,6 +24,7 @@ public class FragmentSetting extends Fragment {
     View view;
     CircleImageView circleImageViewUserImg;
     TextView textViewPhone, textViewEmail, textViewName;
+    RelativeLayout layUpdate, layShare, layAbout;
 
     public FragmentSetting() {
         // Required empty public constructor
@@ -29,8 +34,33 @@ public class FragmentSetting extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_setting, container, false);
+        init();
         initNavHeader();
         return view;
+    }
+
+    private void init() {
+        layUpdate = view.findViewById(R.id.layUpdate);
+        layShare = view.findViewById(R.id.layShare);
+        layAbout = view.findViewById(R.id.layAbout);
+
+        layUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openStoreForUpdate();
+            }
+        });
+        layShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                shareAppLink();
+            }
+        });
+        layAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { openUrl("http://onlinefit.com.sd/papers/public/");
+            }
+        });
     }
 
     private void initNavHeader() {
@@ -61,6 +91,40 @@ public class FragmentSetting extends Fragment {
             textViewPhone.setVisibility(View.GONE);
             textViewEmail.setVisibility(View.GONE);
             Toast.makeText(getActivity(), "انت تتصفح التطبيق كزائر", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
+    private void openUrl(String url){
+        if (!url.startsWith("http://") && !url.startsWith("https://"))
+            url = "http://" + url;
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
+    }
+
+    private void openStoreForUpdate(){
+        final String appPackageName = getActivity().getPackageName(); // getPackageName() from Context or Activity object
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+        } catch (android.content.ActivityNotFoundException anfe) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+        }
+    }
+
+    private void shareAppLink(){
+        try {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "My application name");
+            String shareMessage= "\nLet me recommend you this application\n\n";
+            shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID +"\n\n";
+            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+            startActivity(Intent.createChooser(shareIntent, "choose one"));
+        } catch(Exception e) {
+            Toast.makeText(getContext(), "حدث خطأ الرجاء المحاولة مرة اخرى", Toast.LENGTH_SHORT).show();
+            //e.toString();
         }
     }
 

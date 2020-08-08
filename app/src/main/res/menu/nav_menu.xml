@@ -55,7 +55,8 @@
                     />
         </group>
         <group android:checkableBehavior="none"
-            android:id="@+id/fourd_menu_group" >
+            android:id="@+id/fourd_menu_group"
+            android:visible="false">
                 <item
                     android:id="@+id/nav_notification"
                     android:title="اختبار الاشعارات"

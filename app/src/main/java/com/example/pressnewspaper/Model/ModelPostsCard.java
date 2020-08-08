@@ -1,6 +1,7 @@
 package com.example.pressnewspaper.Model;
 
 public class ModelPostsCard {
+    private String id;
     private String title;
     private String date;
     private String category;
@@ -8,6 +9,13 @@ public class ModelPostsCard {
     private String newsPaperName;
     private String newsPaperId;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;

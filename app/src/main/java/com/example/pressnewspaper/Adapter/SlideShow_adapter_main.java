@@ -1,6 +1,7 @@
 package com.example.pressnewspaper.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,11 +10,14 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.bumptech.glide.Glide;
+import com.example.pressnewspaper.Activity.PostDetailsActivity;
 import com.example.pressnewspaper.Model.ModelSliderImg;
 import com.example.pressnewspaper.R;
+import com.example.pressnewspaper.Utils.Api;
 
 
 import java.util.ArrayList;
@@ -64,6 +68,9 @@ public class SlideShow_adapter_main extends PagerAdapter {
         TextView textView_date = view.findViewById(R.id.date);
         TextView textView_category = view.findViewById(R.id.category);
         ImageView imgView=view.findViewById(R.id.image_view);
+        AppCompatButton button = view.findViewById(R.id.btn);
+        RelativeLayout relativeLayoutContainer = view.findViewById(R.id.container);
+
 
         ModelSliderImg modelSlideShowImg = new ModelSliderImg();
         modelSlideShowImg = modelSliderImgArrayList.get(position);
@@ -71,10 +78,20 @@ public class SlideShow_adapter_main extends PagerAdapter {
         textView_title.setText(modelSlideShowImg.getTitle());
         textView_date.setText(modelSlideShowImg.getDate());
         textView_category.setText(modelSlideShowImg.getCategory());
+        button.setText(modelSlideShowImg.getNewsPaperName());
 
+        final ModelSliderImg finalModelSlideShowImg = modelSlideShowImg;
+        relativeLayoutContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, PostDetailsActivity.class);
+                intent.putExtra("id", finalModelSlideShowImg.getId());
+                context.startActivity(intent);
+            }
+        });
 
-//            Glide.with(context).load(modelSlideShowImg.getImg_url())
-//                    .into(imgView);
+            Glide.with(context).load(Api.ROOT_URL+"storage/"+modelSlideShowImg.getImg_url())
+                    .into(imgView);
 
 
             container.addView(view);

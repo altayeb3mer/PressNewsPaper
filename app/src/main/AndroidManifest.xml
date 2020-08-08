@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.pressnewspaper">
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/paper_logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".Activity.LoginOrRegister"></activity>
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="m">
+        <activity android:name=".Activity.LoginOrRegister"/>
         <activity
             android:name=".Activity.SplashScreenActivity"
             android:theme="@style/SplashScreenTheme">
@@ -19,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.WelcomeActivity"></activity>
+        <activity android:name=".Activity.WelcomeActivity"/>
         <activity android:name=".Activity.PaperPostsActivity" />
         <activity android:name=".Activity.PostDetailsActivity" />
         <activity android:name=".Activity.NewsPapers" />
@@ -27,7 +30,9 @@
         <activity android:name=".Activity.RegistrationActivity" />
         <activity android:name=".Activity.ConfirmActivity" />
         <activity android:name=".Activity.Login" />
-        <activity android:name=".Activity.MainActivity"></activity>
+        <activity android:name=".Activity.MainActivity">
+
+        </activity>
     </application>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

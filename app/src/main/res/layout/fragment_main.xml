@@ -39,6 +39,20 @@
                     android:background="@android:color/transparent"
                     android:gravity="center_vertical"
                     android:layoutDirection="ltr" />
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/progressLaySlider"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <ProgressBar
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:indeterminate="true"/>
+                </LinearLayout>
             </RelativeLayout>
 
             <LinearLayout
@@ -77,6 +91,7 @@
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
                         <LinearLayout
+                            android:id="@+id/spinner1Lay"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -122,6 +137,7 @@
                 </RelativeLayout>
 
 
+
                                     <androidx.recyclerview.widget.RecyclerView
                                         android:id="@+id/fragment_main_recycler"
                                         android:layout_width="match_parent"
@@ -134,6 +150,31 @@
 
                                         android:layoutAnimation="@anim/layout_animation"
                                         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+                <LinearLayout
+                    android:id="@+id/progressLay"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <ProgressBar
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:indeterminate="true"/>
+                </LinearLayout>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:text="عرض المزيد.."
+                    android:background="@drawable/shape_btn_show_more_bg"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/txt_normal_size"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="50dp"
+                    android:layout_marginTop="5dp"/>
 
                 <LinearLayout
                     android:layout_marginLeft="5dp"

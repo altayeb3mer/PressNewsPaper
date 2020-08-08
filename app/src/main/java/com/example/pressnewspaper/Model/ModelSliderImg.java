@@ -6,6 +6,24 @@ public class ModelSliderImg {
     private String title;
     private String date;
     private String category;
+    private String newsPaperName;
+    private String newsPaperId;
+
+    public String getNewsPaperId() {
+        return newsPaperId;
+    }
+
+    public void setNewsPaperId(String newsPaperId) {
+        this.newsPaperId = newsPaperId;
+    }
+
+    public String getNewsPaperName() {
+        return newsPaperName;
+    }
+
+    public void setNewsPaperName(String newsPaperName) {
+        this.newsPaperName = newsPaperName;
+    }
 
     public String getImg_url() {
         return img_url;

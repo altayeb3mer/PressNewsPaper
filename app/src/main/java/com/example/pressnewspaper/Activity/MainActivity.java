@@ -4,6 +4,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -242,17 +243,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
             }
             case R.id.nav_facebook: {
-                startActivity(new Intent(MainActivity.this,Login.class));
+                openUrl("http://onlinefit.com.sd/papers/public/");// TODO: 8/7/2020  
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             }
             case R.id.nav_twitter: {
-                startActivity(new Intent(MainActivity.this,RegistrationActivity.class));
+                openUrl("http://onlinefit.com.sd/papers/public/");// TODO: 8/7/2020
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             }
             case R.id.nav_website: {
-                startActivity(new Intent(MainActivity.this,ConfirmActivity.class));
+                openUrl("http://onlinefit.com.sd/papers/public/");
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             }
@@ -267,7 +268,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     public void switchToFragment(int f_no) {
-        FragmentManager manager = getSupportFragmentManager();
         switch (f_no) {
             case 1: {
                 viewPager.setCurrentItem(0);
@@ -356,5 +356,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onDestroy();
         PushNotification("اختبار","يعمل الاختبار بنجاح");
     }
+
+    private void openUrl(String url){
+        if (!url.startsWith("http://") && !url.startsWith("https://"))
+            url = "http://" + url;
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
+    }
+
+
+
+
     //end of class
 }
