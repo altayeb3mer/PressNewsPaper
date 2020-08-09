@@ -23,6 +23,7 @@ import com.example.pressnewspaper.Model.ModelPostsCard;
 import com.example.pressnewspaper.Model.ModelSliderImg;
 import com.example.pressnewspaper.R;
 import com.example.pressnewspaper.Utils.Api;
+import com.example.pressnewspaper.Utils.SharedPrefManager;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -66,6 +67,7 @@ public class FragmentMain extends Fragment {
     String s_current_page = "", s_last_page = "", s_perPage = "", s_newsPaperId = "", s_category = "";
     ArrayList<ModelNewsPaper> newsPaperArrayList;
     LinearLayout spinner1Lay;
+
 
     public FragmentMain() {
         // Required empty public constructor
@@ -246,7 +248,7 @@ public class FragmentMain extends Fragment {
             public void run() {
                 handler.post(runnable);
             }
-        }, 6000, 6000);
+        }, 10000, 6000);
     }
 
     private void initPostAdapter(ArrayList<ModelPostsCard> list) {
@@ -395,7 +397,7 @@ public class FragmentMain extends Fragment {
                     @Override
                     public okhttp3.Response intercept(Chain chain) throws IOException {
                         okhttp3.Request.Builder ongoing = chain.request().newBuilder();
-//                        ongoing.addHeader("Content-Type", "application/json;");
+                        ongoing.addHeader("Content-Type", "application/json;");
 //                        ongoing.addHeader("Content-Type", "application/x-www-form-urlencoded");
 
                         return chain.proceed(ongoing.build());

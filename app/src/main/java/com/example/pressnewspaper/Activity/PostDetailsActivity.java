@@ -1,5 +1,6 @@
 package com.example.pressnewspaper.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -62,7 +63,15 @@ public class PostDetailsActivity extends ToolbarClass {
             GetRecommendedPost();
         }
 
-//        testAdapter();
+
+        buttonNewsPaper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),NewsPaperDetails.class);
+                intent.putExtra("id",newsPaperId);
+                startActivity(intent);
+            }
+        });
 
     }
 

@@ -3,9 +3,13 @@
     android:opacity="opaque">
     <item android:drawable="@color/colorPrimary" />
     <item
+        android:gravity="center"
+        android:height="40dp"
+        android:width="80dp"
+        android:drawable="@drawable/paper_logo"
        >
-        <bitmap
-            android:gravity="center"
-            android:src="@drawable/ic_splash_logo" />
+<!--        <bitmap-->
+<!--            android:gravity="center"-->
+<!--            android:src="@drawable/ic_splash_logo" />-->
     </item>
 </layer-list>

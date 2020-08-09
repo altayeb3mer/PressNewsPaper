@@ -32,6 +32,7 @@ import com.example.pressnewspaper.R;
 import com.example.pressnewspaper.Utils.CustomViewPager;
 import com.example.pressnewspaper.Utils.SharedPrefManager;
 import com.example.pressnewspaper.Utils.ViewPagerAdapter;
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -283,17 +284,28 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             }
             case 3: {
                 viewPager.setCurrentItem(2);
-                toolbar.setTitle("الاشعارات");
+                toolbar.setTitle("عاجل");
                 SetNavigationItemSelected(R.id.btn_nav_notification);
                 break;
             }
             case 4: {
+//                if (SharedPrefManager.getInstance(getApplicationContext()).receiveNotification()){
+//                    viewPager.setCurrentItem(3);
+//                }else{
+//                    viewPager.setCurrentItem(2);
+//                }
                 viewPager.setCurrentItem(3);
                 toolbar.setTitle("المحفوظات");
                 SetNavigationItemSelected(R.id.btn_nav_saved);
                 break;
             }
             case 5: {
+//                if (SharedPrefManager.getInstance(getApplicationContext()).receiveNotification()){
+//                    viewPager.setCurrentItem(4);
+//                }else{
+//                    viewPager.setCurrentItem(3);
+//                }
+
                 viewPager.setCurrentItem(4);
                 toolbar.setTitle("الضبط");
                 SetNavigationItemSelected(R.id.btn_nav_setting);
@@ -302,11 +314,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();
-        switchToFragment(current_fragment);
+//        switchToFragment(current_fragment);
     }
 
     int current_fragment=1;
@@ -322,7 +333,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             }
         }
     }
-
 
     private void PushNotification(String title, String content){
 
@@ -364,8 +374,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         i.setData(Uri.parse(url));
         startActivity(i);
     }
-
-
 
 
     //end of class

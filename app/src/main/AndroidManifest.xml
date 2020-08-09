@@ -12,7 +12,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".Activity.LoginOrRegister"/>
+        <activity android:name=".Activity.NewsPaperDetails"></activity>
+        <activity android:name=".Activity.LoginOrRegister" />
         <activity
             android:name=".Activity.SplashScreenActivity"
             android:theme="@style/SplashScreenTheme">
@@ -22,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.WelcomeActivity"/>
+        <activity android:name=".Activity.WelcomeActivity" />
         <activity android:name=".Activity.PaperPostsActivity" />
         <activity android:name=".Activity.PostDetailsActivity" />
         <activity android:name=".Activity.NewsPapers" />
@@ -30,13 +31,11 @@
         <activity android:name=".Activity.RegistrationActivity" />
         <activity android:name=".Activity.ConfirmActivity" />
         <activity android:name=".Activity.Login" />
-        <activity android:name=".Activity.MainActivity">
-
-        </activity>
+        <activity android:name=".Activity.MainActivity"></activity>
     </application>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
 </manifest>

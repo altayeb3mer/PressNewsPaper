@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragments.FragmentMySub">
+    tools:context=".Fragments.FragmentMySub"
+    android:background="@color/colorBackground">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/spc_recycler"
@@ -19,5 +20,53 @@
         android:layoutAnimation="@anim/layout_animation"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         />
-
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/progressLay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="@color/slider"
+        android:clickable="true"
+        android:focusable="true">
+        <ProgressBar
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@android:color/white"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:id="@+id/noItemLay"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@android:color/transparent">
+        <TextView
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="لم تقم بالاشتراك في احد الصحف حتى الان"
+            android:textSize="@dimen/txt_normal_size"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:id="@+id/notLoginLay"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@android:color/transparent">
+        <TextView
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="الرجاء تسجيل الدخول او لنشاء حساب جديد \n حتى تتمكن من عرض جميع المزايا"
+            android:textSize="@dimen/txt_normal_size"/>
+    </LinearLayout>
 </RelativeLayout>

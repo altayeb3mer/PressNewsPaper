@@ -24,9 +24,10 @@
             android:layout_weight="0.3"
             android:gravity="center">
             <ImageView
+                android:padding="1dp"
                 android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/logo"/>
+                android:layout_height="40dp"
+                android:src="@drawable/paper_logo"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

@@ -29,7 +29,7 @@
                         android:id="@+id/profile_image"
                         android:layout_width="85dp"
                         android:layout_height="85dp"
-                        android:src="@drawable/nav_backgrond2"
+                        android:src="@drawable/account_circle_white"
                         app:civ_border_width="0dp"
                         app:civ_border_color="#FF000000"
                         android:scaleType="centerCrop"
@@ -94,6 +94,7 @@
                     android:layout_marginLeft="@dimen/margin_normal_size"
                     android:layout_toEndOf="@+id/frg_setting_img1" />
                 <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switchC"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"

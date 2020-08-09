@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.FragmentNotification"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    android:id="@+id/container">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -14,6 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/above_container"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -56,12 +58,81 @@
 
                 android:layoutAnimation="@anim/layout_animation"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-            <View
+            <LinearLayout
                 android:layout_below="@+id/notification_recycler"
+                android:layout_marginTop="10dp"
+                android:id="@+id/progressLay"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true">
+                <ProgressBar
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:indeterminate="true"/>
+            </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:visibility="gone"
+                android:layout_below="@+id/progressLay"
+                android:id="@+id/btn"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:text="عرض المزيد.."
+                android:background="@drawable/shape_btn_show_more_bg"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="@dimen/txt_normal_size"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="50dp"
+                android:layout_marginTop="5dp"/>
+            <View
+                android:layout_below="@+id/btn"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"/>
 
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
 
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/muteLay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/mute_noti"
+            />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="خاصية استقبال المقالات المستعجلة معطلة لديك \n يمكن التعديل من الضبط"
+            android:textSize="@dimen/txt_normal_size"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:id="@+id/noItemLay"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:clickable="true"
+        android:focusable="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ليس لديك مقالات مستعجلة"
+            android:textSize="@dimen/txt_normal_size"/>
+    </LinearLayout>
 </RelativeLayout>

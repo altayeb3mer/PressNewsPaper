@@ -9,6 +9,8 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -27,6 +29,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Pattern;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -162,8 +165,11 @@ public class Login extends ToolbarClass {
         editTextEmailPhone = findViewById(R.id.email_or_phone);
         editTextPass = findViewById(R.id.password);
 
+        editTextEmailPhone.addTextChangedListener(emailOrPhoneWatcher);
+
         button = findViewById(R.id.btn);
     }
+
     protected boolean isOnline() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         assert cm != null;
@@ -182,4 +188,51 @@ public class Login extends ToolbarClass {
         masseage.setTextColor(Color.WHITE);
         snackbar.show();
     }
+
+    TextWatcher emailOrPhoneWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            //none
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            //none
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+            String check = s.toString();
+
+            if (!isValidEmail(check)&&!isValidMobile2(check)){
+                editTextEmailPhone.setError("ليس بريد الكتروني ولا رقم هاتف");
+            }
+
+        }
+
+    };
+
+    public final static boolean isValidEmail(String email) {
+        if (email == null) {
+            return false;
+        } else {
+            //android Regex to check the email address Validation
+            return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+        }
+    }
+
+    private boolean isValidMobile(String phone) {
+        if(Pattern.matches("[0-9]", phone)) {
+            return phone.length() == 10;
+        }
+        return false;
+    }
+    private boolean isValidMobile2(String phone) {
+        if (phone.length()==10){
+            return android.util.Patterns.PHONE.matcher(phone).matches();
+        }
+        return false;
+    }
+
 }

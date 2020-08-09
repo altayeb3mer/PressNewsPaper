@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +27,7 @@ public class FragmentSetting extends Fragment {
     CircleImageView circleImageViewUserImg;
     TextView textViewPhone, textViewEmail, textViewName;
     RelativeLayout layUpdate, layShare, layAbout;
+    SwitchCompat switchCompat;
 
     public FragmentSetting() {
         // Required empty public constructor
@@ -43,6 +46,13 @@ public class FragmentSetting extends Fragment {
         layUpdate = view.findViewById(R.id.layUpdate);
         layShare = view.findViewById(R.id.layShare);
         layAbout = view.findViewById(R.id.layAbout);
+        switchCompat = view.findViewById(R.id.switchC);
+
+        if (SharedPrefManager.getInstance(getContext()).receiveNotification()){
+            switchCompat.setChecked(true);
+        }else{
+            switchCompat.setChecked(false);
+        }
 
         layUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +71,18 @@ public class FragmentSetting extends Fragment {
             public void onClick(View view) { openUrl("http://onlinefit.com.sd/papers/public/");
             }
         });
+
+        switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    SharedPrefManager.getInstance(getContext()).putReceiveNotification(true);
+                }else {
+                    SharedPrefManager.getInstance(getContext()).putReceiveNotification(false);
+                }
+            }
+        });
+
     }
 
     private void initNavHeader() {

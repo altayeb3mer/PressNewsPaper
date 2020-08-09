@@ -81,12 +81,12 @@ public class AdapterAllNewsPaper extends RecyclerView.Adapter<AdapterAllNewsPape
                 Toast.makeText(activity, "جارى العمل على الاشتراك..", Toast.LENGTH_SHORT).show();
             }
         });
-        holder.textView_title.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                activity.startActivity(new Intent(activity, PaperPostsActivity.class));
-            }
-        });
+//        holder.textView_title.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                activity.startActivity(new Intent(activity, PaperPostsActivity.class));
+//            }
+//        });
 
 
 

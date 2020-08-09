@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -26,6 +28,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -176,6 +180,11 @@ public class RegistrationActivity extends ToolbarClass {
         editTextPass1 = findViewById(R.id.edt_pass1);
         editTextPass2 = findViewById(R.id.edt_pass2);
 
+        editTextName.addTextChangedListener(usernameWatcher);
+        editTextPass1.addTextChangedListener(passWatcher);
+        editTextPass2.addTextChangedListener(cnfpassWatcher);
+        editTextEmail.addTextChangedListener(emailOrPhoneWatcher);
+
         button = findViewById(R.id.btn);
         progressLay = findViewById(R.id.progressLay);
     }
@@ -198,4 +207,123 @@ public class RegistrationActivity extends ToolbarClass {
         snackbar.show();
     }
 
+    TextWatcher usernameWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            //none
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            //none
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+           String check = s.toString();
+
+            if (check.length() < 6|| check.length() > 20) {
+                editTextName.setError("الرجاء كتابة اسم صحيح من 6 الى 20 حرف");
+            }
+        }
+
+    };
+
+    TextWatcher passWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            //none
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            //none
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+           String check = s.toString();
+
+            if (check.length() < 9 || check.length() > 20) {
+                editTextPass1.setError("مسموح من 9 الى 20 خانة");
+            }
+        }
+
+    };
+
+    TextWatcher cnfpassWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            //none
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            //none
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+            String check = s.toString();
+
+            if (!check.equals(editTextPass2.getText().toString())) {
+                editTextPass2.setError("كلمة السر غير متطابقة");
+            }
+        }
+
+    };
+
+    TextWatcher emailOrPhoneWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            //none
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            //none
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+            String check = s.toString();
+
+            if (!isValidEmail(check) && !isValidMobile2(check)){
+                editTextEmail.setError("ليس بريد الكتروني ولا رقم هاتف");
+            }
+
+        }
+
+    };
+
+    public final static boolean isValidEmail(String email) {
+        if (email == null) {
+            return false;
+        } else {
+            //android Regex to check the email address Validation
+            return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+        }
+    }
+    private boolean isValidMobile(String phone) {
+        if(Pattern.matches("[0-9]", phone)) {
+            return phone.length() == 10;
+        }
+        return false;
+    }
+//    private boolean isValidMobile(String phone) {
+//        if(!Pattern.matches("[a-zA-Z]+", phone)) {
+//            return phone.length() > 6 && phone.length() <= 13;
+//        }
+//        return false;
+//    }
+private boolean isValidMobile2(String phone) {
+        if (phone.length()==10){
+            return android.util.Patterns.PHONE.matcher(phone).matches();
+        }
+    return false;
+}
 }

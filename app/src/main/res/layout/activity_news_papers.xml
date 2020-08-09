@@ -7,7 +7,8 @@
     tools:context=".Activity.NewsPapers"
     android:focusableInTouchMode="true"
     android:layoutDirection="rtl"
-    android:id="@+id/container">
+    android:id="@+id/container"
+    android:background="@color/colorBackground">
 <include layout="@layout/public_toolbar"
     android:id="@+id/toolbar"/>
     <androidx.core.widget.NestedScrollView

@@ -29,6 +29,12 @@ public class Api {
         @GET("api/newspapers")
         Call<String> putParam();
     }
+    //GetNewsPaperDetails
+    public interface RetrofitGetNewsPaperDetails {
+        @GET("api/newspapers")
+        Call<String> putParam(@QueryMap HashMap<String, String> param);
+    }
+    //newspapers
     //GetSlider
     public interface RetrofitGetSlider {
         @GET("api/slider-posts")
@@ -50,7 +56,21 @@ public class Api {
         @GET("api/recommended-posts")
         Call<String> putParam(@QueryMap HashMap<String, String> param);
     }
-
+    //GetUrgentPost
+    public interface RetrofitGetUrgentPost {
+        @GET("api/urgent-posts")
+        Call<String> putParam(@QueryMap HashMap<String, String> param);
+    }
+    //MySub
+    public interface RetrofitGetMySub {
+        @GET("api/my-subscriptions")
+        Call<String> putParam();
+    }
+    //MySaved
+    public interface RetrofitGetMySaved {
+        @GET("api/favorites")
+        Call<String> putParam();
+    }
 
 
 }

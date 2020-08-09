@@ -92,5 +92,18 @@ public class SharedPrefManager {
         return sp.getBoolean("is_first_open", true);
     }
 
+    //open state
+    public void putReceiveNotification(boolean val) {
+        SharedPreferences sp = mCtx.getSharedPreferences(SHARED_PREF_NAME, mCtx.MODE_PRIVATE);
+        SharedPreferences.Editor edit = sp.edit();
+        edit.putBoolean("receive", val);
+        edit.apply();
+    }
+    public boolean receiveNotification() {
+        SharedPreferences sp = mCtx.getSharedPreferences(SHARED_PREF_NAME, mCtx.MODE_PRIVATE);
+        return sp.getBoolean("receive", true);
+    }
+
+
 
 }
