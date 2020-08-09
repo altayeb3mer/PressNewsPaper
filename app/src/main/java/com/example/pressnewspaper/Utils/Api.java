@@ -71,6 +71,16 @@ public class Api {
         @GET("api/favorites")
         Call<String> putParam();
     }
+    //AllSub
+    public interface RetrofitGetAllSub {
+        @GET("api/subscriptions")
+        Call<String> putParam();
+    }
+    //subscribe
+    public interface RetrofitSubscribe {
+        @POST("api/subscribe")
+        Call<String> putParam(@Body HashMap<String, String> param);
+    }
 
 
 }

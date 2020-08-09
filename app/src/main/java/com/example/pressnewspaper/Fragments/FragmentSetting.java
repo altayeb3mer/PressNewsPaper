@@ -1,9 +1,11 @@
 package com.example.pressnewspaper.Fragments;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
@@ -116,8 +118,6 @@ public class FragmentSetting extends Fragment {
         }
     }
 
-
-
     private void openUrl(String url){
         if (!url.startsWith("http://") && !url.startsWith("https://"))
             url = "http://" + url;
@@ -149,5 +149,8 @@ public class FragmentSetting extends Fragment {
             //e.toString();
         }
     }
+
+
+
 
 }

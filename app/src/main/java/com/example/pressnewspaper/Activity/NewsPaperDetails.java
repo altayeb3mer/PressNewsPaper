@@ -5,6 +5,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.cardview.widget.CardView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -42,7 +43,9 @@ public class NewsPaperDetails extends ToolbarClass {
     ImageView imageView;
     AppCompatButton button;
 
-    String id = "";
+    String id = "", paperName="";
+
+
 
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +81,16 @@ public class NewsPaperDetails extends ToolbarClass {
         textViewPublishPeriod = findViewById(R.id.textViewPublishPeriod);
         textViewPublishOn = findViewById(R.id.textViewPublishOn);
 
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(NewsPaperDetails.this,NewSub.class);
+                intent.putExtra("id",id);
+                intent.putExtra("paperName",paperName);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -130,7 +143,8 @@ public class NewsPaperDetails extends ToolbarClass {
 //                            JSONObject sub1 = data.getJSONObject("1");
 
 
-                            textViewName.setText(data.getString("name"));
+                            paperName = data.getString("name");
+                            textViewName.setText(paperName);
                             textViewCategory.setText(data.getString("type_name"));
                             textViewPublishPeriod.setText(data.getString("publish_period"));
 

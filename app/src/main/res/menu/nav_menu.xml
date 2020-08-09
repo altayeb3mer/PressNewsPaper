@@ -20,7 +20,7 @@
         <item
             android:icon="@drawable/ic_book_save"
             android:id="@+id/nav_menu_saved"
-            android:title="المحفوظات"
+            android:title="المفضلة"
             />
         <item
             android:icon="@drawable/ic_settings_orange"

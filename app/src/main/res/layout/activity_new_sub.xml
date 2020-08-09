@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.NewsPapers"
+    android:focusableInTouchMode="true"
+    android:layoutDirection="rtl"
+    android:id="@+id/container"
+    android:background="@color/colorBackground">
+    <include layout="@layout/public_toolbar"
+        android:id="@+id/toolbar"/>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/margin_normal_size">
+            <TextView
+                android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/margin_normal_size"
+            android:layout_marginLeft="@dimen/margin_small_size"
+            android:layout_marginRight="@dimen/margin_small_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/txt_normal_size"
+            android:text="طلب اشتراك في"/>
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="@dimen/margin_normal_size"
+                android:id="@+id/paperName"
+                android:layout_marginLeft="@dimen/margin_small_size"
+                android:layout_marginRight="@dimen/margin_small_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/txt_large_size"
+                android:text="الصحيفة"/>
+            <TextView
+                android:layout_marginTop="@dimen/margin_large_size"
+                android:layout_marginLeft="@dimen/margin_small_size"
+                android:layout_marginRight="@dimen/margin_small_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/txt_normal_size"
+                android:text="اختر نوع الاشتراك"/>
+            <LinearLayout
+                android:id="@+id/spinner1Lay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentLeft="true"
+                android:gravity="center_vertical">
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:background="@android:color/transparent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:gravity="center_horizontal"
+                    />
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_arrow_down"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/priceLay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/margin_normal_size"
+                    android:layout_marginLeft="@dimen/margin_small_size"
+                    android:layout_marginRight="@dimen/margin_small_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/txt_normal_size"
+                    android:text="سعر الاشتراك"/>
+                <TextView
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginTop="@dimen/margin_normal_size"
+                    android:id="@+id/price"
+                    android:layout_marginLeft="@dimen/margin_small_size"
+                    android:layout_marginRight="@dimen/margin_small_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/txt_large_size"
+                    android:text="500 ج س"/>
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/margin_large_size"
+                android:id="@+id/btn"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:text="ارسال طلب الاشتراك"
+                android:background="@drawable/shape_btn_bg"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="@dimen/txt_normal_size"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/progressLay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="@color/slider"
+        android:clickable="true"
+        android:focusable="true">
+        <ProgressBar
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@android:color/white"/>
+    </LinearLayout>
+
+</RelativeLayout>
