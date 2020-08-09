@@ -81,6 +81,10 @@ public class Api {
         @POST("api/subscribe")
         Call<String> putParam(@Body HashMap<String, String> param);
     }
-
+    //AddFavorites
+    public interface RetrofitAddFavorites {
+        @POST("api/favorites")
+        Call<String> putParam(@Body HashMap<String, String> param);
+    }
 
 }

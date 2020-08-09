@@ -72,10 +72,9 @@ public class FragmentMain extends Fragment {
     public FragmentMain() {
         // Required empty public constructor
     }
-
+    ArrayList<String> list;
     private void initSpinnerPapers() {
         //init spinner1
-        ArrayList<String> list = new ArrayList<>();
         list.add("عرض بالصحف");
         list.add("كل الصحف");
         for (int i = 0; i < newsPaperArrayList.size(); i++) {
@@ -191,10 +190,12 @@ public class FragmentMain extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_main, container, false);
+        list = new ArrayList<>();
         init();
         initSpinner();
         GetSlider();
         GetPosts(s_newsPaperId, s_category, s_current_page);
+        if (list.isEmpty())
         GetNewsPaper();
         return view;
     }
@@ -561,6 +562,7 @@ public class FragmentMain extends Fragment {
                             }
 
                             if (newsPaperArrayList.size() > 0) {
+                                if (list.isEmpty())
                                 initSpinnerPapers();
                             } else {
                                 Toast.makeText(getContext(), "تعذر الوصول للصحف", Toast.LENGTH_SHORT).show();

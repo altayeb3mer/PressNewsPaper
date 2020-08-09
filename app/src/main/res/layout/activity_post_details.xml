@@ -88,6 +88,7 @@
                             android:layout_height="20dp"
                             android:src="@drawable/ic_share"/>
                         <ImageView
+                            android:id="@+id/addFavorites"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@drawable/ic_bookmark"/>

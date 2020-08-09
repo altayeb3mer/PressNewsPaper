@@ -1,5 +1,6 @@
 package com.example.pressnewspaper.Activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,14 +10,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.pressnewspaper.Adapter.AdapterOtherPosts;
 import com.example.pressnewspaper.Model.ModelOtherPosts;
+import com.example.pressnewspaper.Model.ModelPostsCard;
 import com.example.pressnewspaper.R;
 import com.example.pressnewspaper.Utils.Api;
+import com.example.pressnewspaper.Utils.SharedPrefManager;
 import com.example.pressnewspaper.Utils.ToolbarClass;
 
 import org.json.JSONArray;
@@ -52,6 +56,8 @@ public class PostDetailsActivity extends ToolbarClass {
 
     String id = "", newsPaperId = "";
 
+    ImageView addFavorites;
+
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.onCreate(R.layout.activity_post_details, "تفاصيل");
@@ -63,6 +69,7 @@ public class PostDetailsActivity extends ToolbarClass {
             GetRecommendedPost();
         }
 
+        token = SharedPrefManager.getInstance(getApplicationContext()).GetToken();
 
         buttonNewsPaper.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +83,7 @@ public class PostDetailsActivity extends ToolbarClass {
     }
 
     private void init() {
+        addFavorites = findViewById(R.id.addFavorites);
         recyclerView = findViewById(R.id.post_details_recycler);
         progressLayRec = findViewById(R.id.progressLayRec);
         container = findViewById(R.id.container);
@@ -86,6 +94,17 @@ public class PostDetailsActivity extends ToolbarClass {
         textViewWriter = findViewById(R.id.writer);
         textViewDate = findViewById(R.id.date);
         textViewBody = findViewById(R.id.body);
+
+        addFavorites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!token.equals("")){
+                    AddFavorites();
+                }else{
+                    dialogMessage("اضافة الى المفضلة","عفوا .. \n لم تقم بتسجيل الدخول حتى الان.. نرجو تسجيل الدخول اولا للوصول لكل المميزات");
+                }
+            }
+        });
 
     }
 
@@ -277,5 +296,86 @@ public class PostDetailsActivity extends ToolbarClass {
             }
         });
     }
+
+    String token="";
+    private void AddFavorites() {
+        progressLay.setVisibility(View.VISIBLE);
+        OkHttpClient httpClient = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        okhttp3.Request.Builder ongoing = chain.request().newBuilder();
+//                        ongoing.addHeader("Content-Type", "application/json;");
+//                        ongoing.addHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                        ongoing.addHeader("Authorization",token);
+
+                        return chain.proceed(ongoing.build());
+                    }
+                })
+                .readTimeout(60, TimeUnit.SECONDS)
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.ROOT_URL)
+                .client(httpClient)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        Api.RetrofitAddFavorites service = retrofit.create(Api.RetrofitAddFavorites.class);
+
+        HashMap<String, String> hashBody = new HashMap<>();
+        hashBody.put("id", id);
+
+        Call<String> call = service.putParam(hashBody);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, retrofit2.Response<String> response) {
+                try {
+                    JSONObject object = new JSONObject(response.body());
+                    String status_code = object.getString("status_code");
+                    switch (status_code) {
+                        case "200": {
+                            JSONObject data = object.getJSONObject("data");
+                            String msg = data.getString("message");
+                            dialogMessage("اضافة الى المفضلة",msg);
+                            break;
+                        }
+                        default: {
+                            Toast.makeText(getApplicationContext(), "حدث خطأ حاول مجددا", Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "تعذر الوصول لسجل للخادم حاول مجددا", Toast.LENGTH_SHORT).show();
+                }
+                progressLay.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable throwable) {
+                Toast.makeText(getApplicationContext(), "خطأ في الاتصال", Toast.LENGTH_SHORT).show();
+                progressLay.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    private void dialogMessage(String title, String msg){
+        AlertDialog alertDialog = new AlertDialog.Builder(PostDetailsActivity.this).create();
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(msg);
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "تم",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
+    }
+
 
 }
