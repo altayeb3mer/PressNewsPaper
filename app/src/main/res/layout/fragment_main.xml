@@ -201,5 +201,5 @@
 
     </androidx.core.widget.NestedScrollView>
 
-
+<include layout="@layout/fragment_no_internet"/>
 </RelativeLayout>

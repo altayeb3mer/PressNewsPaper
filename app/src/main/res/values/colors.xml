@@ -7,10 +7,7 @@
 
     <color name="colorBackground">#F5F5F5</color>
     <color name="slider">#4D000000</color>
-
-
-
-
+    <color name="noInternetBtnColor">#abb8ec</color>
 
 
     <!-- Screens background color-->

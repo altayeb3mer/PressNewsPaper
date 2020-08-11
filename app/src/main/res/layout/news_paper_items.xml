@@ -128,7 +128,7 @@
                 android:textSize="@dimen/txt_small_size"
                 android:textColor="@android:color/white"
                 android:layout_alignParentEnd="true"
-                />
+                android:layout_alignParentRight="true" />
         </RelativeLayout>
     </RelativeLayout>
     <View

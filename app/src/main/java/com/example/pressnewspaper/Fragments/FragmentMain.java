@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -50,6 +51,8 @@ public class FragmentMain extends Fragment {
     SlideShow_adapter_main slideShow_adapter_main;
     ArrayList<ModelSliderImg> modelSliderImgArrayList;
 
+    RelativeLayout noInternetContainer;
+
     //spinner
     Spinner spinner1, spinner2;
     String[] arraySpinner1, arraySpinner2;
@@ -68,6 +71,7 @@ public class FragmentMain extends Fragment {
     ArrayList<ModelNewsPaper> newsPaperArrayList;
     LinearLayout spinner1Lay;
 
+    AppCompatButton buttonRetry;
 
     public FragmentMain() {
         // Required empty public constructor
@@ -201,6 +205,20 @@ public class FragmentMain extends Fragment {
     }
 
     private void init() {
+        buttonRetry = view.findViewById(R.id.btnRetry);
+        buttonRetry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                noInternetContainer.setVisibility(View.GONE);
+                GetSlider();
+                GetPosts(s_newsPaperId, s_category, s_current_page);
+                if (list.isEmpty())
+                    GetNewsPaper();
+
+            }
+        });
+        noInternetContainer = view.findViewById(R.id.noInternetContainer);
+        noInternetContainer.setVisibility(View.GONE);
         spinner1Lay = view.findViewById(R.id.spinner1Lay);
         spinner1Lay.setVisibility(View.GONE);
         postsCardArrayList = new ArrayList<>();
@@ -477,6 +495,7 @@ public class FragmentMain extends Fragment {
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(getContext(), "خطأ في التحويل حاول مرة اخري", Toast.LENGTH_SHORT).show();
+                    noInternetContainer.setVisibility(View.VISIBLE);
                 }
                 progressLay.setVisibility(View.GONE);
             }
@@ -485,6 +504,7 @@ public class FragmentMain extends Fragment {
             public void onFailure(Call<String> call, Throwable throwable) {
                 Toast.makeText(getActivity(), "خطأ بالاتصال", Toast.LENGTH_SHORT).show();
                 progressLay.setVisibility(View.GONE);
+                noInternetContainer.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -578,6 +598,7 @@ public class FragmentMain extends Fragment {
 
                 } catch (Exception e) {
                     e.printStackTrace();
+                    noInternetContainer.setVisibility(View.VISIBLE);
 
                 }
             }
@@ -585,6 +606,7 @@ public class FragmentMain extends Fragment {
             @Override
             public void onFailure(Call<String> call, Throwable throwable) {
                 Toast.makeText(getContext(), "تعذر الوصول للصحف", Toast.LENGTH_SHORT).show();
+                noInternetContainer.setVisibility(View.VISIBLE);
             }
         });
     }
