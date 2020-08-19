@@ -61,7 +61,11 @@ public class PostDetailsActivity extends ToolbarClass {
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.onCreate(R.layout.activity_post_details, "تفاصيل");
+
+        token = SharedPrefManager.getInstance(getApplicationContext()).GetToken();
         init();
+        processIsFavorate(is_favorite);
+
         Bundle args = getIntent().getExtras();
         if (args != null) {
             id = args.getString("id");
@@ -69,7 +73,6 @@ public class PostDetailsActivity extends ToolbarClass {
             GetRecommendedPost();
         }
 
-        token = SharedPrefManager.getInstance(getApplicationContext()).GetToken();
 
         buttonNewsPaper.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +82,7 @@ public class PostDetailsActivity extends ToolbarClass {
                 startActivity(intent);
             }
         });
+
 
     }
 
@@ -117,7 +121,7 @@ public class PostDetailsActivity extends ToolbarClass {
         //end of test fun
     }
 
-
+    boolean is_favorite = false;
     private void GetPostsDetails() {
         container.setVisibility(View.GONE);
         progressLay.setVisibility(View.VISIBLE);
@@ -128,6 +132,8 @@ public class PostDetailsActivity extends ToolbarClass {
                         okhttp3.Request.Builder ongoing = chain.request().newBuilder();
 //                        ongoing.addHeader("Content-Type", "application/json;");
 //                        ongoing.addHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                        ongoing.addHeader("Authorization",token);
 
                         return chain.proceed(ongoing.build());
                     }
@@ -165,6 +171,7 @@ public class PostDetailsActivity extends ToolbarClass {
                             JSONObject data = object.getJSONObject("data");
                             JSONObject newsPaper = data.getJSONObject("newspaper");
                             JSONObject author = data.getJSONObject("author");
+                            is_favorite = data.getBoolean("is_favorite");
 
 
                             textViewTitle.setText(data.getString("title"));
@@ -178,6 +185,7 @@ public class PostDetailsActivity extends ToolbarClass {
                             Glide.with(PostDetailsActivity.this).load(Api.ROOT_URL + "storage/" + data.getString("image"))
                                     .into(imageView);
 
+                            processIsFavorate(is_favorite);
                             container.setVisibility(View.VISIBLE);
                             break;
                         }
@@ -202,6 +210,19 @@ public class PostDetailsActivity extends ToolbarClass {
                 finish();
             }
         });
+    }
+
+    private void processIsFavorate(boolean is_favorite) {
+        try {
+            if (is_favorite){
+                addFavorites.setImageResource(R.drawable.ic_bookmark);
+            }else{
+                addFavorites.setImageResource(R.drawable.ic_saved);
+            }
+        }catch (Exception e){
+            addFavorites.setImageResource(R.drawable.ic_saved);
+        }
+
     }
 
 
@@ -341,6 +362,12 @@ public class PostDetailsActivity extends ToolbarClass {
                             JSONObject data = object.getJSONObject("data");
                             String msg = data.getString("message");
                             dialogMessage("اضافة الى المفضلة",msg);
+                            if (is_favorite){
+                                is_favorite = false;
+                            }else{
+                                is_favorite = true;
+                            }
+                            processIsFavorate(is_favorite);
                             break;
                         }
                         default: {

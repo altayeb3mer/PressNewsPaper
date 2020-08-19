@@ -20,12 +20,13 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="135dp">
+                android:layout_height="200dp">
 
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/viewpager_slid_img"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:rotation="360"/>
 
                 <me.relex.circleindicator.CircleIndicator
                     android:id="@+id/indicator"
@@ -38,7 +39,7 @@
                     android:layout_marginRight="10dp"
                     android:background="@android:color/transparent"
                     android:gravity="center_vertical"
-                    android:layoutDirection="ltr" />
+                    android:layoutDirection="rtl" />
                 <LinearLayout
                     android:layout_marginTop="10dp"
                     android:id="@+id/progressLaySlider"
@@ -201,5 +202,13 @@
 
     </androidx.core.widget.NestedScrollView>
 
-<include layout="@layout/fragment_no_internet"/>
+    <include
+        layout="@layout/fragment_no_internet"
+        android:visibility="gone" />
+
+    <include
+        layout="@layout/loading_layout"
+        android:visibility="gone" />
+
+
 </RelativeLayout>

@@ -87,7 +87,7 @@
                     android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="استقبال المقالات المستعجلة"
+                    android:text="تلقي الاشعارات"
                     android:textSize="@dimen/txt_normal_size"
                     android:layout_toRightOf="@+id/frg_setting_img1"
                     android:layout_marginRight="@dimen/margin_normal_size"

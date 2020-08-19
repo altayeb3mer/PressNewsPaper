@@ -2,6 +2,7 @@ package com.example.pressnewspaper.Fragments;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
@@ -47,6 +50,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 
 public class FragmentMain extends Fragment {
+    GridLayoutManager gridLayoutManager;
+    RelativeLayout loadingLay;
     ViewPager viewPager_slid_img;
     SlideShow_adapter_main slideShow_adapter_main;
     ArrayList<ModelSliderImg> modelSliderImgArrayList;
@@ -201,10 +206,15 @@ public class FragmentMain extends Fragment {
         GetPosts(s_newsPaperId, s_category, s_current_page);
         if (list.isEmpty())
         GetNewsPaper();
+
+
+
         return view;
     }
 
     private void init() {
+        gridLayoutManager = new GridLayoutManager(getContext(),1);
+        loadingLay = view.findViewById(R.id.loadingLay);
         buttonRetry = view.findViewById(R.id.btnRetry);
         buttonRetry.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -270,9 +280,21 @@ public class FragmentMain extends Fragment {
         }, 10000, 6000);
     }
 
-    private void initPostAdapter(ArrayList<ModelPostsCard> list) {
+    private void initPostAdapter(final ArrayList<ModelPostsCard> list) {
         recyclerViewPosts = view.findViewById(R.id.fragment_main_recycler);
-        recyclerViewPosts.setNestedScrollingEnabled(false);
+        recyclerViewPosts.setLayoutManager(gridLayoutManager);
+//        recyclerViewPosts.addOnScrollListener(new CustomScrollListener());
+        recyclerViewPosts.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (((LinearLayoutManager) recyclerView.getLayoutManager()).findLastVisibleItemPosition() == list.size()-1) {
+                    Toast.makeText(getContext(), "LAST", Toast.LENGTH_SHORT).show();
+                    // code here
+                }
+            }
+        });
+//        recyclerViewPosts.setNestedScrollingEnabled(false);
 //        postsCardArrayList = new ArrayList<>();
 //        for (int i = 0; i < 10; i++) {
 //            ModelPostsCard modelPostsCard = new ModelPostsCard();
@@ -313,12 +335,42 @@ public class FragmentMain extends Fragment {
             }
         });
 
-    }
+        //auto scrolling
+        recyclerViewPosts.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 0) { //check for scroll down
+                    visibleItemCount = gridLayoutManager.getChildCount();
+                    totalItemCount = gridLayoutManager.getItemCount();
+                    pastVisiblesItems = gridLayoutManager.findFirstVisibleItemPosition();
 
+                    Toast.makeText(getContext(), ""+totalItemCount, Toast.LENGTH_SHORT).show();
+
+                    if (Double.parseDouble(s_last_page) > Double.parseDouble(s_current_page)) {
+                        GetPosts(s_newsPaperId, s_category, Integer.parseInt(s_current_page) + 1 + "");
+                    }
+
+
+//                    if (loading) {
+//                        if ((visibleItemCount + pastVisiblesItems) >= totalItemCount) {
+//                            loading = false;
+//                            Log.v("...", "Last Item Wow !");
+//                            // Do pagination.. i.e. fetch new data
+//                        }
+//                    }
+                }
+            }
+        });
+
+
+    }
+//    private boolean loading = true;
+    int pastVisiblesItems, visibleItemCount, totalItemCount;
     private void GetSlider() {
         modelSliderImgArrayList = new ArrayList<>();
         modelSliderImgArrayList.clear();
-        progressLaySlider.setVisibility(View.VISIBLE);
+//        progressLaySlider.setVisibility(View.VISIBLE);
+        loadingLay.setVisibility(View.VISIBLE);
         OkHttpClient httpClient = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {
                     @Override
@@ -392,24 +444,28 @@ public class FragmentMain extends Fragment {
                             break;
                         }
                     }
-                    progressLaySlider.setVisibility(View.GONE);
+//                    progressLaySlider.setVisibility(View.GONE);
+                    loadingLay.setVisibility(View.GONE);
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(getActivity(), "خطأ في التحويل حاول مرة اخري", Toast.LENGTH_SHORT).show();
                 }
-                progressLaySlider.setVisibility(View.GONE);
+//                progressLaySlider.setVisibility(View.GONE);
+                loadingLay.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable throwable) {
                 Toast.makeText(getActivity(), "خطأ بالاتصال", Toast.LENGTH_SHORT).show();
-                progressLaySlider.setVisibility(View.GONE);
+//                progressLaySlider.setVisibility(View.GONE);
+                loadingLay.setVisibility(View.GONE);
             }
         });
     }
 
     private void GetPosts(String newsPaperId, String category, String currentPage) {
         progressLay.setVisibility(View.VISIBLE);
+//        loadingLay.setVisibility(View.VISIBLE);
         buttonShowMore.setVisibility(View.GONE);
         OkHttpClient httpClient = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {
@@ -492,18 +548,21 @@ public class FragmentMain extends Fragment {
                         }
                     }
                     progressLay.setVisibility(View.GONE);
+//                    loadingLay.setVisibility(View.GONE);
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(getContext(), "خطأ في التحويل حاول مرة اخري", Toast.LENGTH_SHORT).show();
                     noInternetContainer.setVisibility(View.VISIBLE);
                 }
                 progressLay.setVisibility(View.GONE);
+//                loadingLay.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable throwable) {
                 Toast.makeText(getActivity(), "خطأ بالاتصال", Toast.LENGTH_SHORT).show();
                 progressLay.setVisibility(View.GONE);
+//                loadingLay.setVisibility(View.GONE);
                 noInternetContainer.setVisibility(View.VISIBLE);
             }
         });
@@ -514,12 +573,13 @@ public class FragmentMain extends Fragment {
             slideShow_adapter_main = new SlideShow_adapter_main(getContext(), modelSliderImgArrayList);
             viewPager_slid_img.setAdapter(slideShow_adapter_main);
             indicator.setViewPager(viewPager_slid_img);
-            progressLaySlider.setVisibility(View.GONE);
+//            progressLaySlider.setVisibility(View.GONE);
             AutoSwipingImg();
         } else {
             Toast.makeText(getContext(), "السلايدر فارغ", Toast.LENGTH_SHORT).show();
-            progressLaySlider.setVisibility(View.GONE);
+//            progressLaySlider.setVisibility(View.GONE);
         }
+        loadingLay.setVisibility(View.GONE);
     }
 
     private void GetNewsPaper() {
@@ -610,5 +670,60 @@ public class FragmentMain extends Fragment {
             }
         });
     }
+
+
+
+
+
+
+    public class CustomScrollListener extends RecyclerView.OnScrollListener {
+        public CustomScrollListener() {
+        }
+
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            switch (newState) {
+                case RecyclerView.SCROLL_STATE_IDLE:
+                    System.out.println("The RecyclerView is not scrolling");
+                    break;
+                case RecyclerView.SCROLL_STATE_DRAGGING:
+                    System.out.println("Scrolling now");
+                    break;
+                case RecyclerView.SCROLL_STATE_SETTLING:
+                    System.out.println("Scroll Settling");
+
+                    break;
+
+            }
+
+        }
+
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+
+            if (dx > 0) {
+                System.out.println("Scrolled Right");
+            } else if (dx < 0) {
+                System.out.println("Scrolled Left");
+            } else {
+                System.out.println("No Horizontal Scrolled");
+            }
+
+            if (dy > 0) {
+                System.out.println("Scrolled Downwards");
+            } else if (dy < 0) {
+                System.out.println("Scrolled Upwards");
+            } else {
+                System.out.println("No Vertical Scrolled");
+                int visibleItemCount = gridLayoutManager.getChildCount();
+                int totalItemCount = gridLayoutManager.getItemCount();
+                int pastVisibleItems = gridLayoutManager.findFirstVisibleItemPosition();
+                if (pastVisibleItems + visibleItemCount >= totalItemCount) {
+                    //End of list
+                    Toast.makeText(getActivity(), "end of scroll", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        }
+    }
+
 
 }
