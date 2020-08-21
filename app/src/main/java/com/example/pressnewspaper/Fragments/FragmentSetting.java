@@ -1,10 +1,12 @@
 package com.example.pressnewspaper.Fragments;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
@@ -50,7 +52,7 @@ public class FragmentSetting extends Fragment {
         layAbout = view.findViewById(R.id.layAbout);
         switchCompat = view.findViewById(R.id.switchC);
 
-        if (SharedPrefManager.getInstance(getContext()).receiveNotification()){
+        if (SharedPrefManager.getInstance(mContext).receiveNotification()){
             switchCompat.setChecked(true);
         }else{
             switchCompat.setChecked(false);
@@ -78,9 +80,9 @@ public class FragmentSetting extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b){
-                    SharedPrefManager.getInstance(getContext()).putReceiveNotification(true);
+                    SharedPrefManager.getInstance(mContext).putReceiveNotification(true);
                 }else {
-                    SharedPrefManager.getInstance(getContext()).putReceiveNotification(false);
+                    SharedPrefManager.getInstance(mContext).putReceiveNotification(false);
                 }
             }
         });
@@ -92,10 +94,10 @@ public class FragmentSetting extends Fragment {
         textViewName = view.findViewById(R.id.name);
         textViewPhone = view.findViewById(R.id.phone);
         textViewEmail = view.findViewById(R.id.email);
-        if (!SharedPrefManager.getInstance(getActivity()).GetToken().equals("")){
-            String name = SharedPrefManager.getInstance(getActivity()).GetUserName();
-            String phone = SharedPrefManager.getInstance(getActivity()).GetUserPhone();
-            String email = SharedPrefManager.getInstance(getActivity()).GetUserEmail();
+        if (!SharedPrefManager.getInstance(mContext).GetToken().equals("")){
+            String name = SharedPrefManager.getInstance(mContext).GetUserName();
+            String phone = SharedPrefManager.getInstance(mContext).GetUserPhone();
+            String email = SharedPrefManager.getInstance(mContext).GetUserEmail();
             textViewName.setText(name);
 
             if (phone.equals("")||phone.equals("null")){
@@ -114,7 +116,7 @@ public class FragmentSetting extends Fragment {
             textViewName.setText("لم تقم بتسجيل الدخول");
             textViewPhone.setVisibility(View.GONE);
             textViewEmail.setVisibility(View.GONE);
-            Toast.makeText(getActivity(), "انت تتصفح التطبيق كزائر", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, "انت تتصفح التطبيق كزائر", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -127,7 +129,7 @@ public class FragmentSetting extends Fragment {
     }
 
     private void openStoreForUpdate(){
-        final String appPackageName = getActivity().getPackageName(); // getPackageName() from Context or Activity object
+        final String appPackageName = mContext.getPackageName(); // getPackageName() from Context or Activity object
         try {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
         } catch (android.content.ActivityNotFoundException anfe) {
@@ -145,12 +147,20 @@ public class FragmentSetting extends Fragment {
             shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
             startActivity(Intent.createChooser(shareIntent, "choose one"));
         } catch(Exception e) {
-            Toast.makeText(getContext(), "حدث خطأ الرجاء المحاولة مرة اخرى", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, "حدث خطأ الرجاء المحاولة مرة اخرى", Toast.LENGTH_SHORT).show();
             //e.toString();
         }
     }
 
 
 
+
+    Context mContext;
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.mContext = context;
+
+    }
 
 }

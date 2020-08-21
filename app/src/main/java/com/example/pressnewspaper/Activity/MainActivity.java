@@ -295,7 +295,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 //                    viewPager.setCurrentItem(2);
 //                }
                 viewPager.setCurrentItem(3);
-                toolbar.setTitle("المحفوظات");
+                toolbar.setTitle("المفضلة");
                 SetNavigationItemSelected(R.id.btn_nav_saved);
                 break;
             }

@@ -1,5 +1,6 @@
 package com.example.pressnewspaper.Fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -54,7 +56,7 @@ public class FragmentMySub extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_my_sub, container, false);
         init();
-        token = SharedPrefManager.getInstance(getContext()).GetToken();
+        token = SharedPrefManager.getInstance(mContext).GetToken();
         if (!token.equals("")){
             GetMySub();
             notLoginLay.setVisibility(View.GONE);
@@ -164,24 +166,34 @@ public class FragmentMySub extends Fragment {
                             break;
                         }
                         default: {
-                            Toast.makeText(getContext(), "حدث خطأ حاول مجددا", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, "حدث خطأ حاول مجددا", Toast.LENGTH_SHORT).show();
                             break;
                         }
                     }
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(getContext(), "تعذر الوصول لسجل الصحف حاول مجددا", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "تعذر الوصول لسجل الصحف حاول مجددا", Toast.LENGTH_SHORT).show();
                 }
                 progressLay.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable throwable) {
-                Toast.makeText(getContext(), "خطأ في الاتصال", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "خطأ في الاتصال", Toast.LENGTH_SHORT).show();
                 progressLay.setVisibility(View.GONE);
             }
         });
     }
 
+
+
+    Context mContext;
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.mContext = context;
+
+    }
+    
 }

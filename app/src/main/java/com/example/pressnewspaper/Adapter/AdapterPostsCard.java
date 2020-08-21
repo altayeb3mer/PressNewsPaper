@@ -52,7 +52,7 @@ public class AdapterPostsCard extends RecyclerView.Adapter<AdapterPostsCard.View
         holder.buttonNewsPaper.setText(item.getNewsPaperName());
         holder.textView_title.setText(item.getTitle());
         holder.textView_date.setText(item.getDate());
-        holder.textView_category.setText("التصنيف"+" "+item.getCategory());
+        holder.textView_category.setText("التصنيف:"+" "+item.getCategory());
 
         Glide.with(activity).load(Api.ROOT_URL+"storage/"+item.getImg_url())
                 .into(holder.imageView);

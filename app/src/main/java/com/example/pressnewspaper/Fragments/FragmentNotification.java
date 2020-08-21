@@ -1,5 +1,6 @@
 package com.example.pressnewspaper.Fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -125,7 +127,7 @@ public class FragmentNotification extends Fragment {
         recyclerViewPosts = view.findViewById(R.id.notification_recycler);
         relativeLayout = view.findViewById(R.id.above_container);
         muteLay = view.findViewById(R.id.muteLay);
-        if (SharedPrefManager.getInstance(getContext()).receiveNotification()) {
+        if (SharedPrefManager.getInstance(mContext).receiveNotification()) {
             relativeLayout.setVisibility(View.GONE);
             recyclerViewPosts.setVisibility(View.VISIBLE);
             muteLay.setVisibility(View.GONE);
@@ -149,7 +151,7 @@ public class FragmentNotification extends Fragment {
                 buttonShowMore.setVisibility(View.GONE);
             }
         } else {
-            Toast.makeText(getContext(), "لاتوجد منشورات حاول مجددا", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, "لاتوجد منشورات حاول مجددا", Toast.LENGTH_SHORT).show();
             noItemLay.setVisibility(View.VISIBLE);
         }
         if (Integer.parseInt(s_last_page) > Integer.parseInt(s_current_page)) {
@@ -248,14 +250,14 @@ public class FragmentNotification extends Fragment {
                             break;
                         }
                         default: {
-                            Toast.makeText(getContext(), "تعذر الوصول للبيانات", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, "تعذر الوصول للبيانات", Toast.LENGTH_SHORT).show();
                             break;
                         }
                     }
                     progressLay.setVisibility(View.GONE);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(getContext(), "خطأ في التحويل حاول مرة اخري", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "خطأ في التحويل حاول مرة اخري", Toast.LENGTH_SHORT).show();
                 }
                 progressLay.setVisibility(View.GONE);
             }
@@ -268,4 +270,13 @@ public class FragmentNotification extends Fragment {
         });
     }
 
+    Context mContext;
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.mContext = context;
+
+    }
+    
+    
 }

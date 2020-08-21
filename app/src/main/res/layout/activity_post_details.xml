@@ -203,9 +203,12 @@
         android:clickable="true"
         android:focusable="true"
         android:background="@color/slider">
-        <ProgressBar
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/avi"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:indeterminate="true"/>
+            android:visibility="visible"
+            app:indicatorColor="@color/colorAccent"
+            app:indicatorName="BallClipRotatePulseIndicator" />
     </LinearLayout>
 </RelativeLayout>

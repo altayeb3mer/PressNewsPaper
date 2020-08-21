@@ -15,6 +15,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.pressnewspaper.Activity.NewsPaperDetails;
 import com.example.pressnewspaper.Activity.PaperPostsActivity;
 import com.example.pressnewspaper.Model.ModelMySub;
 import com.example.pressnewspaper.Model.ModelNewsPaper;
@@ -78,7 +79,10 @@ public class AdapterAllNewsPaper extends RecyclerView.Adapter<AdapterAllNewsPape
         holder.buttonSubscription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(activity, "جارى العمل على الاشتراك..", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(activity, "جارى العمل على الاشتراك..", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(activity, NewsPaperDetails.class);
+                intent.putExtra("id",item.getNewPaperId());
+                activity.startActivity(intent);
             }
         });
 //        holder.textView_title.setOnClickListener(new View.OnClickListener() {
