@@ -2,6 +2,7 @@ package com.example.pressnewspaper.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,6 +40,8 @@ import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
+
+import static android.content.ContentValues.TAG;
 
 
 public class FragmentNotification extends Fragment {
@@ -119,6 +123,8 @@ public class FragmentNotification extends Fragment {
     }
 
     private void init() {
+
+        nestedScrollView = view.findViewById(R.id.nestedScroll);
         postsCardArrayList = new ArrayList<>();
 
         buttonShowMore = view.findViewById(R.id.btn);
@@ -138,6 +144,34 @@ public class FragmentNotification extends Fragment {
             recyclerViewPosts.setVisibility(View.GONE);
             muteLay.setVisibility(View.VISIBLE);
         }
+
+
+
+        //get last view on nestedScrollView
+        nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+
+                if (scrollY > oldScrollY) {
+                    Log.i(TAG, "Scroll DOWN");
+                }
+                if (scrollY < oldScrollY) {
+                    Log.i(TAG, "Scroll UP");
+                }
+
+                if (scrollY == 0) {
+                    Log.i(TAG, "TOP SCROLL");
+                }
+
+                if (scrollY == (v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight())) {
+                    Log.i(TAG, "BOTTOM SCROLL");
+                    if (Double.parseDouble(s_last_page) > Double.parseDouble(s_current_page))
+                        GetPosts(Integer.parseInt(s_current_page) + 1 + "");
+
+                }
+            }
+        });
+
     }
 
     private void initAdapter(ArrayList<ModelPostsCard> list) {
@@ -145,11 +179,11 @@ public class FragmentNotification extends Fragment {
         if (list.size() > 0) {
             adapterPostsCard = new AdapterPostsCard(getActivity(), list);
             recyclerViewPosts.setAdapter(adapterPostsCard);
-            if (Double.parseDouble(s_last_page) > Double.parseDouble(s_current_page)) {
-                buttonShowMore.setVisibility(View.VISIBLE);
-            } else {
-                buttonShowMore.setVisibility(View.GONE);
-            }
+//            if (Double.parseDouble(s_last_page) > Double.parseDouble(s_current_page)) {
+//                buttonShowMore.setVisibility(View.VISIBLE);
+//            } else {
+//                buttonShowMore.setVisibility(View.GONE);
+//            }
         } else {
             Toast.makeText(mContext, "لاتوجد منشورات حاول مجددا", Toast.LENGTH_SHORT).show();
             noItemLay.setVisibility(View.VISIBLE);
@@ -161,12 +195,12 @@ public class FragmentNotification extends Fragment {
         }
 
 
-        buttonShowMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                GetPosts(Integer.parseInt(s_current_page) + 1 + "");
-            }
-        });
+//        buttonShowMore.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                GetPosts(Integer.parseInt(s_current_page) + 1 + "");
+//            }
+//        });
 
 
         //end of test fun
@@ -270,6 +304,9 @@ public class FragmentNotification extends Fragment {
         });
     }
 
+
+
+    NestedScrollView nestedScrollView;
     Context mContext;
     @Override
     public void onAttach(@NonNull Context context) {

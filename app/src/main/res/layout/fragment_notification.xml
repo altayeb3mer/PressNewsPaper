@@ -9,6 +9,8 @@
     android:id="@+id/container">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScroll"
+        android:fillViewport="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <RelativeLayout
@@ -77,7 +79,7 @@
                     app:indicatorName="BallClipRotatePulseIndicator" />
             </LinearLayout>
             <androidx.appcompat.widget.AppCompatButton
-                android:visibility="gone"
+                android:visibility="invisible"
                 android:layout_below="@+id/progressLay"
                 android:id="@+id/btn"
                 android:layout_width="150dp"
