@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         adapter.addFragment(fragmentMain,"الرئيسية");
         adapter.addFragment(fragmentMySub,"اشتراكاتي");
         adapter.addFragment(fragmentNotification,"اشعارات");
-        adapter.addFragment(fragmentSavedPost,"المحفوظات");
+        adapter.addFragment(fragmentSavedPost,"المفضلة");
         adapter.addFragment(fragmentSetting,"الضبط");
         viewPager.setAdapter(adapter);
     }
