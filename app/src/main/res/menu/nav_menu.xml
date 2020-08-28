@@ -10,7 +10,7 @@
         <item
             android:icon="@drawable/ic_favorite_orange"
             android:id="@+id/nav_menu_my_sub"
-            android:title="اشتراكاتي"
+            android:title="اقسام"
             />
         <item
             android:icon="@drawable/ic_notifications"

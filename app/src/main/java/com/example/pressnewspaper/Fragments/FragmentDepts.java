@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.pressnewspaper.R;
 
-public class FragmentDepts extends Fragment {
+public class FragmentDepts extends Fragment implements View.OnClickListener {
 
 
 
@@ -31,5 +31,12 @@ public class FragmentDepts extends Fragment {
     }
 
     private void init() {
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+
+        }
     }
 }

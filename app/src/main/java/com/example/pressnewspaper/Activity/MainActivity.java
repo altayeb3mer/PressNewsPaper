@@ -23,6 +23,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.pressnewspaper.Fragments.FragmentDepts;
 import com.example.pressnewspaper.Fragments.FragmentMain;
 import com.example.pressnewspaper.Fragments.FragmentMySub;
 import com.example.pressnewspaper.Fragments.FragmentNotification;
@@ -166,8 +167,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         fragmentSavedPost = new FragmentSavedPost();
         fragmentSetting = new FragmentSetting();
 
+        fragmentDepts = new FragmentDepts();
+
         adapter.addFragment(fragmentMain,"الرئيسية");
-        adapter.addFragment(fragmentMySub,"اشتراكاتي");
+//        adapter.addFragment(fragmentMySub,"اشتراكاتي");
+        adapter.addFragment(fragmentDepts,"اقسام");
         adapter.addFragment(fragmentNotification,"اشعارات");
         adapter.addFragment(fragmentSavedPost,"المفضلة");
         adapter.addFragment(fragmentSetting,"الضبط");
@@ -179,6 +183,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     FragmentNotification fragmentNotification;
     FragmentSavedPost fragmentSavedPost;
     FragmentSetting fragmentSetting;
+
+    FragmentDepts fragmentDepts;
 
 
 
@@ -278,7 +284,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             }
             case 2: {
                 viewPager.setCurrentItem(1);
-                toolbar.setTitle("اشتراكاتي");
+                toolbar.setTitle("اقسام");
                 SetNavigationItemSelected(R.id.btn_nav_my_sub);
                 break;
             }
