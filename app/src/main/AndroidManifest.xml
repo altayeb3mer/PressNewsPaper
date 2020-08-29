@@ -12,7 +12,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".Activity.NewSub"></activity>
+        <activity android:name=".Activity.DeptPostsActivity"></activity>
+        <activity android:name=".Activity.NewSub" />
         <activity android:name=".Activity.NewsPaperDetails" />
         <activity android:name=".Activity.LoginOrRegister" />
         <activity
@@ -34,9 +35,9 @@
         <activity android:name=".Activity.Login" />
         <activity android:name=".Activity.MainActivity" />
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

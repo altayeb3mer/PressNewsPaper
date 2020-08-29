@@ -86,5 +86,17 @@ public class Api {
         @POST("api/favorites")
         Call<String> putParam(@Body HashMap<String, String> param);
     }
+    //search
+    public interface RetrofitSearch {
+        @GET("api/search")
+        Call<String> putParam(@QueryMap HashMap<String, String> param);
+    }
+    //ads
+    public interface RetrofitAds {
+        @GET("api/ad")
+        Call<String> putParam(@QueryMap HashMap<String, String> param);
+    }
+
+
 
 }

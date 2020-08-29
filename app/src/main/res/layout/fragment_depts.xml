@@ -19,16 +19,16 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="170dp"
+                android:layout_height="140dp"
                 android:orientation="horizontal"
-                android:weightSum="1">
+                android:weightSum="3">
                 <RelativeLayout
+                    android:id="@+id/card1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.5"
+                    android:layout_weight="1"
                     android:layout_margin="@dimen/margin_small_size">
                     <androidx.cardview.widget.CardView
-                        android:onClick="onClick"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         app:cardCornerRadius="10dp"
@@ -40,8 +40,8 @@
                             android:layout_height="match_parent"
                             android:gravity="center">
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:src="@drawable/ic_search_2"/>
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
@@ -54,20 +54,23 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="منوعات"
+                            android:text="أخبار"
                             android:gravity="center"
                             android:textSize="@dimen/txt_normal_size"
                             android:maxLines="1"
-                            android:textColor="@color/colorPrimary"/>
+                            android:textColor="@color/colorPrimary"
+                            android:ellipsize="end"
+                            android:maxEms="12"
+                            android:textAppearance="?android:attr/textAppearanceMedium"/>
             </LinearLayout>
                 </RelativeLayout>
                 <RelativeLayout
+                    android:id="@+id/card2"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.5"
+                    android:layout_weight="1"
                     android:layout_margin="@dimen/margin_small_size">
                     <androidx.cardview.widget.CardView
-                        android:onClick="onClick"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         app:cardCornerRadius="10dp"
@@ -79,8 +82,8 @@
                             android:layout_height="match_parent"
                             android:gravity="center">
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:src="@drawable/ic_search_2"/>
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
@@ -93,26 +96,72 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:text="تقارير وتحقيقات"
+                            android:gravity="center"
+                            android:textSize="@dimen/txt_normal_size"
+                            android:maxLines="1"
+                            android:textColor="@color/colorPrimary"
+                            android:ellipsize="end"
+                            android:maxEms="12"
+                            android:textAppearance="?android:attr/textAppearanceMedium"/>
+            </LinearLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/card3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_margin="@dimen/margin_small_size">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardCornerRadius="10dp"
+                        android:layout_margin="@dimen/margin_normal_size"
+                        android:layout_above="@+id/txtLay5"
+                        app:cardBackgroundColor="#E6C910">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center">
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/ic_search_2"/>
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+                    <LinearLayout
+                        android:layout_alignParentBottom="true"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:id="@+id/txtLay5">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:text="حوارات"
                             android:gravity="center"
                             android:textSize="@dimen/txt_normal_size"
                             android:maxLines="1"
-                            android:textColor="@color/colorPrimary"/>
-            </LinearLayout>
+                            android:textColor="@color/colorPrimary"
+                            android:ellipsize="end"
+                            android:maxEms="12"
+                            android:textAppearance="?android:attr/textAppearanceMedium"/>
+                    </LinearLayout>
                 </RelativeLayout>
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="170dp"
+                android:layout_height="140dp"
                 android:orientation="horizontal"
-                android:weightSum="1">
+                android:weightSum="3">
                 <RelativeLayout
+                    android:id="@+id/card4"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.5"
+                    android:layout_weight="1"
                     android:layout_margin="@dimen/margin_small_size">
                     <androidx.cardview.widget.CardView
-                        android:onClick="onClick"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         app:cardCornerRadius="10dp"
@@ -124,8 +173,8 @@
                             android:layout_height="match_parent"
                             android:gravity="center">
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:src="@drawable/ic_search_2"/>
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
@@ -138,20 +187,23 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="تقارير"
+                            android:text="ثقافة ومنوعات"
                             android:gravity="center"
                             android:textSize="@dimen/txt_normal_size"
                             android:maxLines="1"
-                            android:textColor="@color/colorPrimary"/>
+                            android:textColor="@color/colorPrimary"
+                            android:ellipsize="end"
+                            android:maxEms="12"
+                            android:textAppearance="?android:attr/textAppearanceMedium"/>
             </LinearLayout>
                 </RelativeLayout>
                 <RelativeLayout
+                    android:id="@+id/card5"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.5"
+                    android:layout_weight="1"
                     android:layout_margin="@dimen/margin_small_size">
                     <androidx.cardview.widget.CardView
-                        android:onClick="onClick"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         app:cardCornerRadius="10dp"
@@ -163,8 +215,8 @@
                             android:layout_height="match_parent"
                             android:gravity="center">
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:src="@drawable/ic_search_2"/>
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
@@ -181,57 +233,13 @@
                             android:gravity="center"
                             android:textSize="@dimen/txt_normal_size"
                             android:maxLines="1"
-                            android:textColor="@color/colorPrimary"/>
+                            android:textColor="@color/colorPrimary"
+                            android:ellipsize="end"
+                            android:maxEms="12"
+                            android:textAppearance="?android:attr/textAppearanceMedium"/>
             </LinearLayout>
                 </RelativeLayout>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="170dp"
-                android:orientation="horizontal"
-                android:weightSum="1">
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.5"
-                    android:layout_margin="@dimen/margin_small_size">
-                    <androidx.cardview.widget.CardView
-                        android:onClick="onClick"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:cardCornerRadius="10dp"
-                        android:layout_margin="@dimen/margin_normal_size"
-                        android:layout_above="@+id/txtLay5"
-                        app:cardBackgroundColor="#E6C910">
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center">
-                            <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:src="@drawable/ic_search_2"/>
-                        </RelativeLayout>
-                    </androidx.cardview.widget.CardView>
-                    <LinearLayout
-                        android:layout_alignParentBottom="true"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:id="@+id/txtLay5">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="اخبار"
-                            android:gravity="center"
-                            android:textSize="@dimen/txt_normal_size"
-                            android:maxLines="1"
-                            android:textColor="@color/colorPrimary"/>
-            </LinearLayout>
-                </RelativeLayout>
-            </LinearLayout>
-
-
         </LinearLayout>
 
 

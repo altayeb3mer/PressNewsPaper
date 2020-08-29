@@ -69,15 +69,14 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:layout_marginTop="5dp"
-                                    android:background="@color/colorPrimary"
                                     android:orientation="vertical"
                                     android:gravity="center">
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:textSize="@dimen/txt_large_size"
-                                        android:textColor="@android:color/white"
-                                        android:text="اعلان"/>
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:scaleType="fitXY"
+                                        android:id="@+id/imgAds1"
+                                        />
                                 </LinearLayout>
 
                 <RelativeLayout
@@ -156,7 +155,7 @@
                                         />
                 <LinearLayout
                     android:id="@+id/progressLay"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -184,15 +183,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="5dp"
-                    android:background="@color/colorPrimary"
                     android:orientation="vertical"
                     android:gravity="center">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/txt_large_size"
-                            android:textColor="@android:color/white"
-                            android:text="اعلان"/>
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        android:id="@+id/imgAds2"
+                        />
                 </LinearLayout>
 
             </LinearLayout>

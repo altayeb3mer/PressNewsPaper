@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -22,6 +23,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.bumptech.glide.Glide;
 import com.example.pressnewspaper.Adapter.AdapterPostsCard;
 import com.example.pressnewspaper.Adapter.SlideShow_adapter_main;
 import com.example.pressnewspaper.Model.ModelNewsPaper;
@@ -212,6 +214,8 @@ public class FragmentMain extends Fragment {
         GetPosts(s_newsPaperId, s_category, s_current_page);
         if (list.isEmpty())
             GetNewsPaper();
+
+        GetAds();
         return view;
     }
 
@@ -236,7 +240,10 @@ public class FragmentMain extends Fragment {
 //        });
     }
 
+    ImageView imgAds1, imgAds2;
     private void init() {
+        imgAds1 = view.findViewById(R.id.imgAds1);
+        imgAds2 = view.findViewById(R.id.imgAds2);
         nestedScrollView = view.findViewById(R.id.nestedScroll);
         gridLayoutManager = new GridLayoutManager(mContext, 1);
         loadingLay = view.findViewById(R.id.loadingLay);
@@ -694,6 +701,70 @@ public class FragmentMain extends Fragment {
             public void onFailure(Call<String> call, Throwable throwable) {
                 Toast.makeText(mContext, "تعذر الوصول للصحف", Toast.LENGTH_SHORT).show();
                 noInternetContainer.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
+
+    private void GetAds() {
+        OkHttpClient httpClient = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        okhttp3.Request.Builder ongoing = chain.request().newBuilder();
+//                        ongoing.addHeader("Content-Type", "application/json;");
+//                        ongoing.addHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                        return chain.proceed(ongoing.build());
+                    }
+                })
+                .readTimeout(60, TimeUnit.SECONDS)
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.ROOT_URL)
+                .client(httpClient)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        Api.RetrofitAds service = retrofit.create(Api.RetrofitAds.class);
+
+        HashMap<String, String> hashBody = new HashMap<>();
+        hashBody.put("position", "2");
+
+        Call<String> call = service.putParam(hashBody);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, retrofit2.Response<String> response) {
+                try {
+                    JSONObject object = new JSONObject(response.body());
+                    String status_code = object.getString("status_code");
+                    switch (status_code) {
+                        case "200": {
+                            JSONObject data = object.getJSONObject("data");
+                            String imageUrl = data.getString("image");
+                            Glide.with(getActivity()).load(Api.ROOT_URL+"storage/"+imageUrl)
+                                    .into(imgAds1);
+                            Glide.with(getActivity()).load(Api.ROOT_URL+"storage/"+imageUrl)
+                                    .into(imgAds2);
+                            break;
+                        }
+                        default: {
+
+                            break;
+                        }
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable throwable) {
             }
         });
     }
