@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         initViewPager();
         CheckLogin();
         initNavHeader();
+
+        viewPager.setOffscreenPageLimit(5);
     }
 
     private void initNavHeader() {
@@ -226,6 +228,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             }
             case R.id.nav_menu_news_paper: {
                 startActivity(new Intent(this,NewsPapers.class));
+                drawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            }
+            case R.id.nav_menu_mySub: {
+                startActivity(new Intent(this,MySubActivity.class));
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             }

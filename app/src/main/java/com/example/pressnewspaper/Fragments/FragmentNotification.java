@@ -18,6 +18,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.pressnewspaper.Adapter.AdapterPostsCard;
 import com.example.pressnewspaper.Model.ModelPostsCard;
@@ -119,14 +120,13 @@ public class FragmentNotification extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        postsCardArrayList=new ArrayList<>();
     }
-
+    SwipeRefreshLayout swipeRefresh;
     private void init() {
-
+        postsCardArrayList=new ArrayList<>();
+        swipeRefresh= view.findViewById(R.id.swipeRefresh);
         nestedScrollView = view.findViewById(R.id.nestedScroll);
         postsCardArrayList = new ArrayList<>();
-
         buttonShowMore = view.findViewById(R.id.btn);
         progressLay = view.findViewById(R.id.progressLay);
         noItemLay = view.findViewById(R.id.noItemLay);
@@ -171,6 +171,33 @@ public class FragmentNotification extends Fragment {
                 }
             }
         });
+
+
+
+
+
+
+        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefresh.setRefreshing(true);
+                if (SharedPrefManager.getInstance(mContext).receiveNotification()) {
+                    postsCardArrayList=new ArrayList<>();
+                    adapterPostsCard.notifyDataSetChanged();
+                    relativeLayout.setVisibility(View.GONE);
+                    recyclerViewPosts.setVisibility(View.VISIBLE);
+                    muteLay.setVisibility(View.GONE);
+                    //getPost must call here
+                    GetPosts(s_current_page);
+                } else {
+                    relativeLayout.setVisibility(View.GONE);
+                    recyclerViewPosts.setVisibility(View.GONE);
+                    muteLay.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+
 
     }
 
@@ -281,6 +308,7 @@ public class FragmentNotification extends Fragment {
 
                             }
 
+                            swipeRefresh.setRefreshing(false);
                             break;
                         }
                         default: {
@@ -292,14 +320,17 @@ public class FragmentNotification extends Fragment {
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(mContext, "خطأ في التحويل حاول مرة اخري", Toast.LENGTH_SHORT).show();
+                    swipeRefresh.setRefreshing(false);
                 }
                 progressLay.setVisibility(View.GONE);
+                swipeRefresh.setRefreshing(false);
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable throwable) {
                 Toast.makeText(mContext, "خطأ بالاتصال", Toast.LENGTH_SHORT).show();
                 progressLay.setVisibility(View.GONE);
+                swipeRefresh.setRefreshing(false);
             }
         });
     }

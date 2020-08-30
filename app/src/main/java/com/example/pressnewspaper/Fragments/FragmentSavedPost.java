@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.pressnewspaper.Adapter.AdapterPostsCard;
 import com.example.pressnewspaper.Model.ModelPostsCard;
@@ -150,9 +151,24 @@ public class FragmentSavedPost extends Fragment {
     }
 
     private void init() {
+
+        swipeRefresh= view.findViewById(R.id.swipeRefresh);
         notLoginLay = view.findViewById(R.id.notLoginLay);
         progressLay = view.findViewById(R.id.progressLay);
         noItemLay = view.findViewById(R.id.noItemLay);
+
+        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefresh.setRefreshing(true);
+                if (!token.equals("")){
+                    GetMySaved();
+                    notLoginLay.setVisibility(View.GONE);
+                }else{
+                    notLoginLay.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
     }
 
@@ -185,6 +201,7 @@ public class FragmentSavedPost extends Fragment {
         //end of test fun
     }
 
+    SwipeRefreshLayout swipeRefresh;
 
     private void GetMySaved() {
         postsCardArrayList = new ArrayList<>();
@@ -265,17 +282,20 @@ public class FragmentSavedPost extends Fragment {
                         }
                     }
 
+                    swipeRefresh.setRefreshing(false);
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(mContext, "تعذر الوصول لسجل المحفوظات حاول مرة اخرى", Toast.LENGTH_SHORT).show();
                 }
                 progressLay.setVisibility(View.GONE);
+                swipeRefresh.setRefreshing(false);
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable throwable) {
                 Toast.makeText(mContext, "خطأ في الاتصال", Toast.LENGTH_SHORT).show();
                 progressLay.setVisibility(View.GONE);
+                swipeRefresh.setRefreshing(false);
             }
         });
     }

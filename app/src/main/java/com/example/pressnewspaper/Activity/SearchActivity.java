@@ -192,7 +192,7 @@ public class SearchActivity extends AppCompatActivity {
                             if (postsCardArrayList.size() > 0) {
                                 initPostAdapter(postsCardArrayList);
                             } else {
-                                Toast.makeText(getApplicationContext(), "تعذر الوصول للبيانات", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "لم يتم العثور على نتائج حاول باستخدام كلمات اخرى", Toast.LENGTH_SHORT).show();
 
                             }
 

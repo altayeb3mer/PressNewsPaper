@@ -21,6 +21,7 @@ import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
@@ -92,6 +93,7 @@ public class FragmentMain extends Fragment {
     NestedScrollView nestedScrollView;
 
 
+    SwipeRefreshLayout swipeRefresh;
     public FragmentMain() {
         // Required empty public constructor
     }
@@ -237,11 +239,13 @@ public class FragmentMain extends Fragment {
 
     //end of test fun
 
+    RelativeLayout hallLay;
     @Override
     public void onResume() {
         super.onResume();
 
-        s_current_page = "1";
+        hallLay.requestFocus();
+        s_current_page = "";
 
 //        viewPager_slid_img.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 //            public void onPageScrollStateChanged(int state) {}
@@ -259,6 +263,9 @@ public class FragmentMain extends Fragment {
     SlideShow_adapter_ads adapter_ads1,adapter_ads2;
     ImageView imgAds1, imgAds2;
     private void init() {
+        hallLay = view.findViewById(R.id.hallLay);
+        swipeRefresh= view.findViewById(R.id.swipeRefresh);
+
         viewPagerAds1 = view.findViewById(R.id.VPads1);
         viewPagerAds2 = view.findViewById(R.id.VPads2);
 
@@ -290,6 +297,21 @@ public class FragmentMain extends Fragment {
         viewPager_slid_img = view.findViewById(R.id.viewpager_slid_img);
         modelSliderImgArrayList = new ArrayList<>();
         indicator = view.findViewById(R.id.indicator);
+
+
+        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefresh.setRefreshing(true);
+                postsCardArrayList.clear();
+                modelSliderImgArrayList.clear();
+                noInternetContainer.setVisibility(View.GONE);
+                GetSlider();
+                GetPosts(s_newsPaperId, s_category, s_current_page);
+                if (list.isEmpty())
+                    GetNewsPaper();
+            }
+        });
 
 
     }
@@ -338,7 +360,7 @@ public class FragmentMain extends Fragment {
                 } else {
                     iAds1++;
                 }
-                viewPagerAds1.setCurrentItem(i);
+                viewPagerAds1.setCurrentItem(iAds1);
             }
         };
         timerAds1 = new Timer();
@@ -366,7 +388,7 @@ public class FragmentMain extends Fragment {
                 } else {
                     iAds2++;
                 }
-                viewPagerAds2.setCurrentItem(i);
+                viewPagerAds2.setCurrentItem(iAds2);
             }
         };
         timerAds2 = new Timer();
@@ -610,13 +632,16 @@ public class FragmentMain extends Fragment {
                     }
                     progressLay.setVisibility(View.GONE);
                     loadingLay.setVisibility(View.GONE);
+                    swipeRefresh.setRefreshing(false);
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(mContext, "خطأ في التحويل حاول مرة اخري", Toast.LENGTH_SHORT).show();
                     noInternetContainer.setVisibility(View.VISIBLE);
+                    swipeRefresh.setRefreshing(false);
                 }
                 progressLay.setVisibility(View.GONE);
                 loadingLay.setVisibility(View.GONE);
+                swipeRefresh.setRefreshing(false);
             }
 
             @Override
@@ -625,9 +650,11 @@ public class FragmentMain extends Fragment {
                 progressLay.setVisibility(View.GONE);
                 loadingLay.setVisibility(View.GONE);
                 noInternetContainer.setVisibility(View.VISIBLE);
+                swipeRefresh.setRefreshing(false);
             }
         });
     }
+
 
 
 

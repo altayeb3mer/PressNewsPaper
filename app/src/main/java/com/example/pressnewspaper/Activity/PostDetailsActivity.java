@@ -3,6 +3,7 @@ package com.example.pressnewspaper.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -13,9 +14,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.example.pressnewspaper.Adapter.AdapterOtherPosts;
+import com.example.pressnewspaper.Adapter.SlideShow_adapter_ads;
+import com.example.pressnewspaper.Model.ModelAds;
 import com.example.pressnewspaper.Model.ModelOtherPosts;
 import com.example.pressnewspaper.Model.ModelPostsCard;
 import com.example.pressnewspaper.R;
@@ -29,6 +33,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Interceptor;
@@ -58,6 +64,111 @@ public class PostDetailsActivity extends ToolbarClass {
 
     ImageView addFavorites,ic_share;
 
+    ViewPager viewPagerAds;
+    ArrayList<ModelAds> adsArrayList1;
+    SlideShow_adapter_ads adapter_ads1;
+
+    private void GetAds() {
+        adsArrayList1 = new ArrayList<>();
+        OkHttpClient httpClient = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        okhttp3.Request.Builder ongoing = chain.request().newBuilder();
+//                        ongoing.addHeader("Content-Type", "application/json;");
+//                        ongoing.addHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                        return chain.proceed(ongoing.build());
+                    }
+                })
+                .readTimeout(60, TimeUnit.SECONDS)
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.ROOT_URL)
+                .client(httpClient)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        Api.RetrofitAds service = retrofit.create(Api.RetrofitAds.class);
+
+        HashMap<String, String> hashBody = new HashMap<>();
+        hashBody.put("position", "2");
+
+        Call<String> call = service.putParam(hashBody);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, retrofit2.Response<String> response) {
+                try {
+                    JSONObject object = new JSONObject(response.body());
+                    String status_code = object.getString("status_code");
+                    switch (status_code) {
+                        case "200": {
+                            JSONArray data = object.getJSONArray("data");
+                            for (int i = 0; i <data.length() ; i++) {
+                                JSONObject item = data.getJSONObject(i);
+                                ModelAds modelAds = new ModelAds();
+                                modelAds.setId(item.getString("id"));
+                                modelAds.setImgUrl(item.getString("image"));
+                                adsArrayList1.add(modelAds);
+                            }
+                            if (adsArrayList1.size()>0){
+                                adapter_ads1 = new SlideShow_adapter_ads(getApplicationContext(),adsArrayList1);
+                                viewPagerAds.setAdapter(adapter_ads1);
+                            }
+
+                            break;
+                        }
+                        default: {
+
+                            break;
+                        }
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable throwable) {
+            }
+        });
+    }
+
+    Handler handlerAds1;
+    Runnable runnableAds1;
+    Timer timerAds1;
+    int iAds1 = 0;
+    private void AutoSwipingImgAds1() {
+        handlerAds1 = new Handler();
+        runnableAds1 = new Runnable() {
+            @Override
+            public void run() {
+
+//                int i = viewPager_slid_img.getCurrentItem();
+                if (iAds1 == adsArrayList1.size() - 1) {
+                    iAds1 = 0;
+                } else {
+                    iAds1++;
+                }
+                viewPagerAds.setCurrentItem(iAds1);
+            }
+        };
+        timerAds1 = new Timer();
+        timerAds1.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handlerAds1.post(runnableAds1);
+            }
+        }, 3000, 6000);
+    }
+
+
+
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.onCreate(R.layout.activity_post_details, "تفاصيل");
@@ -84,9 +195,14 @@ public class PostDetailsActivity extends ToolbarClass {
         });
 
 
+        GetAds();
+        if (adsArrayList1.size()>0)
+            AutoSwipingImgAds1();
+
     }
 
     private void init() {
+        viewPagerAds = findViewById(R.id.VPads1);
         ic_share = findViewById(R.id.ic_share);
         ic_share.setOnClickListener(new View.OnClickListener() {
             @Override

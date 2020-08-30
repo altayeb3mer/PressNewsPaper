@@ -14,6 +14,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.bumptech.glide.Glide;
+import com.example.pressnewspaper.Activity.NewsPaperDetails;
 import com.example.pressnewspaper.Activity.PostDetailsActivity;
 import com.example.pressnewspaper.Model.ModelSliderImg;
 import com.example.pressnewspaper.R;
@@ -80,7 +81,18 @@ public class SlideShow_adapter_main extends PagerAdapter {
         textView_category.setText(modelSlideShowImg.getCategory());
         button.setText(modelSlideShowImg.getNewsPaperName());
 
+
         final ModelSliderImg finalModelSlideShowImg = modelSlideShowImg;
+
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, NewsPaperDetails.class);
+                intent.putExtra("id",finalModelSlideShowImg.getNewsPaperId());
+                context.startActivity(intent);
+            }
+        });
         relativeLayoutContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -41,7 +41,14 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/txt_large_size"
                 android:text="الصحيفة"/>
+            <View
+                android:layout_marginTop="@dimen/margin_small_size"
+                android:layout_width="100dp"
+                android:layout_height="0.5dp"
+                android:background="@color/colorPrimary"
+                android:layout_gravity="center"/>
             <TextView
+                android:layout_gravity="center"
                 android:layout_marginTop="@dimen/margin_large_size"
                 android:layout_marginLeft="@dimen/margin_small_size"
                 android:layout_marginRight="@dimen/margin_small_size"
@@ -50,8 +57,9 @@
                 android:textSize="@dimen/txt_normal_size"
                 android:text="اختر نوع الاشتراك"/>
             <LinearLayout
+                android:layout_gravity="center"
                 android:id="@+id/spinner1Lay"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_alignParentLeft="true"
@@ -76,6 +84,26 @@
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
                 android:orientation="vertical">
+                <TextView
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/margin_normal_size"
+                    android:layout_marginLeft="@dimen/margin_small_size"
+                    android:layout_marginRight="@dimen/margin_small_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/txt_normal_size"
+                    android:text="مدة الاشتراك"/>
+                <TextView
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginTop="@dimen/margin_normal_size"
+                    android:id="@+id/duration"
+                    android:layout_marginLeft="@dimen/margin_small_size"
+                    android:layout_marginRight="@dimen/margin_small_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/txt_large_size"
+                    android:text="3 شهور"/>
                 <TextView
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/margin_normal_size"

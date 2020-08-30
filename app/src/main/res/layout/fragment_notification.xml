@@ -8,97 +8,104 @@
     android:focusableInTouchMode="true"
     android:id="@+id/container">
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nestedScroll"
-        android:fillViewport="true"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <RelativeLayout
+        android:layout_height="match_parent"
+        android:id="@+id/swipeRefresh">
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScroll"
+            android:fillViewport="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <RelativeLayout
-                android:visibility="gone"
-                android:id="@+id/above_container"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:orientation="vertical"
-                android:gravity="end">
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:visibility="gone"
+                    android:id="@+id/above_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical"
+                    android:gravity="end">
 
-                <LinearLayout
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_alignParentLeft="true"
-                    android:gravity="center_vertical">
-                    <Spinner
-                        android:id="@+id/spinner1"
-                        android:background="@android:color/transparent"
+                    <LinearLayout
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:gravity="center_horizontal"
-                        />
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_arrow_down"/>
-                </LinearLayout>
-            </RelativeLayout>
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical">
+                        <Spinner
+                            android:id="@+id/spinner1"
+                            android:background="@android:color/transparent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:gravity="center_horizontal"
+                            />
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_arrow_down"/>
+                    </LinearLayout>
+                </RelativeLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/notification_recycler"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="visible"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="1"
-                tools:itemCount="3"
-                tools:listitem="@layout/main_rec_items"
-                android:layout_below="@+id/above_container"
-
-                android:layoutAnimation="@anim/layout_animation"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-            <LinearLayout
-                android:layout_below="@+id/notification_recycler"
-                android:layout_marginTop="10dp"
-                android:id="@+id/progressLay"
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:clickable="true"
-                android:focusable="true">
-                <com.wang.avi.AVLoadingIndicatorView
-                    android:id="@+id/avi"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/notification_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:visibility="visible"
-                    app:indicatorColor="@color/colorAccent"
-                    app:indicatorName="BallClipRotatePulseIndicator" />
-            </LinearLayout>
-            <androidx.appcompat.widget.AppCompatButton
-                android:visibility="invisible"
-                android:layout_below="@+id/progressLay"
-                android:id="@+id/btn"
-                android:layout_width="150dp"
-                android:layout_height="40dp"
-                android:text="عرض المزيد.."
-                android:background="@drawable/shape_btn_show_more_bg"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"
-                android:textSize="@dimen/txt_normal_size"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="50dp"
-                android:layout_marginTop="5dp"/>
-            <View
-                android:layout_below="@+id/btn"
-                android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"/>
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="1"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/main_rec_items"
+                    android:layout_below="@+id/above_container"
 
-        </RelativeLayout>
-    </androidx.core.widget.NestedScrollView>
+                    android:layoutAnimation="@anim/layout_animation"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+                <LinearLayout
+                    android:layout_below="@+id/notification_recycler"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/progressLay"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <com.wang.avi.AVLoadingIndicatorView
+                        android:id="@+id/avi"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:visibility="visible"
+                        app:indicatorColor="@color/colorAccent"
+                        app:indicatorName="BallClipRotatePulseIndicator" />
+                </LinearLayout>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:visibility="invisible"
+                    android:layout_below="@+id/progressLay"
+                    android:id="@+id/btn"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:text="عرض المزيد.."
+                    android:background="@drawable/shape_btn_show_more_bg"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/txt_normal_size"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="50dp"
+                    android:layout_marginTop="5dp"/>
+                <View
+                    android:layout_below="@+id/btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"/>
+
+            </RelativeLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
 
 
     <LinearLayout

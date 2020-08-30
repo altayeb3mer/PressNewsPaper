@@ -5,6 +5,24 @@ public class ModelSub {
     private String name;
     private String price;
 
+    private String duration_unit;
+    private String duration;
+
+    public String getDuration_unit() {
+        return duration_unit;
+    }
+
+    public void setDuration_unit(String duration_unit) {
+        this.duration_unit = duration_unit;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
 
     public String getId() {
         return id;

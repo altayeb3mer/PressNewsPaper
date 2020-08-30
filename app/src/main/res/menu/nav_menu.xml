@@ -2,13 +2,29 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
         <group android:checkableBehavior="none"
             android:id="@+id/first_menu_group">
+                <group android:checkableBehavior="none"
+                    android:id="@+id/second_menu_group">
+                        <item
+                            android:icon="@drawable/ic_newspaper"
+                            android:id="@+id/nav_menu_news_paper"
+                            android:title="الصحف"
+                            />
+                </group>
+                <group android:checkableBehavior="none"
+                    android:id="@+id/second_menu_group3">
+                        <item
+                            android:icon="@drawable/ic_favorite_orange"
+                            android:id="@+id/nav_menu_mySub"
+                            android:title="اشتراكاتي"
+                            />
+                </group>
         <item
             android:icon="@drawable/ic_home_nav"
             android:id="@+id/nav_menu_main"
             android:title="الرئيسية"
             />
         <item
-            android:icon="@drawable/ic_depts"
+            android:icon="@drawable/ic_depts_orange"
             android:id="@+id/nav_menu_my_sub"
             android:title="اقسام"
             />
@@ -28,14 +44,7 @@
             android:title="الضبط"
             />
         </group>
-        <group android:checkableBehavior="none"
-            android:id="@+id/second_menu_group">
-        <item
-            android:icon="@drawable/ic_newspapers"
-            android:id="@+id/nav_menu_news_paper"
-            android:title="الصحف"
-            />
-        </group>
+
         <group android:checkableBehavior="none"
             android:id="@+id/third_menu_group" >
                 <item

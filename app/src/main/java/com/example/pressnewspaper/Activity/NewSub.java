@@ -52,7 +52,7 @@ public class NewSub extends ToolbarClass {
 
     AppCompatButton button;
 
-    TextView textViewPaperName, textViewPrice;
+    TextView textViewPaperName, textViewPrice, textViewDuration;
     LinearLayout priceLay;
 
     private void initSpinnerSub() {
@@ -95,6 +95,7 @@ public class NewSub extends ToolbarClass {
                     subId = modelSubArrayList.get(position-1).getId();
                     priceLay.setVisibility(View.VISIBLE);
                     textViewPrice.setText(modelSubArrayList.get(position-1).getPrice()+" "+"ج س");
+                    textViewDuration.setText(modelSubArrayList.get(position-1).getDuration()+" "+modelSubArrayList.get(position-1).getDuration_unit());
                 }
 
 
@@ -106,6 +107,7 @@ public class NewSub extends ToolbarClass {
             }
         });
     }
+
 
 
     protected final void onCreate(Bundle savedInstanceState) {
@@ -133,6 +135,7 @@ public class NewSub extends ToolbarClass {
     }
 
     private void init() {
+        textViewDuration = findViewById(R.id.duration);
         textViewPaperName = findViewById(R.id.paperName);
         textViewPrice = findViewById(R.id.price);
         priceLay = findViewById(R.id.priceLay);
@@ -219,6 +222,8 @@ public class NewSub extends ToolbarClass {
                                 modelSub.setId(item.getString("id"));
                                 modelSub.setName(item.getString("name"));
                                 modelSub.setPrice(item.getString("price"));
+                                modelSub.setDuration(item.getString("duration"));
+                                modelSub.setDuration_unit(item.getString("duration_unit"));
 
                                 modelSubArrayList.add(modelSub);
 
