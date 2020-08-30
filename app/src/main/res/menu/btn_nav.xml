@@ -9,7 +9,7 @@
 
     <item android:id="@+id/btn_nav_my_sub"
         android:title="اقسام"
-        android:icon="@drawable/ic_favorite"
+        android:icon="@drawable/ic_depts"
         android:orderInCategory="2"
         />
     <item android:id="@+id/btn_nav_notification"

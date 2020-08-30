@@ -71,7 +71,13 @@
                                     android:layout_marginTop="5dp"
                                     android:orientation="vertical"
                                     android:gravity="center">
+                                    <androidx.viewpager.widget.ViewPager
+                                        android:id="@+id/VPads1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        />
                                     <ImageView
+                                        android:visibility="gone"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:scaleType="fitXY"
@@ -147,7 +153,7 @@
                                         android:visibility="visible"
                                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                                         app:spanCount="1"
-                                        tools:itemCount="5"
+                                        tools:itemCount="2"
                                         tools:listitem="@layout/main_rec_items"
 
                                         android:layoutAnimation="@anim/layout_animation"
@@ -169,12 +175,6 @@
                         android:visibility="visible"
                         app:indicatorColor="@color/colorAccent"
                         app:indicatorName="BallClipRotatePulseIndicator" />
-
-<!--                    <ProgressBar-->
-<!--                        -->
-<!--                        android:layout_width="60dp"-->
-<!--                        android:layout_height="60dp"-->
-<!--                        android:indeterminate="true"/>-->
                 </LinearLayout>
 
                 <LinearLayout
@@ -185,7 +185,13 @@
                     android:layout_marginTop="5dp"
                     android:orientation="vertical"
                     android:gravity="center">
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/VPads2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        />
                     <ImageView
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="fitXY"

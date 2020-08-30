@@ -276,7 +276,7 @@ public class FragmentNotification extends Fragment {
                             if (postsCardArrayList.size() > 0) {
                                 initAdapter(postsCardArrayList);
                             } else {
-                                Toast.makeText(getActivity(), "تعذر الوصول للبيانات", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(mContext, "تعذر الوصول للبيانات", Toast.LENGTH_SHORT).show();
                                 noItemLay.setVisibility(View.VISIBLE);
 
                             }
@@ -298,7 +298,7 @@ public class FragmentNotification extends Fragment {
 
             @Override
             public void onFailure(Call<String> call, Throwable throwable) {
-                Toast.makeText(getActivity(), "خطأ بالاتصال", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "خطأ بالاتصال", Toast.LENGTH_SHORT).show();
                 progressLay.setVisibility(View.GONE);
             }
         });

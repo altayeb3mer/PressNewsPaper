@@ -15,6 +15,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.pressnewspaper.Activity.DeptPostsActivity;
 import com.example.pressnewspaper.Activity.NewsPaperDetails;
 import com.example.pressnewspaper.Activity.PaperPostsActivity;
 import com.example.pressnewspaper.Model.ModelMySub;
@@ -43,9 +44,6 @@ public class AdapterAllNewsPaper extends RecyclerView.Adapter<AdapterAllNewsPape
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.news_paper_items, parent, false);
-
-
-
         return new ViewHolder(view);
     }
 
@@ -70,10 +68,14 @@ public class AdapterAllNewsPaper extends RecyclerView.Adapter<AdapterAllNewsPape
         }
 
 
-        holder.container.setOnClickListener(new View.OnClickListener() {
+        holder.textView_title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(activity, "id = "+item.getNewPaperId(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(activity, DeptPostsActivity.class);
+                intent.putExtra("title","صحيفة"+" "+item.getNewPaperName());
+                intent.putExtra("category","");
+                intent.putExtra("paperId",item.getNewPaperId());
+                activity.startActivity(intent);
             }
         });
         holder.buttonSubscription.setOnClickListener(new View.OnClickListener() {

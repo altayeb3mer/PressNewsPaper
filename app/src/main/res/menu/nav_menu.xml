@@ -8,7 +8,7 @@
             android:title="الرئيسية"
             />
         <item
-            android:icon="@drawable/ic_favorite_orange"
+            android:icon="@drawable/ic_depts"
             android:id="@+id/nav_menu_my_sub"
             android:title="اقسام"
             />

@@ -40,7 +40,7 @@
                 android:layout_marginTop="@dimen/margin_normal_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="يبدو ان الانترنت لديك غير مستقر تأكد من ان الانترنت\n يعمل بصورة جيدة وحاول مرة اخرى"
+                android:text="يبدو ان هنالك خطأ بالانترنت تأكد من ان الانترنت\n يعمل بصورة جيدة وحاول مرة اخرى"
                 android:textSize="@dimen/txt_normal_size14"
                 android:gravity="center"
                 />

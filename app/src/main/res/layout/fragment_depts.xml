@@ -42,7 +42,7 @@
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
-                                android:src="@drawable/ic_search_2"/>
+                                android:src="@drawable/ic_dept1"/>
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
                     <LinearLayout
@@ -84,7 +84,7 @@
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
-                                android:src="@drawable/ic_search_2"/>
+                                android:src="@drawable/ic_dept2"/>
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
                     <LinearLayout
@@ -126,7 +126,7 @@
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
-                                android:src="@drawable/ic_search_2"/>
+                                android:src="@drawable/ic_dept3"/>
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
                     <LinearLayout
@@ -175,7 +175,7 @@
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
-                                android:src="@drawable/ic_search_2"/>
+                                android:src="@drawable/ic_dept4"/>
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
                     <LinearLayout
@@ -217,7 +217,7 @@
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
-                                android:src="@drawable/ic_search_2"/>
+                                android:src="@drawable/ic_dept5"/>
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
                     <LinearLayout

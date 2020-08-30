@@ -1,10 +1,5 @@
 package com.example.pressnewspaper.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.NestedScrollView;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +9,10 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pressnewspaper.Adapter.AdapterPostsCard;
 import com.example.pressnewspaper.Model.ModelNewsPaper;
@@ -56,12 +55,21 @@ public class DeptPostsActivity extends ToolbarClass {
     ArrayList<ModelPostsCard> postsCardArrayList;
 
     String s_current_page = "", s_last_page = "", s_perPage = "", s_newsPaperId = "", s_category = "";
+    String title = "";
+    GridLayoutManager gridLayoutManager;
 
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle args = getIntent().getExtras();
-        s_category = args.getString("category");
-        super.onCreate(R.layout.activity_deopt_posts, s_category);
+        try {
+            Bundle args = getIntent().getExtras();
+            title = args.getString("title");
+            s_category = args.getString("category");
+            s_newsPaperId = args.getString("paperId");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        super.onCreate(R.layout.activity_deopt_posts, title);
         init();
         listSpinner = new ArrayList<>();
         GetNewsPaper();
@@ -75,7 +83,7 @@ public class DeptPostsActivity extends ToolbarClass {
         spinner1Lay = findViewById(R.id.spinner1Lay);
         recyclerViewPosts = findViewById(R.id.recycler);
         gridLayoutManager = new GridLayoutManager(getApplicationContext(), 1);
-        nestedScrollView =findViewById(R.id.nestedScroll);
+        nestedScrollView = findViewById(R.id.nestedScroll);
         progressLay = findViewById(R.id.progressLay);
         spinner1Lay.setVisibility(View.INVISIBLE);
 
@@ -179,7 +187,6 @@ public class DeptPostsActivity extends ToolbarClass {
         });
     }
 
-    GridLayoutManager gridLayoutManager;
     private void initPostAdapter(final ArrayList<ModelPostsCard> list) {
         recyclerViewPosts.setLayoutManager(gridLayoutManager);
         recyclerViewPosts.setNestedScrollingEnabled(false);
@@ -197,8 +204,6 @@ public class DeptPostsActivity extends ToolbarClass {
             recyclerViewPosts.scrollToPosition(list.size() - Integer.parseInt(s_perPage));
             adapterPostsCard.notifyItemInserted(list.size() - Integer.parseInt(s_perPage));
         }
-
-
 
 
         //get last view on nestedScrollView
@@ -228,8 +233,6 @@ public class DeptPostsActivity extends ToolbarClass {
 
 
     }
-
-
 
 
     private void initSpinnerPapers() {
@@ -290,6 +293,7 @@ public class DeptPostsActivity extends ToolbarClass {
             }
         });
     }
+
     private void GetNewsPaper() {
         newsPaperArrayList = new ArrayList<>();
         newsPaperArrayList.clear();

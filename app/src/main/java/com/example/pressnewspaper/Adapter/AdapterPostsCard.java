@@ -14,6 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.pressnewspaper.Activity.NewsPaperDetails;
 import com.example.pressnewspaper.Activity.PostDetailsActivity;
 import com.example.pressnewspaper.Model.ModelPostsCard;
 import com.example.pressnewspaper.R;
@@ -66,6 +67,16 @@ public class AdapterPostsCard extends RecyclerView.Adapter<AdapterPostsCard.View
                 activity.startActivity(intent);
             }
         });
+
+        holder.buttonNewsPaper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity, NewsPaperDetails.class);
+                intent.putExtra("id",item.getNewsPaperId());
+                activity.startActivity(intent);
+            }
+        });
+
     }
 
 

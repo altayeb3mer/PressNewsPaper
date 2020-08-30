@@ -143,14 +143,14 @@ public class NewSub extends ToolbarClass {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!id.equals("")||!subId.equals("")){
+                if (!id.equals("")&&!subId.equals("")){
                     if (!token.equals("")){
                         subscribeFun();
                     }else{
                         dialogMessage("مستخدم جديد","لم تقم بالتسجيل..الرجاء التسجيل والمحاوله مرة اخرى");
                     }
                 }else{
-                    dialogMessage("خطأ","حدث خطأ الرجاء المحاولة مره اخرى");
+                    dialogMessage("خطأ","الرجاء اختيار نوع الاشتراك");
                 }
             }
         });

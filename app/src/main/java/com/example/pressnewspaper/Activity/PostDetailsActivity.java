@@ -56,7 +56,7 @@ public class PostDetailsActivity extends ToolbarClass {
 
     String id = "", newsPaperId = "";
 
-    ImageView addFavorites;
+    ImageView addFavorites,ic_share;
 
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +87,13 @@ public class PostDetailsActivity extends ToolbarClass {
     }
 
     private void init() {
+        ic_share = findViewById(R.id.ic_share);
+        ic_share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sharePost(id);
+            }
+        });
         addFavorites = findViewById(R.id.addFavorites);
         recyclerView = findViewById(R.id.post_details_recycler);
         progressLayRec = findViewById(R.id.progressLayRec);
@@ -402,6 +409,17 @@ public class PostDetailsActivity extends ToolbarClass {
                     }
                 });
         alertDialog.show();
+    }
+
+
+    private void sharePost(String postId){
+        String webUrl=Api.ROOT_URL+"posts/";
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT,
+                webUrl+postId);
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
     }
 
 

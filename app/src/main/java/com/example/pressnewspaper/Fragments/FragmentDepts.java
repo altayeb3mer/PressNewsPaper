@@ -99,31 +99,41 @@ public class FragmentDepts extends Fragment implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.card1:{
                 Intent intent = new Intent(getActivity(), DeptPostsActivity.class);
+                intent.putExtra("title","أخبار");
                 intent.putExtra("category","أخبار");
+                intent.putExtra("paperId","");
                 getActivity().startActivity(intent);
                 break;
             }
             case R.id.card2:{
                 Intent intent = new Intent(getActivity(), DeptPostsActivity.class);
+                intent.putExtra("title","تقارير وتحقيقات");
                 intent.putExtra("category","تقارير وتحقيقات");
+                intent.putExtra("paperId","");
                 getActivity().startActivity(intent);
                 break;
             }
             case R.id.card3:{
                 Intent intent = new Intent(getActivity(), DeptPostsActivity.class);
+                intent.putExtra("title","حوارات");
                 intent.putExtra("category","حوارات");
+                intent.putExtra("paperId","");
                 getActivity().startActivity(intent);
                 break;
             }
             case R.id.card4:{
                 Intent intent = new Intent(getActivity(), DeptPostsActivity.class);
+                intent.putExtra("title","ثقافة ومنوعات");
                 intent.putExtra("category","ثقافة ومنوعات");
+                intent.putExtra("paperId","");
                 getActivity().startActivity(intent);
                 break;
             }
             case R.id.card5:{
                 Intent intent = new Intent(getActivity(), DeptPostsActivity.class);
+                intent.putExtra("title","أعمدة ومقالات");
                 intent.putExtra("category","أعمدة ومقالات");
+                intent.putExtra("paperId","");
                 getActivity().startActivity(intent);
                 break;
             }

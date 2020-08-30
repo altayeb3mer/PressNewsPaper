@@ -25,7 +25,9 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.example.pressnewspaper.Adapter.AdapterPostsCard;
+import com.example.pressnewspaper.Adapter.SlideShow_adapter_ads;
 import com.example.pressnewspaper.Adapter.SlideShow_adapter_main;
+import com.example.pressnewspaper.Model.ModelAds;
 import com.example.pressnewspaper.Model.ModelNewsPaper;
 import com.example.pressnewspaper.Model.ModelPostsCard;
 import com.example.pressnewspaper.Model.ModelSliderImg;
@@ -57,15 +59,18 @@ import static android.content.ContentValues.TAG;
 public class FragmentMain extends Fragment {
     GridLayoutManager gridLayoutManager;
     RelativeLayout loadingLay;
-    ViewPager viewPager_slid_img;
+    ViewPager viewPager_slid_img,viewPagerAds1, viewPagerAds2;
     SlideShow_adapter_main slideShow_adapter_main;
     ArrayList<ModelSliderImg> modelSliderImgArrayList;
+
+    ArrayList<ModelAds> adsArrayList1, adsArrayList2;
+
 
     RelativeLayout noInternetContainer;
 
     //spinner
     Spinner spinner1, spinner2;
-    String[] arraySpinner1, arraySpinner2;
+    String[] arraySpinner2data = new String[]{"التصنيف", "الكل", "أخبار", "أعمدة ومقالات", "تقارير وتحقيقات", "حوارات", "ثقافة ومنوعات"}, arraySpinner2;
     ArrayAdapter<String> adapter1, adapter2;
     //    AppCompatButton buttonShowMore;
     View view;
@@ -85,6 +90,7 @@ public class FragmentMain extends Fragment {
     ArrayList<String> list;
     Context mContext;
     NestedScrollView nestedScrollView;
+
 
     public FragmentMain() {
         // Required empty public constructor
@@ -187,7 +193,7 @@ public class FragmentMain extends Fragment {
                         adapterPostsCard.notifyDataSetChanged();
                     GetPosts(s_newsPaperId, s_category, "");
                 } else {
-                    s_category = arraySpinner2[position];
+                    s_category = arraySpinner2data[position];
                     postsCardArrayList.clear();
                     if (adapterPostsCard != null)
                         adapterPostsCard.notifyDataSetChanged();
@@ -206,7 +212,6 @@ public class FragmentMain extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_main, container, false);
-
         list = new ArrayList<>();
         init();
         initSpinner();
@@ -215,8 +220,19 @@ public class FragmentMain extends Fragment {
         if (list.isEmpty())
             GetNewsPaper();
 
-        GetAds();
+        GetAds1();
+        GetAds2();
+        autoSwipeAds();
         return view;
+    }
+
+    private void autoSwipeAds() {
+        if (adsArrayList1.size()>1){
+            AutoSwipingImgAds1();
+        }
+        if (adsArrayList2.size()>1){
+            AutoSwipingImgAds2();
+        }
     }
 
     //end of test fun
@@ -240,8 +256,12 @@ public class FragmentMain extends Fragment {
 //        });
     }
 
+    SlideShow_adapter_ads adapter_ads1,adapter_ads2;
     ImageView imgAds1, imgAds2;
     private void init() {
+        viewPagerAds1 = view.findViewById(R.id.VPads1);
+        viewPagerAds2 = view.findViewById(R.id.VPads2);
+
         imgAds1 = view.findViewById(R.id.imgAds1);
         imgAds2 = view.findViewById(R.id.imgAds2);
         nestedScrollView = view.findViewById(R.id.nestedScroll);
@@ -284,11 +304,10 @@ public class FragmentMain extends Fragment {
 //                int i = viewPager_slid_img.getCurrentItem();
                 if (i == modelSliderImgArrayList.size() - 1) {
                     i = 0;
-                    viewPager_slid_img.setCurrentItem(i);
                 } else {
                     i++;
-                    viewPager_slid_img.setCurrentItem(i);
                 }
+                viewPager_slid_img.setCurrentItem(i);
 
 
             }
@@ -298,6 +317,63 @@ public class FragmentMain extends Fragment {
             @Override
             public void run() {
                 handler.post(runnable);
+            }
+        }, 3000, 6000);
+    }
+
+
+    Handler handlerAds1;
+    Runnable runnableAds1;
+    Timer timerAds1;
+    int iAds1 = 0;
+    private void AutoSwipingImgAds1() {
+        handlerAds1 = new Handler();
+        runnableAds1 = new Runnable() {
+            @Override
+            public void run() {
+
+//                int i = viewPager_slid_img.getCurrentItem();
+                if (iAds1 == adsArrayList1.size() - 1) {
+                    iAds1 = 0;
+                } else {
+                    iAds1++;
+                }
+                viewPagerAds1.setCurrentItem(i);
+            }
+        };
+        timerAds1 = new Timer();
+        timerAds1.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handlerAds1.post(runnableAds1);
+            }
+        }, 3000, 6000);
+    }
+
+    Handler handlerAds2;
+    Runnable runnableAds2;
+    Timer timerAds2;
+    int iAds2 = 0;
+    private void AutoSwipingImgAds2() {
+        handlerAds2 = new Handler();
+        runnableAds2 = new Runnable() {
+            @Override
+            public void run() {
+
+//                int i = viewPager_slid_img.getCurrentItem();
+                if (iAds2 == adsArrayList1.size() - 1) {
+                    iAds2 = 0;
+                } else {
+                    iAds2++;
+                }
+                viewPagerAds2.setCurrentItem(i);
+            }
+        };
+        timerAds2 = new Timer();
+        timerAds2.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handlerAds2.post(runnableAds2);
             }
         }, 3000, 6000);
     }
@@ -554,53 +630,6 @@ public class FragmentMain extends Fragment {
     }
 
 
-//    public class CustomScrollListener extends RecyclerView.OnScrollListener {
-//        public CustomScrollListener() {
-//        }
-//
-//        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-//            switch (newState) {
-//                case RecyclerView.SCROLL_STATE_IDLE:
-//                    System.out.println("The RecyclerView is not scrolling");
-//                    break;
-//                case RecyclerView.SCROLL_STATE_DRAGGING:
-//                    System.out.println("Scrolling now");
-//
-////                    int llast = gridLayoutManager.findLastCompletelyVisibleItemPosition();
-////
-////                    if(llast == postsCardArrayList.size()-1){
-////                        //bottom of list!
-//////                loadMoreData();
-////
-////                        Toast.makeText(mContext, "laaaaast", Toast.LENGTH_SHORT).show();
-////                    }
-//                    break;
-//                case RecyclerView.SCROLL_STATE_SETTLING:
-//                    System.out.println("Scroll Settling");
-//                    break;
-//            }
-//
-//        }
-//
-//        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-//            if (dx > 0) {
-//                System.out.println("Scrolled Right");
-//            } else if (dx < 0) {
-//                System.out.println("Scrolled Left");
-//            } else {
-//                System.out.println("No Horizontal Scrolled");
-//            }
-//
-//            if (dy > 0) {
-//                System.out.println("Scrolled Downwards");
-//            } else if (dy < 0) {
-//                System.out.println("Scrolled Upwards");
-//            } else {
-//                System.out.println("No Vertical Scrolled");
-//            }
-//
-//        }
-//    }
 
     private void initSlider(ArrayList<ModelSliderImg> modelSliderImgArrayList) {
         if (modelSliderImgArrayList.size() > 0) {
@@ -706,7 +735,8 @@ public class FragmentMain extends Fragment {
     }
 
 
-    private void GetAds() {
+    private void GetAds1() {
+        adsArrayList1 = new ArrayList<>();
         OkHttpClient httpClient = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {
                     @Override
@@ -743,12 +773,89 @@ public class FragmentMain extends Fragment {
                     String status_code = object.getString("status_code");
                     switch (status_code) {
                         case "200": {
-                            JSONObject data = object.getJSONObject("data");
-                            String imageUrl = data.getString("image");
-                            Glide.with(getActivity()).load(Api.ROOT_URL+"storage/"+imageUrl)
-                                    .into(imgAds1);
-                            Glide.with(getActivity()).load(Api.ROOT_URL+"storage/"+imageUrl)
-                                    .into(imgAds2);
+                            JSONArray data = object.getJSONArray("data");
+                            for (int i = 0; i <data.length() ; i++) {
+                                JSONObject item = data.getJSONObject(i);
+                                ModelAds modelAds = new ModelAds();
+                                modelAds.setId(item.getString("id"));
+                                modelAds.setImgUrl(item.getString("image"));
+                                adsArrayList1.add(modelAds);
+                            }
+                            if (adsArrayList1.size()>0){
+                                adapter_ads1 = new SlideShow_adapter_ads(mContext,adsArrayList1);
+                                viewPagerAds1.setAdapter(adapter_ads1);
+                            }
+
+                            break;
+                        }
+                        default: {
+
+                            break;
+                        }
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable throwable) {
+            }
+        });
+    }
+    private void GetAds2() {
+        adsArrayList2=new ArrayList<>();
+        OkHttpClient httpClient = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        okhttp3.Request.Builder ongoing = chain.request().newBuilder();
+//                        ongoing.addHeader("Content-Type", "application/json;");
+//                        ongoing.addHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                        return chain.proceed(ongoing.build());
+                    }
+                })
+                .readTimeout(60, TimeUnit.SECONDS)
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.ROOT_URL)
+                .client(httpClient)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        Api.RetrofitAds service = retrofit.create(Api.RetrofitAds.class);
+
+        HashMap<String, String> hashBody = new HashMap<>();
+        hashBody.put("position", "2");
+
+        Call<String> call = service.putParam(hashBody);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, retrofit2.Response<String> response) {
+                try {
+                    JSONObject object = new JSONObject(response.body());
+                    String status_code = object.getString("status_code");
+                    switch (status_code) {
+                        case "200": {
+                            JSONArray data = object.getJSONArray("data");
+                            for (int i = 0; i <data.length() ; i++) {
+                                JSONObject item = data.getJSONObject(i);
+                                ModelAds modelAds = new ModelAds();
+                                modelAds.setId(item.getString("id"));
+                                modelAds.setImgUrl(item.getString("image"));
+                                adsArrayList2.add(modelAds);
+                            }
+                            if (adsArrayList2.size()>0){
+                                adapter_ads2 = new SlideShow_adapter_ads(mContext,adsArrayList2);
+                                viewPagerAds2.setAdapter(adapter_ads2);
+                            }
+
                             break;
                         }
                         default: {

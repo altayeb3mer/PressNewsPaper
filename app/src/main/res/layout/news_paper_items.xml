@@ -30,7 +30,8 @@
                 android:layout_height="wrap_content"
                 android:text="صحيفة الصيحة"
                 android:layout_marginLeft="5dp"
-                android:layout_marginStart="5dp" />
+                android:layout_marginStart="5dp"
+                android:textSize="@dimen/txt_large_size"/>
         </LinearLayout>
             <ImageView
                 android:id="@+id/img"

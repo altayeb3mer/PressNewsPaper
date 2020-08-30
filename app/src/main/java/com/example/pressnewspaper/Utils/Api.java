@@ -93,7 +93,7 @@ public class Api {
     }
     //ads
     public interface RetrofitAds {
-        @GET("api/ad")
+        @GET("api/ads")
         Call<String> putParam(@QueryMap HashMap<String, String> param);
     }
 
