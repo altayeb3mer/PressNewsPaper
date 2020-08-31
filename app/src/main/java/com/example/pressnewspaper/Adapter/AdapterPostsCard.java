@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatButton;
@@ -97,7 +98,7 @@ public class AdapterPostsCard extends RecyclerView.Adapter<AdapterPostsCard.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        CardView cardView_container;
+        RelativeLayout cardView_container;
         AppCompatButton buttonNewsPaper;
         TextView textView_title,textView_date,textView_category;
         ImageView imageView;

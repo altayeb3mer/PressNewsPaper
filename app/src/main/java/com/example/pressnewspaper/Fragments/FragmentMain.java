@@ -83,7 +83,7 @@ public class FragmentMain extends Fragment {
     RecyclerView recyclerViewPosts;
     AdapterPostsCard adapterPostsCard;
     ArrayList<ModelPostsCard> postsCardArrayList;
-    String s_current_page = "", s_last_page = "", s_perPage = "", s_newsPaperId = "", s_category = "";
+    String s_current_page = "1", s_last_page = "1", s_perPage = "", s_newsPaperId = "", s_category = "";
     ArrayList<ModelNewsPaper> newsPaperArrayList;
     LinearLayout spinner1Lay;
 
@@ -245,7 +245,6 @@ public class FragmentMain extends Fragment {
         super.onResume();
 
         hallLay.requestFocus();
-        s_current_page = "";
 
 //        viewPager_slid_img.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 //            public void onPageScrollStateChanged(int state) {}
@@ -302,9 +301,20 @@ public class FragmentMain extends Fragment {
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                s_current_page="1";
                 swipeRefresh.setRefreshing(true);
+                postsCardArrayList = new ArrayList<>();
+                modelSliderImgArrayList = new ArrayList<>();
                 postsCardArrayList.clear();
                 modelSliderImgArrayList.clear();
+                if (adapterPostsCard!=null){
+                    adapterPostsCard=new AdapterPostsCard(getActivity(),postsCardArrayList);
+                    recyclerViewPosts.setAdapter(adapterPostsCard);
+                }
+                if (slideShow_adapter_main!=null){
+                    slideShow_adapter_main = new SlideShow_adapter_main(mContext,modelSliderImgArrayList);
+                    viewPager_slid_img.setAdapter(slideShow_adapter_main);
+                }
                 noInternetContainer.setVisibility(View.GONE);
                 GetSlider();
                 GetPosts(s_newsPaperId, s_category, s_current_page);
@@ -441,10 +451,10 @@ public class FragmentMain extends Fragment {
 
                 if (scrollY == (v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight())) {
                     Log.i(TAG, "BOTTOM SCROLL");
-                    if (Double.parseDouble(s_last_page) > Double.parseDouble(s_current_page))
-                        GetPosts(s_newsPaperId, s_category, Integer.parseInt(s_current_page) + 1 + "");
 
-                }
+                        if (Double.parseDouble(s_last_page) > Double.parseDouble(s_current_page))
+                            GetPosts(s_newsPaperId, s_category, Integer.parseInt(s_current_page) + 1 + "");}
+
             }
         });
 

@@ -180,10 +180,14 @@ public class FragmentNotification extends Fragment {
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                s_current_page="1";
                 swipeRefresh.setRefreshing(true);
                 if (SharedPrefManager.getInstance(mContext).receiveNotification()) {
                     postsCardArrayList=new ArrayList<>();
-                    adapterPostsCard.notifyDataSetChanged();
+                    if (adapterPostsCard!=null){
+                        adapterPostsCard = new AdapterPostsCard(getActivity(),postsCardArrayList);
+                        recyclerViewPosts.setAdapter(adapterPostsCard);
+                    }
                     relativeLayout.setVisibility(View.GONE);
                     recyclerViewPosts.setVisibility(View.VISIBLE);
                     muteLay.setVisibility(View.GONE);

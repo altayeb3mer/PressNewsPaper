@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -131,8 +132,8 @@ public class FragmentSavedPost extends Fragment {
 
     View view;
     String token="";
-    LinearLayout noItemLay, progressLay, notLoginLay;
-
+    LinearLayout  progressLay, notLoginLay;
+    TextView noItemLay;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -206,6 +207,11 @@ public class FragmentSavedPost extends Fragment {
     private void GetMySaved() {
         postsCardArrayList = new ArrayList<>();
         postsCardArrayList.clear();
+        if (adapterPostsCard!=null){
+            adapterPostsCard = new AdapterPostsCard(getActivity(),postsCardArrayList);
+            recyclerViewPosts.setAdapter(adapterPostsCard);
+        }
+
         progressLay.setVisibility(View.VISIBLE);
         OkHttpClient httpClient = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {

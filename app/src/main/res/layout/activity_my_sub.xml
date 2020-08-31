@@ -47,7 +47,7 @@
         <LinearLayout
             android:layout_marginTop="10dp"
             android:id="@+id/noItemLay"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -58,7 +58,7 @@
                 android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="لم تقم بالاشتراك في احد الصحف حتى الان"
+                android:text="يبدو انك لم تقم بالاشتراك في احد الصحف حتى الان\n او ان طلبات الاشتراك التي ارسلتها قيد المعالجة.."
                 android:textSize="@dimen/txt_normal_size"/>
         </LinearLayout>
         <LinearLayout
