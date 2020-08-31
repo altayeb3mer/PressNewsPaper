@@ -70,7 +70,7 @@ public class FragmentMain extends Fragment {
     RelativeLayout noInternetContainer;
 
     //spinner
-    Spinner spinner1, spinner2;
+    Spinner spinner1;
     String[] arraySpinner2data = new String[]{"التصنيف", "الكل", "أخبار", "أعمدة ومقالات", "تقارير وتحقيقات", "حوارات", "ثقافة ومنوعات"}, arraySpinner2;
     ArrayAdapter<String> adapter1, adapter2;
     //    AppCompatButton buttonShowMore;
@@ -97,6 +97,38 @@ public class FragmentMain extends Fragment {
     public FragmentMain() {
         // Required empty public constructor
     }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        view = inflater.inflate(R.layout.fragment_main, container, false);
+        list = new ArrayList<>();
+        init();
+//        initSpinner();
+        GetSlider();
+        GetPosts(s_newsPaperId, s_category, s_current_page);
+        if (list.isEmpty())
+            GetNewsPaper();
+
+        GetAds1();
+        GetAds2();
+        return view;
+    }
+
+//    private void autoSwipeAds() {
+//        if (adsArrayList1.size()>1){
+//            AutoSwipingImgAds1();
+//        }
+//        if (adsArrayList2.size()>1){
+//            AutoSwipingImgAds2();
+//        }
+//    }
+
+    //end of test fun
+
+    RelativeLayout hallLay;
 
     private void initSpinnerPapers() {
         //init spinner1
@@ -157,89 +189,59 @@ public class FragmentMain extends Fragment {
         });
     }
 
-    private void initSpinner() {
-
-        //init spinner2
-        spinner2 = view.findViewById(R.id.spinner2);
-        arraySpinner2 = new String[]{"التصنيف", "الكل", "أخبار", "أعمدة", "تقارير", "حوارات", "منوعات"};
-        adapter2 = new ArrayAdapter<String>(mContext, R.layout.spinner_item, arraySpinner2) {
-            @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent) {
-                View v = null;
-                v = super.getDropDownView(position, null, parent);
-                // If this is the selected item position
-//                if (position == 0) {
-//                    v.setBackgroundColor(Color.WHITE);
-//                } else {
-//                    if (position % 2 == 0) {
-//                        v.setBackgroundColor(getResources().getColor(R.color.spinner_bg_design1));
-//                    } else {
-//                        v.setBackgroundColor(getResources().getColor(R.color.spinner_bg_design2));
-//                    }
+//    private void initSpinner() {
 //
+//        //init spinner2
+////        spinner2 = view.findViewById(R.id.spinner2);
+//        arraySpinner2 = new String[]{"التصنيف", "الكل", "أخبار", "أعمدة", "تقارير", "حوارات", "منوعات"};
+//        adapter2 = new ArrayAdapter<String>(mContext, R.layout.spinner_item, arraySpinner2) {
+//            @Override
+//            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+//                View v = null;
+//                v = super.getDropDownView(position, null, parent);
+//                // If this is the selected item position
+////                if (position == 0) {
+////                    v.setBackgroundColor(Color.WHITE);
+////                } else {
+////                    if (position % 2 == 0) {
+////                        v.setBackgroundColor(getResources().getColor(R.color.spinner_bg_design1));
+////                    } else {
+////                        v.setBackgroundColor(getResources().getColor(R.color.spinner_bg_design2));
+////                    }
+////
+////                }
+//                return v;
+//            }
+//        };
+//        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner2.setAdapter(adapter2);
+//        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                if (position == 0) {
+//
+//                } else if (position == 1) {
+//                    s_category = "";
+//                    postsCardArrayList.clear();
+//                    if (adapterPostsCard != null)
+//                        adapterPostsCard.notifyDataSetChanged();
+//                    GetPosts(s_newsPaperId, s_category, "");
+//                } else {
+//                    s_category = arraySpinner2data[position];
+//                    postsCardArrayList.clear();
+//                    if (adapterPostsCard != null)
+//                        adapterPostsCard.notifyDataSetChanged();
+//                    GetPosts(s_newsPaperId, s_category, "");
 //                }
-                return v;
-            }
-        };
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner2.setAdapter(adapter2);
-        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0) {
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//            }
+//        });
+//    }
 
-                } else if (position == 1) {
-                    s_category = "";
-                    postsCardArrayList.clear();
-                    if (adapterPostsCard != null)
-                        adapterPostsCard.notifyDataSetChanged();
-                    GetPosts(s_newsPaperId, s_category, "");
-                } else {
-                    s_category = arraySpinner2data[position];
-                    postsCardArrayList.clear();
-                    if (adapterPostsCard != null)
-                        adapterPostsCard.notifyDataSetChanged();
-                    GetPosts(s_newsPaperId, s_category, "");
-                }
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_main, container, false);
-        list = new ArrayList<>();
-        init();
-        initSpinner();
-        GetSlider();
-        GetPosts(s_newsPaperId, s_category, s_current_page);
-        if (list.isEmpty())
-            GetNewsPaper();
-
-        GetAds1();
-        GetAds2();
-        autoSwipeAds();
-        return view;
-    }
-
-    private void autoSwipeAds() {
-        if (adsArrayList1.size()>1){
-            AutoSwipingImgAds1();
-        }
-        if (adsArrayList2.size()>1){
-            AutoSwipingImgAds2();
-        }
-    }
-
-    //end of test fun
-
-    RelativeLayout hallLay;
     @Override
     public void onResume() {
         super.onResume();
@@ -260,7 +262,7 @@ public class FragmentMain extends Fragment {
     }
 
     SlideShow_adapter_ads adapter_ads1,adapter_ads2;
-    ImageView imgAds1, imgAds2;
+//    ImageView imgAds1, imgAds2;
     private void init() {
         hallLay = view.findViewById(R.id.hallLay);
         swipeRefresh= view.findViewById(R.id.swipeRefresh);
@@ -268,8 +270,8 @@ public class FragmentMain extends Fragment {
         viewPagerAds1 = view.findViewById(R.id.VPads1);
         viewPagerAds2 = view.findViewById(R.id.VPads2);
 
-        imgAds1 = view.findViewById(R.id.imgAds1);
-        imgAds2 = view.findViewById(R.id.imgAds2);
+//        imgAds1 = view.findViewById(R.id.imgAds1);
+//        imgAds2 = view.findViewById(R.id.imgAds2);
         nestedScrollView = view.findViewById(R.id.nestedScroll);
         gridLayoutManager = new GridLayoutManager(mContext, 1);
         loadingLay = view.findViewById(R.id.loadingLay);
@@ -320,6 +322,8 @@ public class FragmentMain extends Fragment {
                 GetPosts(s_newsPaperId, s_category, s_current_page);
                 if (list.isEmpty())
                     GetNewsPaper();
+                GetAds1();
+                GetAds2();
             }
         });
 
@@ -393,7 +397,7 @@ public class FragmentMain extends Fragment {
             public void run() {
 
 //                int i = viewPager_slid_img.getCurrentItem();
-                if (iAds2 == adsArrayList1.size() - 1) {
+                if (iAds2 == adsArrayList2.size() - 1) {
                     iAds2 = 0;
                 } else {
                     iAds2++;
@@ -799,7 +803,7 @@ public class FragmentMain extends Fragment {
         Api.RetrofitAds service = retrofit.create(Api.RetrofitAds.class);
 
         HashMap<String, String> hashBody = new HashMap<>();
-        hashBody.put("position", "2");
+        hashBody.put("position", "1");
 
         Call<String> call = service.putParam(hashBody);
         call.enqueue(new Callback<String>() {
@@ -821,6 +825,7 @@ public class FragmentMain extends Fragment {
                             if (adsArrayList1.size()>0){
                                 adapter_ads1 = new SlideShow_adapter_ads(mContext,adsArrayList1);
                                 viewPagerAds1.setAdapter(adapter_ads1);
+                                AutoSwipingImgAds1();
                             }
 
                             break;
@@ -891,6 +896,7 @@ public class FragmentMain extends Fragment {
                             if (adsArrayList2.size()>0){
                                 adapter_ads2 = new SlideShow_adapter_ads(mContext,adsArrayList2);
                                 viewPagerAds2.setAdapter(adapter_ads2);
+                                AutoSwipingImgAds2();
                             }
 
                             break;

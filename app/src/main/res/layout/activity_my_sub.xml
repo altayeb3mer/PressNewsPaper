@@ -55,6 +55,7 @@
             android:focusable="true"
             android:background="@android:color/transparent">
             <TextView
+                android:visibility="gone"
                 android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -75,7 +76,7 @@
                 android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="الرجاء تسجيل الدخول او لنشاء حساب جديد \n حتى تتمكن من عرض جميع المزايا"
+                android:text="الرجاء تسجيل الدخول او انشاء حساب جديد \n حتى تتمكن من عرض جميع المزايا"
                 android:textSize="@dimen/txt_normal_size"/>
         </LinearLayout>
 

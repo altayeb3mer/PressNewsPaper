@@ -108,4 +108,16 @@
 
 
 
+    <TextView
+        android:visibility="gone"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/noItemLay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="عفوا لم يتم العثور على مقال مشابه للبحث\nحاول باستخدام كلمات اخرى"
+        android:textSize="@dimen/txt_normal_size"
+        android:lineSpacingExtra="5dp"/>
+
 </RelativeLayout>

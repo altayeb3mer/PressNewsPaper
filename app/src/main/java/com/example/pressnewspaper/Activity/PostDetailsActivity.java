@@ -95,7 +95,7 @@ public class PostDetailsActivity extends ToolbarClass {
         Api.RetrofitAds service = retrofit.create(Api.RetrofitAds.class);
 
         HashMap<String, String> hashBody = new HashMap<>();
-        hashBody.put("position", "2");
+        hashBody.put("position", "3");
 
         Call<String> call = service.putParam(hashBody);
         call.enqueue(new Callback<String>() {
@@ -117,6 +117,7 @@ public class PostDetailsActivity extends ToolbarClass {
                             if (adsArrayList1.size()>0){
                                 adapter_ads1 = new SlideShow_adapter_ads(getApplicationContext(),adsArrayList1);
                                 viewPagerAds.setAdapter(adapter_ads1);
+                                AutoSwipingImgAds1();
                             }
 
                             break;
@@ -196,8 +197,6 @@ public class PostDetailsActivity extends ToolbarClass {
 
 
         GetAds();
-        if (adsArrayList1.size()>0)
-            AutoSwipingImgAds1();
 
     }
 

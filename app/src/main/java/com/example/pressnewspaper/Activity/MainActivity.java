@@ -59,13 +59,16 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.nav_drawer);
         init();
         initViewPager();
-        CheckLogin();
-        initNavHeader();
+//        CheckLogin();
 
         viewPager.setOffscreenPageLimit(5);
     }
 
+    MenuItem prevMenuItem;
+    MenuItem navLogin;
+
     private void initNavHeader() {
+        navLogin = navigationView.getMenu().findItem(R.id.login);
         nHeader = navigationView.getHeaderView(0);
         circleImageViewUserImg = nHeader.findViewById(R.id.profile_image);
         textViewName = nHeader.findViewById(R.id.name);
@@ -88,9 +91,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             }else{
                 textViewEmail.setText(email);
             }
-
+            navLogin.setVisible(false);
         }else{
             nHeader.setVisibility(View.GONE);
+            navLogin.setVisible(true);
             Toast.makeText(this, "انت تتصفح التطبيق كزائر", Toast.LENGTH_SHORT).show();
         }
     }
@@ -123,7 +127,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
 
-    MenuItem prevMenuItem;
     private void initViewPager() {
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -223,6 +226,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             //navigation menu
             case R.id.nav_menu_main: {
                 switchToFragment(1);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            }
+            case R.id.login: {
+                startActivity(new Intent(getApplicationContext(),LoginOrRegister.class));
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             }
@@ -331,6 +339,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onResume() {
         super.onResume();
 //        switchToFragment(current_fragment);
+        initNavHeader();
     }
 
     int current_fragment=1;

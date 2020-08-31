@@ -57,6 +57,7 @@ public class SearchActivity extends AppCompatActivity {
     String s_current_page = "", s_last_page = "", s_perPage = "", s_newsPaperId = "", s_category = "";
 
 
+    TextView noItemLay;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,6 +109,7 @@ public class SearchActivity extends AppCompatActivity {
     LinearLayout progressLay;
 
     private void init() {
+        noItemLay = findViewById(R.id.noItemLay);
         editTextSearch = findViewById(R.id.edtSearch);
         imageView_back_icon = findViewById(R.id.back_icon);
         ic_clear = findViewById(R.id.ic_clear);
@@ -123,6 +125,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private void searchFun(String currentPage) {
         progressLay.setVisibility(View.VISIBLE);
+        noItemLay.setVisibility(View.GONE);
         OkHttpClient httpClient = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {
                     @Override
@@ -191,9 +194,9 @@ public class SearchActivity extends AppCompatActivity {
                             }
                             if (postsCardArrayList.size() > 0) {
                                 initPostAdapter(postsCardArrayList);
+                                noItemLay.setVisibility(View.GONE);
                             } else {
-                                Toast.makeText(getApplicationContext(), "لم يتم العثور على نتائج حاول باستخدام كلمات اخرى", Toast.LENGTH_SHORT).show();
-
+                                noItemLay.setVisibility(View.VISIBLE);
                             }
 
                             break;

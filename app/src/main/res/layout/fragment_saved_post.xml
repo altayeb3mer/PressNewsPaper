@@ -118,12 +118,13 @@
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <TextView
+            android:visibility="gone"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:id="@+id/noItemLay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ليس لديك مقالات محفوظة"
+            android:text="ليس لديك مقالات مفضلة"
             android:textSize="@dimen/txt_normal_size"/>
 
     <LinearLayout
@@ -137,10 +138,13 @@
         android:focusable="true"
         android:background="@android:color/transparent">
         <TextView
+            android:visibility="visible"
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="الرجاء تسجيل الدخول او لنشاء حساب جديد \n حتى تتمكن من عرض جميع المزايا"
+            android:text="الرجاء تسجيل الدخول او انشاء حساب جديد \n حتى تتمكن من عرض جميع المزايا"
             android:textSize="@dimen/txt_normal_size"/>
     </LinearLayout>
+
+
 </RelativeLayout>
