@@ -144,13 +144,9 @@
                                     android:src="@drawable/ic_arrow_down"/>
                             </LinearLayout>
 
-
                         </LinearLayout>
 
-
                     </RelativeLayout>
-
-
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/fragment_main_recycler"

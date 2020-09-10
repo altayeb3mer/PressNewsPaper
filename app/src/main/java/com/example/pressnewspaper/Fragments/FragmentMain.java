@@ -92,6 +92,7 @@ public class FragmentMain extends Fragment {
     Context mContext;
     NestedScrollView nestedScrollView;
 
+    boolean isLoading = true;
 
     SwipeRefreshLayout swipeRefresh;
     public FragmentMain() {
@@ -456,7 +457,7 @@ public class FragmentMain extends Fragment {
                 if (scrollY == (v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight())) {
                     Log.i(TAG, "BOTTOM SCROLL");
 
-                        if (Double.parseDouble(s_last_page) > Double.parseDouble(s_current_page))
+                        if (Double.parseDouble(s_last_page) > Double.parseDouble(s_current_page) && !isLoading )
                             GetPosts(s_newsPaperId, s_category, Integer.parseInt(s_current_page) + 1 + "");}
 
             }
@@ -563,6 +564,7 @@ public class FragmentMain extends Fragment {
     }
 
     private void GetPosts(String newsPaperId, String category, String currentPage) {
+        isLoading = true;
         progressLay.setVisibility(View.VISIBLE);
         OkHttpClient httpClient = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {
@@ -647,7 +649,9 @@ public class FragmentMain extends Fragment {
                     progressLay.setVisibility(View.GONE);
                     loadingLay.setVisibility(View.GONE);
                     swipeRefresh.setRefreshing(false);
+                    isLoading = false;
                 } catch (Exception e) {
+                    isLoading = false;
                     e.printStackTrace();
                     Toast.makeText(mContext, "خطأ في التحويل حاول مرة اخري", Toast.LENGTH_SHORT).show();
                     noInternetContainer.setVisibility(View.VISIBLE);
@@ -656,6 +660,7 @@ public class FragmentMain extends Fragment {
                 progressLay.setVisibility(View.GONE);
                 loadingLay.setVisibility(View.GONE);
                 swipeRefresh.setRefreshing(false);
+                isLoading = false;
             }
 
             @Override
@@ -665,6 +670,7 @@ public class FragmentMain extends Fragment {
                 loadingLay.setVisibility(View.GONE);
                 noInternetContainer.setVisibility(View.VISIBLE);
                 swipeRefresh.setRefreshing(false);
+                isLoading = false;
             }
         });
     }

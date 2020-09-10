@@ -57,6 +57,7 @@ public class DeptPostsActivity extends ToolbarClass {
     String s_current_page = "", s_last_page = "", s_perPage = "", s_newsPaperId = "", s_category = "";
     String title = "";
     GridLayoutManager gridLayoutManager;
+    boolean isLoading = true;
 
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,6 +91,7 @@ public class DeptPostsActivity extends ToolbarClass {
     }
 
     private void GetPosts(String newsPaperId, String category, String currentPage) {
+        isLoading = true;
         progressLay.setVisibility(View.VISIBLE);
         OkHttpClient httpClient = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {
@@ -172,17 +174,21 @@ public class DeptPostsActivity extends ToolbarClass {
                         }
                     }
                     progressLay.setVisibility(View.GONE);
+                    isLoading = false;
                 } catch (Exception e) {
+                    isLoading = false;
                     e.printStackTrace();
                     Toast.makeText(getApplicationContext(), "خطأ في التحويل حاول مرة اخري", Toast.LENGTH_SHORT).show();
                 }
                 progressLay.setVisibility(View.GONE);
+                isLoading = false;
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable throwable) {
                 Toast.makeText(getApplicationContext(), "خطأ بالاتصال", Toast.LENGTH_SHORT).show();
                 progressLay.setVisibility(View.GONE);
+                isLoading = false;
             }
         });
     }
@@ -224,7 +230,7 @@ public class DeptPostsActivity extends ToolbarClass {
 
                 if (scrollY == (v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight())) {
                     Log.i(TAG, "BOTTOM SCROLL");
-                    if (Double.parseDouble(s_last_page) > Double.parseDouble(s_current_page))
+                    if (Double.parseDouble(s_last_page) > Double.parseDouble(s_current_page) && !isLoading)
                         GetPosts(s_newsPaperId, s_category, Integer.parseInt(s_current_page) + 1 + "");
 
                 }
@@ -233,7 +239,6 @@ public class DeptPostsActivity extends ToolbarClass {
 
 
     }
-
 
     private void initSpinnerPapers() {
         //init spinner1

@@ -51,6 +51,7 @@ public class FragmentNotification extends Fragment {
     String[] arraySpinner1;
     ArrayAdapter<String> adapter1;
 
+    boolean isLoading = true;
 
     LinearLayout muteLay;
     View view;
@@ -165,7 +166,7 @@ public class FragmentNotification extends Fragment {
 
                 if (scrollY == (v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight())) {
                     Log.i(TAG, "BOTTOM SCROLL");
-                    if (Double.parseDouble(s_last_page) > Double.parseDouble(s_current_page))
+                    if (Double.parseDouble(s_last_page) > Double.parseDouble(s_current_page)&& !isLoading )
                         GetPosts(Integer.parseInt(s_current_page) + 1 + "");
 
                 }
@@ -238,6 +239,7 @@ public class FragmentNotification extends Fragment {
     }
 
     private void GetPosts(String currentPage) {
+        isLoading = true;
         progressLay.setVisibility(View.VISIBLE);
         buttonShowMore.setVisibility(View.GONE);
         OkHttpClient httpClient = new OkHttpClient.Builder()
@@ -321,13 +323,16 @@ public class FragmentNotification extends Fragment {
                         }
                     }
                     progressLay.setVisibility(View.GONE);
+                    isLoading = false;
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(mContext, "خطأ في التحويل حاول مرة اخري", Toast.LENGTH_SHORT).show();
                     swipeRefresh.setRefreshing(false);
+                    isLoading = false;
                 }
                 progressLay.setVisibility(View.GONE);
                 swipeRefresh.setRefreshing(false);
+                isLoading = false;
             }
 
             @Override
@@ -335,6 +340,7 @@ public class FragmentNotification extends Fragment {
                 Toast.makeText(mContext, "خطأ بالاتصال", Toast.LENGTH_SHORT).show();
                 progressLay.setVisibility(View.GONE);
                 swipeRefresh.setRefreshing(false);
+                isLoading = false;
             }
         });
     }
