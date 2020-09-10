@@ -12,7 +12,7 @@
         android:orientation="vertical">
 
         <ImageView
-            android:padding="20dp"
+            android:padding="@dimen/margin_normal_size"
             android:layout_width="@dimen/img_width_height"
             android:layout_height="@dimen/img_width_height"
             android:src="@drawable/paper_logo" />
@@ -26,6 +26,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"

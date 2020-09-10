@@ -33,9 +33,13 @@ import com.example.pressnewspaper.R;
 import com.example.pressnewspaper.Utils.CustomViewPager;
 import com.example.pressnewspaper.Utils.SharedPrefManager;
 import com.example.pressnewspaper.Utils.ViewPagerAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -62,6 +66,25 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 //        CheckLogin();
 
         viewPager.setOffscreenPageLimit(5);
+
+        getFirebaseToken();
+
+    }
+
+    private void getFirebaseToken() {
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("FCM Error", "Failed", task.getException());
+                            return;
+                        }
+
+                        String token = task.getResult().getToken();
+                        Log.i("FCM Token", "Current token=" + token);
+                    }
+                });
     }
 
     MenuItem prevMenuItem;

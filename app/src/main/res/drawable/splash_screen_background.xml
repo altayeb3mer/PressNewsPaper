@@ -6,10 +6,6 @@
         android:gravity="center"
         android:height="40dp"
         android:width="80dp"
-        android:drawable="@drawable/paper_logo"
-       >
-<!--        <bitmap-->
-<!--            android:gravity="center"-->
-<!--            android:src="@drawable/ic_splash_logo" />-->
+        android:drawable="@drawable/paper_logo">
     </item>
 </layer-list>
