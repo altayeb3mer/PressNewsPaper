@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
@@ -169,6 +170,7 @@ public class PostDetailsActivity extends ToolbarClass {
     }
 
 
+    LinearLayout postDataLay;
 
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -200,13 +202,19 @@ public class PostDetailsActivity extends ToolbarClass {
 
     }
 
+    CardView cardSorry;
     private void init() {
+        cardSorry = findViewById(R.id.cardSorry);
+        postDataLay = findViewById(R.id.postDataLay);
         viewPagerAds = findViewById(R.id.VPads1);
         ic_share = findViewById(R.id.ic_share);
         ic_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sharePost(id);
+                if (canCopy){
+                    sharePost(id);}else{
+                    Toast.makeText(PostDetailsActivity.this, "عفوا لايمكنك مشاركة المقال..الرجاء الاشتراك", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         addFavorites = findViewById(R.id.addFavorites);
@@ -244,6 +252,7 @@ public class PostDetailsActivity extends ToolbarClass {
     }
 
     boolean is_favorite = false;
+    boolean canCopy=false,canView=false;
     private void GetPostsDetails() {
         container.setVisibility(View.GONE);
         progressLay.setVisibility(View.VISIBLE);
@@ -295,20 +304,36 @@ public class PostDetailsActivity extends ToolbarClass {
                             JSONObject author = data.getJSONObject("author");
                             is_favorite = data.getBoolean("is_favorite");
 
+                            canView = data.getBoolean("can_view");
+                            canCopy = data.getBoolean("can_copy");
 
-                            textViewTitle.setText(data.getString("title"));
-                            textViewDate.setText(data.getString("published_at"));
-                            textViewBody.setText(data.getString("body"));
-                            textViewWriter.setText("الكاتب : " + author.getString("name"));
+                            if (canView){
+                                textViewTitle.setText(data.getString("title"));
+                                textViewDate.setText(data.getString("published_at"));
+                                textViewBody.setText(data.getString("body"));
+                                textViewWriter.setText("الكاتب : " + author.getString("name"));
 
-                            buttonNewsPaper.setText(newsPaper.getString("name"));
-                            newsPaperId = newsPaper.getString("id");
+                                buttonNewsPaper.setText(newsPaper.getString("name"));
+                                newsPaperId = newsPaper.getString("id");
+
+                                postDataLay.setVisibility(View.VISIBLE);
+                                cardSorry.setVisibility(View.GONE);
+                            }else{
+                                postDataLay.setVisibility(View.GONE);
+                                cardSorry.setVisibility(View.VISIBLE);
+                            }
+
+
+
 
                             Glide.with(PostDetailsActivity.this).load(Api.ROOT_URL + "storage/" + data.getString("image"))
                                     .into(imageView);
 
                             processIsFavorate(is_favorite);
                             container.setVisibility(View.VISIBLE);
+
+
+
                             break;
                         }
                         default: {

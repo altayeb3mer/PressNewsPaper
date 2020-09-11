@@ -97,7 +97,6 @@ public class NewsPaperDetails extends ToolbarClass {
 
     CardView publisDayLay;
     private void GetPaperDetails() {
-        container.setVisibility(View.GONE);
         progressLay.setVisibility(View.VISIBLE);
         OkHttpClient httpClient = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {

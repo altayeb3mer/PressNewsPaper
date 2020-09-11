@@ -42,6 +42,7 @@
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
             <LinearLayout
+                android:id="@+id/postDataLay"
                 android:layout_below="@+id/header_ly"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -211,4 +212,26 @@
             app:indicatorColor="@color/colorAccent"
             app:indicatorName="BallClipRotatePulseIndicator" />
     </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:visibility="gone"
+        android:id="@+id/cardSorry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        app:cardBackgroundColor="@color/colorPrimary"
+        >
+        <TextView
+            android:layout_margin="@dimen/margin_normal_size"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="عفوا لايمكنك مشاهده تفاصيل المقال\n الرجاء تسجيل الدخول او الاشتراك"
+            android:gravity="center"
+            android:textSize="@dimen/txt_large_size"
+            />
+    </androidx.cardview.widget.CardView>
+
+
 </RelativeLayout>

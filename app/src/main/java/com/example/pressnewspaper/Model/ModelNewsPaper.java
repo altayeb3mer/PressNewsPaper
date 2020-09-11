@@ -7,6 +7,15 @@ public class ModelNewsPaper {
     private String releaseType;
     private String releaseTime;
     private String img;
+    private String subscription_status;
+
+    public String getSubscription_status() {
+        return subscription_status;
+    }
+
+    public void setSubscription_status(String subscription_status) {
+        this.subscription_status = subscription_status;
+    }
 
     public String getImg() {
         return img;

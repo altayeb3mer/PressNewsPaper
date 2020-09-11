@@ -166,6 +166,7 @@ public class NewsPapers extends ToolbarClass {
                                 modelNewsPaper.setReleaseType(object2.getString("publish_period"));
                                 modelNewsPaper.setReleaseTime(object2.getString("publish_day"));
                                 modelNewsPaper.setImg(object2.getString("logo"));
+                                modelNewsPaper.setSubscription_status(object2.getString("subscription_status"));
 
                                 newsPaperArrayList.add(modelNewsPaper);
 
