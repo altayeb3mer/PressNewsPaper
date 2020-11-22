@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,82 +10,82 @@
     android:layoutDirection="rtl"
     android:id="@+id/container">
 
-    <include layout="@layout/public_toolbar"
-        android:id="@+id/toolbar"/>
+<include layout="@layout/public_toolbar"
+android:id="@+id/toolbar"/>
 
-    <LinearLayout
-        android:layout_below="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="1"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.3"
-            android:gravity="center">
-            <ImageView
-                android:padding="1dp"
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:src="@drawable/paper_logo"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.7"
-            android:gravity="center"
-            android:orientation="vertical">
+<LinearLayout
+android:layout_below="@+id/toolbar"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:weightSum="1"
+android:orientation="vertical">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="0.3"
+    android:gravity="center">
+    <ImageView
+        android:padding="1dp"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:src="@drawable/paper_logo"/>
+</LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="0.7"
+    android:gravity="center"
+    android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/email_or_phone"
-                android:layout_margin="5dp"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:hint="البريد الالكتروني او رقم الهاتف"
-                android:inputType="textEmailAddress"
-                android:gravity="right"/>
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_margin="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:passwordToggleEnabled="true">
-                <EditText
-                    android:id="@+id/password"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:hint="كلمة المرور"
-                    android:inputType="textPassword"
-                    android:gravity="right"/>
-            </com.google.android.material.textfield.TextInputLayout>
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn"
-                android:layout_width="250dp"
-                android:layout_height="40dp"
-                android:text="دخول"
-                android:background="@drawable/shape_btn_bg"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"
-                android:textSize="@dimen/txt_normal_size"/>
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:visibility="gone"
-        android:id="@+id/progressLay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:background="@color/slider"
-        android:clickable="true"
-        android:focusable="true">
-        <com.wang.avi.AVLoadingIndicatorView
-            android:id="@+id/avi"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:visibility="visible"
-            app:indicatorColor="@color/colorAccent"
-            app:indicatorName="BallClipRotatePulseIndicator" />
-    </LinearLayout>
+    <EditText
+        android:id="@+id/email_or_phone"
+        android:layout_margin="5dp"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="البريد الالكتروني او رقم الهاتف"
+        android:inputType="textEmailAddress"
+        android:gravity="right"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:passwordToggleEnabled="true">
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="كلمة المرور"
+            android:inputType="textPassword"
+            android:gravity="right"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:text="دخول"
+        android:background="@drawable/shape_btn_bg"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="@dimen/txt_normal_size"/>
+</LinearLayout>
+</LinearLayout>
+<LinearLayout
+android:visibility="gone"
+android:id="@+id/progressLay"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:gravity="center"
+android:background="@color/slider"
+android:clickable="true"
+android:focusable="true">
+<com.wang.avi.AVLoadingIndicatorView
+    android:id="@+id/avi"
+    android:layout_width="60dp"
+    android:layout_height="60dp"
+    android:visibility="visible"
+    app:indicatorColor="@color/colorAccent"
+    app:indicatorName="BallClipRotatePulseIndicator" />
+</LinearLayout>
 
 
 </RelativeLayout>
