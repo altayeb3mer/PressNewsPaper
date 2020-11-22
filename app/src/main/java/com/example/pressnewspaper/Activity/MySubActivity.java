@@ -49,7 +49,6 @@ public class MySubActivity extends ToolbarClass {
         }else{
             notLoginLay.setVisibility(VISIBLE);
         }
-        
     }
 
     private void init() {
@@ -58,7 +57,6 @@ public class MySubActivity extends ToolbarClass {
         noItemLay = findViewById(R.id.noItemLay);
         recyclerView = findViewById(R.id.spc_recycler);
         recyclerView.setNestedScrollingEnabled(false);
-
     }
 
     private void initAdapter(ArrayList<ModelMySub> list) {
