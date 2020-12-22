@@ -68,6 +68,7 @@
                 android:textSize="@dimen/txt_normal_size"/>
         </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
         android:visibility="gone"
         android:id="@+id/progressLay"
