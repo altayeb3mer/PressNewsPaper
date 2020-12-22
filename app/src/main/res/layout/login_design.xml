@@ -131,16 +131,6 @@
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
-            <TextView
-                android:layout_marginTop="@dimen/margin_normal_size"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/margin_large_size"
-                android:layout_marginLeft="@dimen/margin_large_size"
-                android:text="كلمة السر"
-                android:textSize="@dimen/txt_normal_size"
-                android:textColor="@color/colorPrimary"
-                android:textStyle="bold"/>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
