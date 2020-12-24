@@ -9,12 +9,15 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.cardview.widget.CardView;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.example.pressnewspaper.R;
 import com.example.pressnewspaper.Utils.Api;
@@ -40,15 +43,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class RegistrationActivity extends ToolbarClass {
-    TextInputEditText editTextName, editTextEmail, editTextPass1, editTextPass2;
-    AppCompatButton button;
+    EditText editTextName, editTextEmail, editTextPass1, editTextPass2;
+    CardView button;
     LinearLayout progressLay;
     String s_name = "", s_email = "", s_pass1 = "", s_pass2 = "";
-    RelativeLayout container;
+    CoordinatorLayout container;
+    TextView txtLogin;
 
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.onCreate(R.layout.activity_registration, "انشاء حساب");
+        super.onCreate(R.layout.register_design, "انشاء حساب");
         init();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,8 +177,15 @@ public class RegistrationActivity extends ToolbarClass {
     }
 
     private void init() {
-        container = findViewById(R.id.container);
+        txtLogin = findViewById(R.id.txtLogin);
+        txtLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),Login.class));
+            }
+        });
 
+        container = findViewById(R.id.container);
         editTextName = findViewById(R.id.edt_name);
         editTextEmail = findViewById(R.id.edt_email);
         editTextPass1 = findViewById(R.id.edt_pass1);
