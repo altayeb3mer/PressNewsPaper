@@ -2,6 +2,8 @@ package com.example.pressnewspaper.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.cardview.widget.CardView;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.content.Context;
 import android.content.Intent;
@@ -42,12 +44,13 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class Login extends ToolbarClass {
     EditText editTextEmailPhone, editTextPass;
     String s_emailPhone="", s_pass="";
-    AppCompatButton button;
+    CardView button;
     LinearLayout progressLay;
+    TextView register;
 
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.onCreate(R.layout.activity_login, "تسجيل دخول");
+        super.onCreate(R.layout.login_design, "تسجيل دخول");
 
         init();
         button.setOnClickListener(new View.OnClickListener() {
@@ -160,6 +163,13 @@ public class Login extends ToolbarClass {
     }
 
     private void init() {
+        register = findViewById(R.id.register);
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),RegistrationActivity.class));
+            }
+        });
         container = findViewById(R.id.container);
         progressLay = findViewById(R.id.progressLay);
         editTextEmailPhone = findViewById(R.id.email_or_phone);
@@ -177,7 +187,7 @@ public class Login extends ToolbarClass {
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
-    RelativeLayout container;
+    CoordinatorLayout container;
     private void ShowSnakBar(String msg) {
         Snackbar snackbar = Snackbar.make(container, msg, Snackbar.LENGTH_LONG);
         View snackview = snackbar.getView();

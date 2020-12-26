@@ -223,7 +223,6 @@ public class SearchActivity extends AppCompatActivity {
     }
 
 
-
     private void initPostAdapter(final ArrayList<ModelPostsCard> list) {
         recyclerViewPosts.setLayoutManager(gridLayoutManager);
         recyclerViewPosts.setNestedScrollingEnabled(false);
@@ -294,7 +293,6 @@ public class SearchActivity extends AppCompatActivity {
         }
         imm.showSoftInput(editTextSearch, 0);
     }
-
 
     TextWatcher editTextWatcher = new TextWatcher() {
         @Override
