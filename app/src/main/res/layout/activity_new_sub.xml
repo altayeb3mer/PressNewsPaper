@@ -17,50 +17,51 @@
         android:layout_below="@+id/toolbar"
         >
         <LinearLayout
+            android:padding="@dimen/margin_large_size"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_margin="@dimen/margin_normal_size">
-            <TextView
-                android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/margin_normal_size"
-            android:layout_marginLeft="@dimen/margin_small_size"
-            android:layout_marginRight="@dimen/margin_small_size"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/txt_normal_size"
-            android:text="طلب اشتراك في"/>
-            <TextView
-                android:layout_gravity="center_horizontal"
-                android:textColor="@color/colorAccent"
-                android:layout_marginTop="@dimen/margin_normal_size"
-                android:id="@+id/paperName"
-                android:layout_marginLeft="@dimen/margin_small_size"
-                android:layout_marginRight="@dimen/margin_small_size"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/txt_large_size"
-                android:text="الصحيفة"/>
-            <View
-                android:layout_marginTop="@dimen/margin_small_size"
-                android:layout_width="100dp"
-                android:layout_height="0.5dp"
-                android:background="@color/colorPrimary"
-                android:layout_gravity="center"/>
+                android:orientation="horizontal">
+                <TextView
+                    android:textColor="@color/nav_header_bg"
+                    android:layout_marginTop="@dimen/margin_normal_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/txt_normal_size"
+                    android:text="طلب اشتراك في"/>
+                <TextView
+                    android:paddingLeft="@dimen/margin_normal_size"
+                    android:paddingRight="@dimen/margin_normal_size"
+                    android:background="@drawable/shape_btn_bg_redius5"
+                    android:textColor="@android:color/white"
+                    android:layout_marginTop="@dimen/margin_normal_size"
+                    android:id="@+id/paperName"
+                    android:layout_marginLeft="@dimen/margin_small_size"
+                    android:layout_marginRight="@dimen/margin_small_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:textSize="@dimen/txt_large_size"
+                    android:text="الصحيفة"/>
+            </LinearLayout>
+
+
             <TextView
-                android:layout_gravity="center"
+                android:textColor="@color/nav_header_bg"
                 android:layout_marginTop="@dimen/margin_large_size"
-                android:layout_marginLeft="@dimen/margin_small_size"
-                android:layout_marginRight="@dimen/margin_small_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/txt_normal_size"
-                android:text="اختر نوع الاشتراك"/>
-            <LinearLayout
-                android:layout_gravity="center"
+                android:text="اختر نوع الاشتراك :"/>
+            <RelativeLayout
+                android:background="@drawable/shape_spinner_bg"
+                android:layout_marginTop="@dimen/margin_small_size"
                 android:id="@+id/spinner1Lay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
                 android:orientation="horizontal"
                 android:layout_alignParentLeft="true"
                 android:gravity="center_vertical">
@@ -72,58 +73,74 @@
                     android:gravity="center_horizontal"
                     />
                 <ImageView
+                    android:layout_marginLeft="@dimen/margin_small_size"
+                    android:layout_marginRight="@dimen/margin_small_size"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_arrow_down"/>
-            </LinearLayout>
+            </RelativeLayout>
+
+
 
             <LinearLayout
                 android:id="@+id/priceLay"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
                 android:orientation="vertical">
-                <TextView
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/margin_normal_size"
-                    android:layout_marginLeft="@dimen/margin_small_size"
-                    android:layout_marginRight="@dimen/margin_small_size"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/txt_normal_size"
-                    android:text="مدة الاشتراك"/>
-                <TextView
-                    android:layout_gravity="center_horizontal"
-                    android:textColor="@color/colorAccent"
-                    android:layout_marginTop="@dimen/margin_normal_size"
-                    android:id="@+id/duration"
-                    android:layout_marginLeft="@dimen/margin_small_size"
-                    android:layout_marginRight="@dimen/margin_small_size"
-                    android:layout_width="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:textColor="@color/nav_header_bg"
+                        android:layout_marginTop="@dimen/margin_normal_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:text="مدة الاشتراك :"/>
+                    <TextView
+                        android:id="@+id/duration"
+                        android:paddingLeft="@dimen/margin_normal_size"
+                        android:paddingRight="@dimen/margin_normal_size"
+                        android:background="@drawable/shape_btn_bg_redius5"
+                        android:textColor="@android:color/white"
+                        android:layout_marginTop="@dimen/margin_normal_size"
+                        android:layout_marginLeft="@dimen/margin_small_size"
+                        android:layout_marginRight="@dimen/margin_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:textSize="@dimen/txt_large_size"
+                        android:text="3 شهور"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/txt_large_size"
-                    android:text="3 شهور"/>
-                <TextView
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/margin_normal_size"
-                    android:layout_marginLeft="@dimen/margin_small_size"
-                    android:layout_marginRight="@dimen/margin_small_size"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/txt_normal_size"
-                    android:text="سعر الاشتراك"/>
-                <TextView
-                    android:layout_gravity="center_horizontal"
-                    android:textColor="@color/colorAccent"
-                    android:layout_marginTop="@dimen/margin_normal_size"
-                    android:id="@+id/price"
-                    android:layout_marginLeft="@dimen/margin_small_size"
-                    android:layout_marginRight="@dimen/margin_small_size"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/txt_large_size"
-                    android:text="500 ج س"/>
+                    android:orientation="horizontal">
+                    <TextView
+                        android:textColor="@color/nav_header_bg"
+                        android:layout_marginTop="@dimen/margin_normal_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:text="سعر الاشتراك :"/>
+                    <TextView
+                        android:id="@+id/price"
+                        android:paddingLeft="@dimen/margin_normal_size"
+                        android:paddingRight="@dimen/margin_normal_size"
+                        android:textColor="@color/nav_header_bg"
+                        android:layout_marginTop="@dimen/margin_normal_size"
+                        android:layout_marginLeft="@dimen/margin_small_size"
+                        android:layout_marginRight="@dimen/margin_small_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:textSize="@dimen/txt_large_size"
+                        android:text="500 ج س"/>
+                </LinearLayout>
+
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
@@ -133,7 +150,7 @@
                 android:layout_width="250dp"
                 android:layout_height="40dp"
                 android:text="ارسال طلب الاشتراك"
-                android:background="@drawable/shape_btn_bg"
+                android:background="@drawable/shape_btn_bg_redius5"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
                 android:textSize="@dimen/txt_normal_size"/>

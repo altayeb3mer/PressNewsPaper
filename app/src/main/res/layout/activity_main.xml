@@ -53,7 +53,6 @@
             android:layout_below="@+id/card_toolbar"
             android:layout_above="@+id/btn_navigation"/>
 
-
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/btn_navigation"
             android:layout_width="match_parent"

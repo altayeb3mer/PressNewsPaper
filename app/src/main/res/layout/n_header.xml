@@ -5,28 +5,48 @@
     >
 
     <LinearLayout
+        android:background="@color/nav_header_bg"
         android:id="@+id/n_header_con1"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
         >
-        <de.hdodenhof.circleimageview.CircleImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/profile_image"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:src="@drawable/account_circle"
-            app:civ_border_width="0dp"
-            app:civ_border_color="#FF000000"
-            android:scaleType="centerCrop"/>
+        <LinearLayout
+            android:layout_marginTop="@dimen/margin_normal_size"
+            android:background="@drawable/shape_profile_bg"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="2dp">
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profile_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/account_circle"
+                app:civ_border_width="0dp"
+                app:civ_border_color="#FF000000"
+                android:scaleType="centerCrop"/>
+
+        </LinearLayout>
         <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/txt_large_size"
+            android:text="الطيب عمر"
+            android:textColor="@android:color/white"
+            />
+        <TextView
+            android:layout_marginTop="@dimen/margin_small_size"
             android:id="@+id/phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="10sp"
             android:text="249925510574"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@android:color/white"
             />
         <TextView
             android:id="@+id/email"
@@ -34,16 +54,10 @@
             android:layout_height="wrap_content"
             android:textSize="10sp"
             android:text="altayeb3mer@gmail.com"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="@dimen/margin_small_size"
             />
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/txt_large_size"
-            android:text="الطيب عمر"
-            android:textColor="@color/colorPrimaryDark"
-            />
+
     </LinearLayout>
     <View
         android:background="#808080"

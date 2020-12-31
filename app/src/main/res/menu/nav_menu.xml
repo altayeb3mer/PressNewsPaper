@@ -1,83 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-        <group android:checkableBehavior="none"
-            android:id="@+id/first_menu_group">
+    <item
+        android:id="@+id/login"
+        android:icon="@drawable/ic_register"
+        android:title="التسجيل" />
 
-                <item
-                    android:icon="@drawable/ic_register"
-                    android:id="@+id/login"
-                    android:title="التسجيل"
-                    />
-
-
-                <group android:checkableBehavior="none"
-                    android:id="@+id/second_menu_group">
-                        <item
-                            android:icon="@drawable/ic_newspaper"
-                            android:id="@+id/nav_menu_news_paper"
-                            android:title="الصحف"
-                            />
-                </group>
-                <group android:checkableBehavior="none"
-                    android:id="@+id/second_menu_group3">
-                        <item
-                            android:icon="@drawable/ic_favorite_orange"
-                            android:id="@+id/nav_menu_mySub"
-                            android:title="اشتراكاتي"
-                            />
-                </group>
+    <group
+        android:id="@+id/second_menu_group"
+        android:checkableBehavior="none">
         <item
-            android:icon="@drawable/ic_home_nav"
+            android:id="@+id/nav_menu_news_paper"
+            android:icon="@drawable/ic_nav1"
+            android:title="الصحـف" />
+        <item
+            android:id="@+id/nav_menu_mySub"
+            android:icon="@drawable/ic_nav2"
+            android:title="اشتراكاتي" />
+    </group>
+
+
+    <group
+        android:id="@+id/first_menu_group"
+        android:checkableBehavior="none">
+        <item
             android:id="@+id/nav_menu_main"
-            android:title="الرئيسية"
-            />
+            android:icon="@drawable/ic_nav3"
+            android:title="الصفحة الرئيسية" />
         <item
-            android:icon="@drawable/ic_depts_orange"
             android:id="@+id/nav_menu_my_sub"
-            android:title="اقسام"
-            />
+            android:icon="@drawable/ic_nav4"
+            android:title="الاقسام" />
         <item
-            android:icon="@drawable/ic_notifications"
             android:id="@+id/nav_menu_notification"
-            android:title="مقالات عاجلة"
-            />
+            android:icon="@drawable/ic_nav5"
+            android:title="مقالات عاجلة" />
         <item
-            android:icon="@drawable/ic_book_save"
             android:id="@+id/nav_menu_saved"
-            android:title="المفضلة"
+            android:icon="@drawable/ic_nav6"
+            android:title="المفضلة" />
+        <item
+            android:id="@+id/nav_menu_setting"
+            android:icon="@drawable/ic_nav7"
+            android:title="الاعدادات" />
+    </group>
+    <group
+        android:id="@+id/third_menu_group"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_facebook"
+            android:icon="@drawable/ic_nav8"
+            android:title="فيسبوك"
             />
         <item
-            android:icon="@drawable/ic_settings_orange"
-            android:id="@+id/nav_menu_setting"
-            android:title="الضبط"
-            />
-        </group>
+            android:id="@+id/nav_twitter"
+            android:icon="@drawable/ic_nav9"
+            android:title="تويتر" />
+        <item
+            android:id="@+id/nav_website"
+            android:icon="@drawable/ic_nav10"
+            android:title="موقعنا الالتروني" />
+    </group>
 
-        <group android:checkableBehavior="none"
-            android:id="@+id/third_menu_group" >
-                <item
-                    android:id="@+id/nav_facebook"
-                    android:icon="@drawable/ic_facebook"
-                    android:title="تابعنا على فيسبوك"
-                    />
-                <item
-                    android:id="@+id/nav_twitter"
-                    android:icon="@drawable/ic_twitter"
-                    android:title="تابعنا على تويتر"
-                    />
-                <item
-                    android:id="@+id/nav_website"
-                    android:icon="@drawable/ic_website"
-                    android:title="موقعنا الالتروني"
-                    />
-        </group>
-        <group android:checkableBehavior="none"
-            android:id="@+id/fourd_menu_group"
-            android:visible="false">
-                <item
-                    android:id="@+id/nav_notification"
-                    android:title="اختبار الاشعارات"
-                    />
 
-        </group>
+    <group
+        android:id="@+id/fourd_menu_group"
+        android:checkableBehavior="none"
+        android:visible="false">
+        <item
+            android:id="@+id/nav_notification"
+            android:title="اختبار الاشعارات" />
+
+    </group>
+
 </menu>
