@@ -7,6 +7,18 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_alignParentRight="true"
+            android:id="@+id/btn"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="الانتباهة"
+            android:background="@drawable/shape_frag_setting_bg"
+            android:textSize="@dimen/txt_small_size"
+            android:textColor="@android:color/white" />
+
+
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -18,35 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         <LinearLayout
-            android:layout_above="@+id/container_date"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_margin="10dp">
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn"
-                android:layout_width="64dp"
-                android:layout_height="30dp"
-                android:text="الانتباهة"
-                android:background="@drawable/shape_btn_bg_redius5"
-                android:textSize="@dimen/txt_small_size"
-                android:textColor="@android:color/white" />
-
-        </LinearLayout>
-            <TextView
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_above="@+id/container_date"
-                android:id="@+id/title"
-                android:layout_marginBottom="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="اصابات جديدة بفيروس كورونا"
-                android:textSize="@dimen/txt_normal_size"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"
-                />
-        <LinearLayout
+            android:visibility="gone"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:id="@+id/container_date"
@@ -63,17 +47,38 @@
                 android:textSize="@dimen/txt_so_small_size"
                 android:textColor="@android:color/white"
                 />
-            <TextView
-                android:id="@+id/category"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="التصنيف: اخبار"
-                android:textSize="@dimen/txt_so_small_size"
-                android:textColor="@android:color/white"
-                />
+
         </LinearLayout>
         </RelativeLayout>
     </RelativeLayout>
+
+    <TextView
+        android:background="@drawable/shape_txt_category_bg"
+        android:padding="2dp"
+        android:gravity="center"
+        android:id="@+id/category"
+        android:layout_margin="@dimen/margin_normal_size"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="اخبار"
+        android:textSize="@dimen/txt_normal_size"
+        android:textColor="@color/colorPrimary"
+        android:minWidth="80dp"
+        />
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/title"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="اصابات جديدة بفيروس كورونا"
+        android:textSize="@dimen/txt_large_size"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        />
+
 </RelativeLayout>
