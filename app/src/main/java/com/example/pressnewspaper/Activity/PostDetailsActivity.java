@@ -4,6 +4,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -62,8 +65,6 @@ public class PostDetailsActivity extends ToolbarClass {
     TextView textViewTitle, textViewWriter, textViewDate, textViewBody;
 
     String id = "", newsPaperId = "";
-
-    ImageView addFavorites,ic_share;
 
     ViewPager viewPagerAds;
     ArrayList<ModelAds> adsArrayList1;
@@ -177,6 +178,7 @@ public class PostDetailsActivity extends ToolbarClass {
         super.onCreate(R.layout.activity_post_details, "تفاصيل");
 
         token = SharedPrefManager.getInstance(getApplicationContext()).GetToken();
+        initPopupMenu();
         init();
         processIsFavorate(is_favorite);
 
@@ -207,17 +209,7 @@ public class PostDetailsActivity extends ToolbarClass {
         cardSorry = findViewById(R.id.cardSorry);
         postDataLay = findViewById(R.id.postDataLay);
         viewPagerAds = findViewById(R.id.VPads1);
-        ic_share = findViewById(R.id.ic_share);
-        ic_share.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (canCopy){
-                    sharePost(id);}else{
-                    Toast.makeText(PostDetailsActivity.this, "عفوا لايمكنك مشاركة المقال..الرجاء الاشتراك", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        addFavorites = findViewById(R.id.addFavorites);
+
         recyclerView = findViewById(R.id.post_details_recycler);
         progressLayRec = findViewById(R.id.progressLayRec);
         container = findViewById(R.id.container);
@@ -229,16 +221,6 @@ public class PostDetailsActivity extends ToolbarClass {
         textViewDate = findViewById(R.id.date);
         textViewBody = findViewById(R.id.body);
 
-        addFavorites.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!token.equals("")){
-                    AddFavorites();
-                }else{
-                    dialogMessage("اضافة الى المفضلة","عفوا .. \n لم تقم بتسجيل الدخول حتى الان.. نرجو تسجيل الدخول اولا للوصول لكل المميزات");
-                }
-            }
-        });
 
     }
 
@@ -359,15 +341,59 @@ public class PostDetailsActivity extends ToolbarClass {
         });
     }
 
-    private void processIsFavorate(boolean is_favorite) {
-        try {
-            if (is_favorite){
-                addFavorites.setImageResource(R.drawable.ic_bookmark);
-            }else{
-                addFavorites.setImageResource(R.drawable.ic_saved);
+    LinearLayout layoutMenu;
+    PopupMenu popup;
+    private void initPopupMenu() {
+        layoutMenu = findViewById(R.id.layMenu);
+        popup = new PopupMenu(PostDetailsActivity.this, layoutMenu);
+        popup.getMenuInflater()
+                .inflate(R.menu.popup_menu, popup.getMenu());
+
+        layoutMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                PostDetails.this.openOptionsMenu();
+                //popup menu
+
+
+//                popup.getMenu().getItem(R.id.item1).setTitle("");
+                //registering popup with OnMenuItemClickListener
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.item1: {
+                                if (canCopy){
+                                    sharePost(id);}else{
+                                    Toast.makeText(PostDetailsActivity.this, "عفوا لايمكنك مشاركة المقال..الرجاء الاشتراك", Toast.LENGTH_SHORT).show();
+                                }
+                                break;
+                            }
+                            case R.id.item2: {
+                                if (!token.equals("")){
+                                    AddFavorites();
+                                }else{
+                                    dialogMessage("اضافة الى المفضلة","عفوا .. \n لم تقم بتسجيل الدخول حتى الان.. نرجو تسجيل الدخول اولا للوصول لكل المميزات");
+                                }
+                                break;
+                            }
+
+                        }
+                        return true;
+                    }
+                });
+                popup.show();
+
             }
-        }catch (Exception e){
-            addFavorites.setImageResource(R.drawable.ic_saved);
+        });
+    }
+
+
+    private void processIsFavorate(boolean is_favorite) {
+        Menu menu = popup.getMenu();
+        if (is_favorite) {
+            menu.getItem(1).setTitle("ازالة من المفضلة");
+        } else {
+            menu.getItem(1).setTitle("حفظ في المفضلة");
         }
 
     }

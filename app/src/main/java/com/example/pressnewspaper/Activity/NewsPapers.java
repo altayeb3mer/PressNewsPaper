@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pressnewspaper.Adapter.AdapterAllNewsPaper;
@@ -52,7 +53,7 @@ public class NewsPapers extends ToolbarClass {
     RecyclerView recyclerView;
     AdapterAllNewsPaper adapterAllNewsPaper;
     ArrayList<ModelNewsPaper> newsPaperArrayList;
-    RelativeLayout container;
+    CoordinatorLayout container;
 
     private void initSpinner() {
         //init spinner1
