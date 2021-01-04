@@ -518,7 +518,7 @@ public class FragmentMain extends Fragment {
                                 modelSliderImg.setId(item.getString("id"));
                                 modelSliderImg.setTitle(item.getString("title"));
                                 modelSliderImg.setDate(item.getString("published_at"));
-                                modelSliderImg.setCategory("التصنيف: " + item.getString("category"));
+                                modelSliderImg.setCategory(item.getString("category"));
                                 modelSliderImg.setImg_url(item.getString("image"));
                                 modelSliderImg.setNewsPaperId(item.getString("newspaper_id"));
 

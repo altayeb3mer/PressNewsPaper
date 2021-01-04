@@ -288,7 +288,7 @@
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_centerVertical="true"
-                            android:src="@drawable/ic_arrow_back"
+                            android:src="@drawable/ic_login"
                             android:layout_marginRight="@dimen/margin_small_size"
                             android:layout_marginLeft="@dimen/margin_small_size"
                             android:scaleType="center"
