@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -129,7 +130,7 @@ public class FragmentMain extends Fragment {
 
     //end of test fun
 
-    RelativeLayout hallLay;
+    CoordinatorLayout hallLay;
 
     private void initSpinnerPapers() {
         //init spinner1
