@@ -43,7 +43,6 @@
                 android:orientation="vertical"
                 android:layoutDirection="rtl">
             <androidx.appcompat.widget.AppCompatButton
-                android:layout_marginTop="@dimen/margin_small_size"
                 android:visibility="visible"
                 android:id="@+id/post_card_newspaper_btn"
                 android:layout_width="wrap_content"
@@ -70,7 +69,10 @@
                 />
             </LinearLayout>
             <LinearLayout
-                android:visibility="gone"
+                android:layout_marginLeft="@dimen/margin_small_size"
+                android:layout_marginRight="@dimen/margin_small_size"
+                android:layout_marginBottom="@dimen/margin_small_size"
+                android:visibility="visible"
                 android:id="@+id/lay_date"
                 android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
@@ -79,6 +81,7 @@
                 android:gravity="center_vertical"
                 android:layoutDirection="rtl">
                 <TextView
+                    android:textColor="@color/colorPrimary"
                     android:id="@+id/date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -86,6 +89,7 @@
                     android:textSize="@dimen/txt_so_small_size"
                     />
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/category"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
