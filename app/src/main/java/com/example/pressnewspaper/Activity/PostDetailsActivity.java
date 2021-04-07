@@ -69,6 +69,7 @@ public class PostDetailsActivity extends ToolbarClass {
     ViewPager viewPagerAds;
     ArrayList<ModelAds> adsArrayList1;
     SlideShow_adapter_ads adapter_ads1;
+    LinearLayout lay_ads1;
 
     private void GetAds() {
         adsArrayList1 = new ArrayList<>();
@@ -120,12 +121,14 @@ public class PostDetailsActivity extends ToolbarClass {
                                 adapter_ads1 = new SlideShow_adapter_ads(getApplicationContext(),adsArrayList1);
                                 viewPagerAds.setAdapter(adapter_ads1);
                                 AutoSwipingImgAds1();
+                            }else {
+                                lay_ads1.setVisibility(View.GONE);
                             }
 
                             break;
                         }
                         default: {
-
+                            lay_ads1.setVisibility(View.GONE);
                             break;
                         }
                     }
@@ -206,6 +209,7 @@ public class PostDetailsActivity extends ToolbarClass {
 
     CardView cardSorry;
     private void init() {
+        lay_ads1 = findViewById(R.id.lay_ads1);
         cardSorry = findViewById(R.id.cardSorry);
         postDataLay = findViewById(R.id.postDataLay);
         viewPagerAds = findViewById(R.id.VPads1);

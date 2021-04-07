@@ -316,7 +316,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         switch (f_no) {
             case 1: {
                 viewPager.setCurrentItem(0);
-                toolbar.setTitle("الرئيسية");
+                toolbar.setTitle("");
                 SetNavigationItemSelected(R.id.btn_nav_main_ac);
                 break;
             }

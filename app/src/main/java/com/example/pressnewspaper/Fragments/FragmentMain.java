@@ -94,6 +94,7 @@ public class FragmentMain extends Fragment {
     NestedScrollView nestedScrollView;
 
     boolean isLoading = true;
+    LinearLayout lay_ads1,lay_ads2;
 
     SwipeRefreshLayout swipeRefresh;
     public FragmentMain() {
@@ -266,6 +267,9 @@ public class FragmentMain extends Fragment {
     SlideShow_adapter_ads adapter_ads1,adapter_ads2;
 //    ImageView imgAds1, imgAds2;
     private void init() {
+        lay_ads1 = view.findViewById(R.id.lay_ads1);
+        lay_ads2 = view.findViewById(R.id.lay_ads2);
+
         hallLay = view.findViewById(R.id.hallLay);
         swipeRefresh= view.findViewById(R.id.swipeRefresh);
 
@@ -519,7 +523,7 @@ public class FragmentMain extends Fragment {
                                 modelSliderImg.setId(item.getString("id"));
                                 modelSliderImg.setTitle(item.getString("title"));
                                 modelSliderImg.setDate(item.getString("published_at"));
-                                modelSliderImg.setCategory("التصنيف: " + item.getString("category"));
+                                modelSliderImg.setCategory(item.getString("category"));
                                 modelSliderImg.setImg_url(item.getString("image"));
                                 modelSliderImg.setNewsPaperId(item.getString("newspaper_id"));
 
@@ -833,6 +837,8 @@ public class FragmentMain extends Fragment {
                                 adapter_ads1 = new SlideShow_adapter_ads(mContext,adsArrayList1);
                                 viewPagerAds1.setAdapter(adapter_ads1);
                                 AutoSwipingImgAds1();
+                            }else {
+                                lay_ads1.setVisibility(View.GONE);
                             }
 
                             break;
@@ -904,6 +910,8 @@ public class FragmentMain extends Fragment {
                                 adapter_ads2 = new SlideShow_adapter_ads(mContext,adsArrayList2);
                                 viewPagerAds2.setAdapter(adapter_ads2);
                                 AutoSwipingImgAds2();
+                            }else {
+                                lay_ads2.setVisibility(View.GONE);
                             }
 
                             break;

@@ -53,6 +53,7 @@
     </RelativeLayout>
 
     <TextView
+        android:layout_alignParentLeft="true"
         android:background="@drawable/shape_txt_category_bg"
         android:padding="2dp"
         android:gravity="center"

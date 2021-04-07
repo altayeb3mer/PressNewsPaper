@@ -65,6 +65,60 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_frag_setting_bg">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp">
+                <LinearLayout
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/margin_normal_size">
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/margin_large_size"
+                        android:layout_marginLeft="@dimen/margin_large_size"
+                        android:text="الصفحة"
+                        android:textSize="@dimen/txt_large_size"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/margin_large_size"
+                        android:layout_marginLeft="@dimen/margin_large_size"
+                        android:text="الرئيسية"
+                        android:textSize="@dimen/txt_large_size"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"/>
+                    <View
+                        android:layout_width="80dp"
+                        android:layout_height="3dp"
+                        android:background="@android:color/white"
+                        android:layout_marginTop="@dimen/margin_small_size"
+                        android:layout_marginRight="@dimen/margin_large_size"
+                        android:layout_marginLeft="@dimen/margin_large_size"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -246,6 +300,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/lay_ads2"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_width="match_parent"

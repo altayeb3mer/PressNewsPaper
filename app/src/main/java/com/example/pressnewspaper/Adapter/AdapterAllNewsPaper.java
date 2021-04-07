@@ -56,10 +56,10 @@ public class AdapterAllNewsPaper extends RecyclerView.Adapter<AdapterAllNewsPape
         holder.textView_type.setText(item.getNewPaperType());
         holder.textView_release_type.setText(item.getReleaseType());
 
-        if (!item.getReleaseTime().equals("")&&!item.getReleaseTime().equals("null")){
-           holder.textView_release_time.setVisibility(View.VISIBLE);
-            holder.textView_release_time.setText("تصدر في"+" "+item.getReleaseTime());
-        }
+//        if (!item.getReleaseTime().equals("")&&!item.getReleaseTime().equals("null")){
+//           holder.textView_release_time.setVisibility(View.VISIBLE);
+//            holder.textView_release_time.setText("تصدر في"+" "+item.getReleaseTime());
+//        }
 
         try {
             Glide.with(activity).load(Api.ROOT_URL+"storage/"+item.getImg()).into(holder.imageView);
