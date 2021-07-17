@@ -253,7 +253,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
             }
             case R.id.login: {
-                startActivity(new Intent(getApplicationContext(),LoginOrRegister.class));
+                startActivity(new Intent(getApplicationContext(),Login.class));
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             }
@@ -288,17 +288,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
             }
             case R.id.nav_facebook: {
-                openUrl("http://onlinefit.com.sd/papers/public/");// TODO: 8/7/2020  
+//                openUrl("https://shamilpress.com/");// TODO: 8/7/2020
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             }
             case R.id.nav_twitter: {
-                openUrl("http://onlinefit.com.sd/papers/public/");// TODO: 8/7/2020
+//                openUrl("https://shamilpress.com/");// TODO: 8/7/2020
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             }
             case R.id.nav_website: {
-                openUrl("http://onlinefit.com.sd/papers/public/");
+                openUrl("https://shamilpress.com/");
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             }
@@ -385,7 +385,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, notify_intent, PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setSmallIcon(R.mipmap.ic_splash_logo)
                         .setContentTitle(title)
                         .setContentText(content)
                         .setContentIntent(pendingIntent)

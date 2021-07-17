@@ -54,6 +54,8 @@ public class RegistrationActivity extends ToolbarClass {
         super.onCreate(savedInstanceState);
         super.onCreate(R.layout.register_design, "انشاء حساب");
         init();
+        editTextEmail.setText(getIntent().getExtras().getString("phone"));
+        editTextEmail.setEnabled(false);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

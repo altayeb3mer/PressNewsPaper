@@ -10,13 +10,23 @@ import retrofit2.http.POST;
 import retrofit2.http.QueryMap;
 
 public class Api {
-    public static String ROOT_URL = "http://onlinefit.com.sd/papers/public/";
+    public static String ROOT_URL = "https://shamilpress.com/";
 
 
     //Retrofit interface
     //registration
     public interface RetrofitRegister {
         @POST("api/register")
+        Call<String> putParam(@Body HashMap<String, String> param);
+    }
+    //sendOtp
+    public interface RetrofitSendOtp {
+        @POST("api/send-otp")
+        Call<String> putParam(@Body HashMap<String, String> param);
+    }
+    //verifyOtp
+    public interface RetrofitVerifyOtp {
+        @POST("api/check-otp")
         Call<String> putParam(@Body HashMap<String, String> param);
     }
     //login

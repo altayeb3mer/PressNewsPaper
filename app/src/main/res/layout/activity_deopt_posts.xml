@@ -82,5 +82,21 @@
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:id="@+id/notLoginLay"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="@android:color/transparent">
+        <TextView
+            android:visibility="visible"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="لاتوجد مقالات لهذه الصحيفة"
+            android:textSize="@dimen/txt_normal_size"/>
+    </LinearLayout>
 
 </RelativeLayout>

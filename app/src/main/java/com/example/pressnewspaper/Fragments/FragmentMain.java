@@ -773,7 +773,7 @@ public class FragmentMain extends Fragment {
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    noInternetContainer.setVisibility(View.VISIBLE);
+//                    noInternetContainer.setVisibility(View.VISIBLE);
 
                 }
             }
@@ -781,7 +781,7 @@ public class FragmentMain extends Fragment {
             @Override
             public void onFailure(Call<String> call, Throwable throwable) {
                 Toast.makeText(mContext, "تعذر الوصول للصحف", Toast.LENGTH_SHORT).show();
-                noInternetContainer.setVisibility(View.VISIBLE);
+//                noInternetContainer.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -939,6 +939,5 @@ public class FragmentMain extends Fragment {
         super.onAttach(context);
         this.mContext = context;
     }
-
 
 }

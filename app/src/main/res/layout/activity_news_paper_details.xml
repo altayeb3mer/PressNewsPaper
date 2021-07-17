@@ -26,7 +26,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="@dimen/margin_normal_size"
-                android:src="@drawable/paper_logo"
+                android:src="@drawable/shamil_press_logo"
                 android:scaleType="centerInside"/>
             <androidx.cardview.widget.CardView
                 android:layout_marginTop="@dimen/margin_normal_size"
@@ -186,6 +186,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.appcompat.widget.AppCompatButton
+                android:visibility="invisible"
                 android:layout_marginTop="@dimen/margin_large_size"
                 android:id="@+id/btn"
                 android:layout_width="250dp"

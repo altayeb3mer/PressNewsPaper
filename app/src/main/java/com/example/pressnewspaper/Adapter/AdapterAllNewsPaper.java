@@ -78,22 +78,32 @@ public class AdapterAllNewsPaper extends RecyclerView.Adapter<AdapterAllNewsPape
                 activity.startActivity(intent);
             }
         });
-        switch (item.getSubscription_status()){
-            case "0":{
-                holder.buttonSubscription.setText("اشتراك");
-                break;
+        holder.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity, DeptPostsActivity.class);
+                intent.putExtra("title","صحيفة"+" "+item.getNewPaperName());
+                intent.putExtra("category","");
+                intent.putExtra("paperId",item.getNewPaperId());
+                activity.startActivity(intent);
             }
-            case "1":{
-                holder.buttonSubscription.setText("في انتظار الموافقة");
-                holder.buttonSubscription.setEnabled(false);
-                break;
-            }
-            case "2":{
-                holder.buttonSubscription.setText("تم الاشتراك");
-                holder.buttonSubscription.setEnabled(false);
-                break;
-            }
-        }
+        });
+//        switch (item.getSubscription_status()){
+//            case "0":{
+//                holder.buttonSubscription.setText("اشتراك");
+//                break;
+//            }
+//            case "1":{
+//                holder.buttonSubscription.setText("في انتظار الموافقة");
+//                holder.buttonSubscription.setEnabled(false);
+//                break;
+//            }
+//            case "2":{
+//                holder.buttonSubscription.setText("تم الاشتراك");
+//                holder.buttonSubscription.setEnabled(false);
+//                break;
+//            }
+//        }
         holder.buttonSubscription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -67,11 +68,11 @@ public class Login extends ToolbarClass {
 
     private void PreLogin() {
         s_emailPhone = editTextEmailPhone.getText().toString().trim();
-        s_pass = editTextPass.getText().toString().trim();
-        if (!s_emailPhone.equals("")||!s_pass.equals("")){
+//        s_pass = editTextPass.getText().toString().trim();
+        if (!s_emailPhone.equals("")){
             LoginFun();
         }else{
-            ShowSnakBar("الرجاء تعبئة كل الحقول");
+            ShowSnakBar("الرجاء كتابة رقم الهاتف");
         }
 
     }
@@ -100,11 +101,11 @@ public class Login extends ToolbarClass {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        Api.RetrofitLogin service = retrofit.create(Api.RetrofitLogin.class);
+        Api.RetrofitSendOtp service = retrofit.create(Api.RetrofitSendOtp.class);
 
         HashMap<String, String> hashBody = new HashMap<>();
-        hashBody.put("email_or_phone",s_emailPhone);
-        hashBody.put("password",s_pass);
+        hashBody.put("phone",s_emailPhone);
+//        hashBody.put("password",s_pass);
 
         Call<String> call = service.putParam(hashBody);
         call.enqueue(new Callback<String>() {
@@ -114,24 +115,13 @@ public class Login extends ToolbarClass {
                     JSONObject object = new JSONObject(response.body());
                     String statusCode = object.getString("status_code");
 
-                    String data = object.getString("data");
-                    JSONObject objectData=new JSONObject(data);
+//                    String data = object.getString("data");
+//                    JSONObject objectData=new JSONObject(data);
                     switch (statusCode){
                         case "200":{
-                            String token = objectData.getString("token");
-                            String name = objectData.getString("name");
-                            String phone = objectData.getString("phone");
-                            String email = objectData.getString("email");
-
-                            SharedPrefManager.getInstance(Login.this).storeToken(token);
-                            SharedPrefManager.getInstance(Login.this).SaveUserName(name);
-                            SharedPrefManager.getInstance(Login.this).SaveUserPhone(phone);
-                            SharedPrefManager.getInstance(Login.this).SaveUserEmail(email);
-
-
-                            startActivity(new Intent(Login.this,MainActivity.class));
-                            String msg = objectData.getString("message");
-                            Toast.makeText(Login.this, ""+msg, Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(),ConfirmActivity.class);
+                            intent.putExtra("phone",s_emailPhone);
+                            startActivity(intent);
 
                             finish();
                             break;
@@ -141,8 +131,8 @@ public class Login extends ToolbarClass {
 //                            break;
 //                        }
                         default:{
-                            String msg = objectData.getString("message");
-                            ShowSnakBar(msg);
+//                            String msg = objectData.getString("message");
+                            ShowSnakBar("حدث خطأ اثناء ارسال كود التحقق، حاول مجددا");
                             break;
                         }
                     }
@@ -173,6 +163,7 @@ public class Login extends ToolbarClass {
         container = findViewById(R.id.container);
         progressLay = findViewById(R.id.progressLay);
         editTextEmailPhone = findViewById(R.id.email_or_phone);
+//        editTextEmailPhone.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
         editTextPass = findViewById(R.id.password);
 
         editTextEmailPhone.addTextChangedListener(emailOrPhoneWatcher);
@@ -216,7 +207,7 @@ public class Login extends ToolbarClass {
             String check = s.toString();
 
             if (!isValidEmail(check)&&!isValidMobile2(check)){
-                editTextEmailPhone.setError("ليس بريد الكتروني ولا رقم هاتف");
+                editTextEmailPhone.setError("رقم هاتف غير صحيح");
             }
 
         }

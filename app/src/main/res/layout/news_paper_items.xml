@@ -90,10 +90,11 @@
 
             </LinearLayout>
             <androidx.appcompat.widget.AppCompatButton
+                android:visibility="visible"
                 android:id="@+id/btn_sub"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="اشتراك"
+                android:text="تفاصيل"
                 android:background="@drawable/btn_login_bg"
                 android:textSize="@dimen/txt_small_size"
                 android:textColor="@android:color/white"

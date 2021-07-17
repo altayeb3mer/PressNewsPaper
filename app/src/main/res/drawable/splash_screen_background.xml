@@ -4,8 +4,8 @@
     <item android:drawable="@color/colorPrimary" />
     <item
         android:gravity="center"
-        android:height="40dp"
-        android:width="80dp"
-        android:drawable="@drawable/paper_logo">
+        android:height="150dp"
+        android:width="150dp"
+        android:drawable="@drawable/shamil_press_logo">
     </item>
 </layer-list>

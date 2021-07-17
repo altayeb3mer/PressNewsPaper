@@ -161,8 +161,10 @@ public class DeptPostsActivity extends ToolbarClass {
                             }
                             if (postsCardArrayList.size() > 0) {
                                 initPostAdapter(postsCardArrayList);
+                                findViewById(R.id.notLoginLay).setVisibility(View.GONE);
                             } else {
-                                Toast.makeText(getApplicationContext(), "تعذر الوصول للبيانات", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(getApplicationContext(), "تعذر الوصول للبيانات", Toast.LENGTH_SHORT).show();
+                                findViewById(R.id.notLoginLay).setVisibility(View.VISIBLE);
 
                             }
 

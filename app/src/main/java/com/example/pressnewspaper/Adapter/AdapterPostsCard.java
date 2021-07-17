@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.cardview.widget.CardView;
@@ -20,6 +21,7 @@ import com.example.pressnewspaper.Activity.PostDetailsActivity;
 import com.example.pressnewspaper.Model.ModelPostsCard;
 import com.example.pressnewspaper.R;
 import com.example.pressnewspaper.Utils.Api;
+import com.example.pressnewspaper.Utils.SharedPrefManager;
 
 import java.util.ArrayList;
 
@@ -63,9 +65,14 @@ public class AdapterPostsCard extends RecyclerView.Adapter<AdapterPostsCard.View
             @Override
             public void onClick(View view) {
 //                activity.startActivity(new Intent(activity, PostDetailsActivity.class));
-                Intent intent = new Intent(activity, PostDetailsActivity.class);
-                intent.putExtra("id",item.getId());
-                activity.startActivity(intent);
+                if (!SharedPrefManager.getInstance(activity).GetToken().isEmpty()){
+                    Intent intent = new Intent(activity, PostDetailsActivity.class);
+                    intent.putExtra("id",item.getId());
+                    activity.startActivity(intent);
+                }else{
+                    Toast.makeText(activity, "لايمكن العرض، قم بالتسجيل", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 

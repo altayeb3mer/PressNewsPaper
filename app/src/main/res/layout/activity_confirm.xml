@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".Activity.Login"
     android:background="@color/colorBackground"
-    android:layoutDirection="rtl">
+    android:layoutDirection="rtl"
+    android:id="@+id/container">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,6 +39,7 @@
             android:gravity="center"
             android:orientation="vertical">
             <EditText
+                android:id="@+id/edtOtp"
                 android:layout_margin="5dp"
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
@@ -45,6 +47,7 @@
                 android:gravity="center"
                 android:inputType="number"/>
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn"
                 android:layout_width="230dp"
                 android:layout_height="40dp"
                 android:text="تأكيد"
@@ -54,5 +57,24 @@
                 android:textSize="@dimen/txt_normal_size"/>
         </LinearLayout>
     </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/progressLay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="@color/slider"
+        android:clickable="true"
+        android:focusable="true">
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/avi"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:visibility="visible"
+            app:indicatorColor="@android:color/white"
+            app:indicatorName="BallClipRotatePulseIndicator" />
+    </LinearLayout>
+
 
 </RelativeLayout>

@@ -25,7 +25,6 @@ import com.example.pressnewspaper.Adapter.AdapterOtherPosts;
 import com.example.pressnewspaper.Adapter.SlideShow_adapter_ads;
 import com.example.pressnewspaper.Model.ModelAds;
 import com.example.pressnewspaper.Model.ModelOtherPosts;
-import com.example.pressnewspaper.Model.ModelPostsCard;
 import com.example.pressnewspaper.R;
 import com.example.pressnewspaper.Utils.Api;
 import com.example.pressnewspaper.Utils.SharedPrefManager;
@@ -183,7 +182,7 @@ public class PostDetailsActivity extends ToolbarClass {
         token = SharedPrefManager.getInstance(getApplicationContext()).GetToken();
         initPopupMenu();
         init();
-        processIsFavorate(is_favorite);
+        processIsFavorite(is_favorite);
 
         Bundle args = getIntent().getExtras();
         if (args != null) {
@@ -315,7 +314,7 @@ public class PostDetailsActivity extends ToolbarClass {
                             Glide.with(PostDetailsActivity.this).load(Api.ROOT_URL + "storage/" + data.getString("image"))
                                     .into(imageView);
 
-                            processIsFavorate(is_favorite);
+                            processIsFavorite(is_favorite);
                             container.setVisibility(View.VISIBLE);
 
 
@@ -392,7 +391,7 @@ public class PostDetailsActivity extends ToolbarClass {
     }
 
 
-    private void processIsFavorate(boolean is_favorite) {
+    private void processIsFavorite(boolean is_favorite) {
         Menu menu = popup.getMenu();
         if (is_favorite) {
             menu.getItem(1).setTitle("ازالة من المفضلة");
@@ -544,7 +543,7 @@ public class PostDetailsActivity extends ToolbarClass {
                             }else{
                                 is_favorite = true;
                             }
-                            processIsFavorate(is_favorite);
+                            processIsFavorite(is_favorite);
                             break;
                         }
                         default: {

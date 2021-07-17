@@ -114,7 +114,7 @@
                         android:id="@+id/ic1"
                         />
                     <EditText
-                        android:gravity="right|center_vertical"
+                        android:gravity="end|center_vertical"
                         android:id="@+id/email_or_phone"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -133,6 +133,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:visibility="invisible"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginRight="@dimen/margin_large_size"
@@ -161,7 +162,7 @@
                         android:layout_marginRight="@dimen/margin_small_size"
                         android:layout_marginLeft="@dimen/margin_small_size">
                         <EditText
-                            android:gravity="right|center_vertical"
+                            android:gravity="end|center_vertical"
                             android:id="@+id/password"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -230,6 +231,7 @@
             </RelativeLayout>
 
             <LinearLayout
+                android:visibility="invisible"
                 android:layout_marginTop="@dimen/margin_large_size"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
